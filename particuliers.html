@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>MANTA – Pour les particuliers</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;display=swap">
+<style>
+body{margin:0;background:#F5F8F6}
+a{color:#0F6E68}a:hover{color:#0B2F3A}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,4vw);padding-right:max(20px,4vw);box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;font-family:'Atkinson Hyperlegible',Verdana,sans-serif;font-weight:700;font-size:19px;text-decoration:none;box-sizing:border-box;cursor:pointer;border:2px solid transparent}
+.btn-main{background:#0B2F3A;color:#FFFFFF}.btn-main:hover{background:#0F6E68;color:#FFFFFF}
+.btn-line{background:transparent;color:#0B2F3A;border-color:#0B2F3A}.btn-line:hover{background:#0B2F3A;color:#FFFFFF}
+.btn-sable{background:#F4DDAE;color:#0B2F3A}.btn-sable:hover{background:#FFFFFF;color:#0B2F3A}
+.pill{min-height:48px;padding:0 18px;border-radius:999px;border:2px solid #C9D9D5;background:#FFFFFF;color:#0B2F3A;font:700 17px 'Atkinson Hyperlegible',Verdana,sans-serif;cursor:pointer;text-align:left}
+.pill.on{background:#0B2F3A;border-color:#0B2F3A;color:#FFFFFF}
+.pill:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,.step:focus-visible{outline:3px solid #0F6E68;outline-offset:3px}
+summary{cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{transition:transform .2s}
+input[type=range]{width:100%;accent-color:#0F6E68;height:32px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;align-items:center}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.grid5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.nav-links{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+@media (max-width:1000px){.grid4,.grid5{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:1fr}}
+@media (max-width:800px){.grid2{grid-template-columns:1fr;gap:32px}.nav-links .hide-sm{display:none}}
+@media (max-width:520px){.grid4,.grid5{grid-template-columns:1fr}.btn{width:100%}}
+@media (prefers-reduced-motion:reduce){.plus{transition:none}}
+</style>
+</head>
+<body>
+<div class="maquette-bar" style="position:sticky;top:0;z-index:50;background:#F4DDAE;color:#0B2F3A;font:700 14px 'Atkinson Hyperlegible',Verdana,sans-serif;padding:8px max(16px,4vw);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><span>Maquette MANTA · document de travail, non publié</span><a href="index.html" style="color:#0B2F3A">← Sommaire de la maquette</a></div>
+<div style="font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; color: #0B2F3A; background: #F5F8F6; font-size: 19px; line-height: 1.55; width: 100%;">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #DCE7E4;">
+<div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 84px; flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px;">
+<a href="#haut" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0B2F3A;" aria-label="Manta, accueil">
+<svg viewBox="0 0 526 544" width="44" height="46" aria-hidden="true"><path fill="#0B2F3A" d="M0.0 543.7C-0.0 542.6 1.9 537.9 5.3 530.5C5.9 529.2 6.9 527.2 7.4 526.0C8.0 524.8 8.9 522.9 9.4 521.7C10.7 518.9 12.3 515.6 13.6 513.3C14.1 512.3 15.0 510.7 15.6 509.7C16.8 507.4 21.4 499.1 21.8 498.2C26.8 489.5 40.0 470.1 48.5 459.3C57.3 448.1 57.2 448.2 68.1 435.8C72.3 430.9 80.6 422.1 88.5 414.0C95.1 407.2 96.3 405.9 97.1 403.7C97.8 401.9 97.8 397.6 97.2 395.7C96.1 392.7 96.8 390.0 99.2 388.1C100.7 386.8 113.3 380.4 117.4 378.8C124.6 376.0 125.1 375.2 123.9 367.5C122.5 358.9 122.5 357.9 123.8 355.5C124.7 354.0 127.8 351.7 131.8 349.5C133.1 348.8 134.7 347.9 135.4 347.4C136.1 347.0 136.7 346.7 136.8 346.7C136.9 346.7 137.8 346.3 138.8 345.8C144.7 342.9 150.6 340.8 156.7 339.5C162.3 338.2 164.8 337.9 173.0 337.7C182.2 337.5 183.0 337.3 184.1 335.5C184.8 334.5 184.8 331.6 184.2 327.5C182.8 319.2 182.1 314.0 181.2 304.8C180.9 302.1 180.4 297.9 180.2 295.5C179.1 285.8 178.9 283.7 178.0 263.8C177.0 243.8 178.8 211.2 182.2 187.7C182.4 185.9 182.9 182.6 183.2 180.3C183.5 178.0 183.9 175.0 184.2 173.5C184.4 172.0 184.9 169.4 185.2 167.7C186.2 161.2 187.2 156.0 188.2 151.3C188.4 150.1 188.9 148.0 189.2 146.5C189.5 145.0 189.9 142.8 190.2 141.5C190.5 140.2 190.9 138.3 191.2 137.2C191.4 136.2 191.9 134.4 192.2 133.2C192.5 132.1 192.9 130.3 193.2 129.3C193.4 128.3 193.9 126.3 194.3 124.8C195.1 121.4 195.9 118.5 196.3 117.2C196.5 116.6 197.1 114.6 197.7 112.7C199.3 107.0 199.6 106.0 200.5 103.2C201.0 101.7 201.5 100.0 201.7 99.5C201.8 99.0 202.1 98.0 202.4 97.3C202.6 96.7 202.9 95.6 203.2 95.0C203.4 94.4 203.8 93.3 204.0 92.7C204.2 92.0 204.5 91.0 204.7 90.5C205.0 89.3 206.5 85.0 207.2 83.2C207.5 82.4 207.9 81.3 208.2 80.7C210.6 74.1 218.3 55.7 221.1 49.7C222.7 46.2 224.0 43.4 225.4 40.4C228.1 34.5 229.4 31.8 230.2 30.0C230.7 29.0 231.9 26.5 232.9 24.4C233.9 22.3 234.7 20.6 234.7 20.5C234.7 20.4 235.5 18.6 236.5 16.5C237.6 14.3 238.7 11.9 239.0 11.2C242.9 2.7 244.6 -0.1 245.6 0.1C245.8 0.1 247.1 2.4 248.4 5.2C250.3 9.5 259.7 28.2 261.8 32.2C263.5 35.4 265.2 38.3 265.9 39.4C266.3 40.1 266.7 40.7 266.7 40.8C266.7 40.9 267.0 41.6 267.4 42.3C267.9 42.9 268.7 44.3 269.2 45.3C271.5 49.5 275.2 55.7 277.7 59.7C279.1 62.0 281.1 65.1 282.0 66.7C284.2 70.1 288.8 77.1 290.7 79.8C291.5 80.9 294.0 84.5 296.2 87.7C300.4 93.8 301.2 94.8 310.0 106.2C318.1 116.7 327.6 127.7 337.9 138.7C355.7 157.6 373.4 173.6 396.5 191.5C400.5 194.6 417.3 206.5 422.3 209.7C425.2 211.6 428.7 213.9 430.1 214.7C432.7 216.4 446.3 224.7 446.5 224.7C446.5 224.7 448.8 226.0 451.6 227.6C454.3 229.2 458.1 231.3 460.0 232.3C461.9 233.3 464.0 234.4 464.7 234.8C466.9 236.0 482.5 243.9 485.5 245.2C487.2 246.0 489.8 247.2 491.3 247.9C492.9 248.7 495.2 249.7 496.5 250.3C497.8 250.9 499.9 251.9 501.3 252.5C502.6 253.2 503.8 253.7 504.0 253.7C504.1 253.7 504.7 253.9 505.2 254.1C505.7 254.4 507.4 255.1 508.8 255.7C511.5 256.9 512.2 257.6 511.4 258.4C511.1 258.7 506.2 258.8 495.1 258.9C478.8 258.9 468.3 259.3 458.8 260.2C455.9 260.4 450.9 260.9 447.7 261.2C444.5 261.5 440.5 261.9 438.8 262.2C437.2 262.4 434.0 262.9 431.7 263.2C422.9 264.3 420.6 264.7 412.7 266.2C411.3 266.5 409.0 266.9 407.6 267.2C406.2 267.4 403.8 267.9 402.2 268.2C398.8 268.8 396.3 269.4 390.8 270.7C378.8 273.5 374.0 274.7 372.3 275.2C371.5 275.4 369.9 275.8 368.7 276.2C367.5 276.5 365.9 276.9 365.2 277.2C364.4 277.4 362.9 277.8 361.7 278.2C357.4 279.3 353.1 280.5 351.2 281.2C350.4 281.4 346.9 282.5 343.3 283.7C332.5 287.2 325.0 289.7 319.5 291.7C318.8 292.0 316.9 292.7 315.3 293.3C313.7 293.8 311.0 294.8 309.3 295.5C305.2 297.1 299.6 299.3 295.7 300.9C293.9 301.5 288.2 303.9 283.0 306.2C274.1 310.0 272.3 310.8 266.7 313.4C265.5 314.0 263.7 314.8 262.7 315.2C259.4 316.7 238.9 326.9 235.3 328.8C233.4 329.9 230.4 331.5 228.8 332.4C216.0 339.2 196.2 350.8 183.8 358.8C179.6 361.6 172.1 366.5 168.7 368.9C166.6 370.3 162.7 373.0 160.0 374.8C157.3 376.6 150.5 381.6 144.8 385.8C135.5 392.7 132.3 395.2 120.9 404.5C119.0 406.0 116.6 407.9 115.5 408.8C106.0 416.5 78.7 442.0 70.9 450.5C69.2 452.4 65.0 456.9 61.6 460.6C45.7 477.7 27.4 501.3 16.7 518.4C15.7 520.1 13.9 522.8 12.8 524.5C11.7 526.2 10.1 528.9 9.2 530.3C8.2 531.8 6.9 534.0 6.2 535.1C5.4 536.2 4.1 538.3 3.2 539.7C1.3 542.8 0.0 544.3 0.0 543.7ZM516.8 244.3C516.5 244.2 514.7 243.5 513.0 242.8C511.3 242.2 508.3 241.0 506.3 240.2C504.4 239.4 501.0 237.9 498.7 237.0C496.5 236.1 493.7 234.9 492.6 234.4C491.4 233.8 489.2 232.8 487.6 232.0C485.9 231.3 484.5 230.7 484.4 230.7C483.3 230.7 455.0 215.7 447.1 211.0C445.1 209.7 442.5 208.2 441.4 207.6C440.4 207.0 438.5 205.9 437.3 205.2C436.1 204.4 433.7 202.8 431.8 201.7C421.7 195.3 404.5 183.5 403.9 182.5C403.8 182.3 403.9 181.9 404.1 181.7C405.0 181.0 411.7 177.0 414.8 175.3C416.7 174.3 419.3 172.9 420.6 172.1C422.0 171.3 423.1 170.7 423.2 170.7C423.4 170.7 427.2 168.3 429.5 166.8C430.4 166.3 432.3 165.0 433.7 164.2C446.6 155.8 461.2 143.3 472.0 131.4C477.3 125.4 482.3 119.4 484.3 116.4C485.0 115.3 486.6 112.9 487.9 111.0C489.2 109.1 490.8 106.5 491.5 105.2C492.2 103.9 493.2 102.1 493.7 101.2C495.4 98.1 496.0 96.9 498.2 91.7C499.4 88.8 500.9 84.9 501.6 82.8C502.8 79.0 503.1 78.1 504.4 74.8C505.8 71.5 506.1 71.9 508.5 79.3C509.7 82.9 511.1 87.6 511.7 89.7C512.3 91.8 513.2 95.0 513.7 96.8C515.6 103.4 515.6 103.3 517.2 110.7C517.8 113.4 518.5 116.8 519.2 119.8C520.1 123.8 520.6 126.9 521.2 130.7C521.5 132.8 521.9 135.8 522.2 137.5C525.2 156.9 526.0 184.5 524.3 204.2C523.5 213.9 523.3 215.3 523.0 217.5C521.0 232.4 520.8 233.5 519.3 241.3C518.7 244.7 518.4 245.0 516.8 244.3Z"></path></svg>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.5px;">Manta</span>
+</a>
+<nav class="nav-links" aria-label="Menu principal" style="font-size: 17px; font-weight: 700;">
+<a href="#pour-qui" class="hide-sm" style="text-decoration: none; color: #0B2F3A;">Pour qui ?</a>
+<a href="#comment" class="hide-sm" style="text-decoration: none; color: #0B2F3A;">Comment ça marche</a>
+<a href="#prix" class="hide-sm" style="text-decoration: none; color: #0B2F3A;">Prix et aides</a>
+<a href="#questions" class="hide-sm" style="text-decoration: none; color: #0B2F3A;">Questions</a>
+<a href="#prix" class="btn btn-main" style="min-height: 48px; font-size: 17px; padding: 0 22px;">Estimer mon reste à charge</a>
+</nav>
+</div>
+</header>
+
+<section id="haut" style="background: #FFFFFF;">
+<div class="wrap grid2" style="padding-top: 72px; padding-bottom: 88px;">
+<div style="display: flex; flex-direction: column; gap: 28px; min-width: 0;">
+<p style="margin: 0; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #0F6E68;">Toilettes réglables en hauteur</p>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(42px, 5.2vw, 68px); line-height: 1.02; letter-spacing: -1.5px; text-wrap: balance;">Aller aux toilettes seul, en sécurité, chez soi.</h1>
+<p style="margin: 0; font-size: 21px; color: #36505A; max-width: 34em;">MANTA monte et descend vos toilettes d'une simple pression. Pour les personnes âgées, en situation de handicap ou atteintes d'une maladie, et pour ceux qui les aident au quotidien.</p>
+<div style="display: flex; gap: 14px; flex-wrap: wrap;">
+<a href="#prix" class="btn btn-main">Calculer mon reste à charge</a>
+<a href="assistant.html" class="btn btn-line">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"></path></svg>
+Poser une question
+</a>
+</div>
+<p style="margin: 0; font-size: 17px; color: #36505A;">14 239 € TTC pose comprise · <strong style="color: #0B2F3A;">jusqu'à 70 % pris en charge par MaPrimeAdapt'</strong>, selon vos ressources.</p>
+</div>
+<div style="position: relative; min-width: 0;">
+<img src="img/salle-de-bain.jpg" alt="Toilettes MANTA installées dans une salle de bain de maison, avec barres d'appui" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 28px; display: block; max-width: 100%;">
+<div style="position: absolute; left: -16px; bottom: 32px; background: #F4DDAE; border-radius: 20px; padding: 18px 22px; display: flex; flex-direction: column; gap: 2px; box-shadow: 0 12px 32px rgba(11,47,58,0.18);">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 34px; line-height: 1;">35,5 → 74 cm</span>
+<span style="font-size: 16px;">de hauteur, réglable à tout moment</span>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-label="Nos garanties" style="background: #0B2F3A; color: #FFFFFF;">
+<div class="wrap grid4" style="padding-top: 32px; padding-bottom: 32px;">
+<div style="display: flex; gap: 14px; align-items: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4DDAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><span style="font-size: 17px;"><strong>Dispositif médical</strong><br>certifié CE</span></div>
+<div style="display: flex; gap: 14px; align-items: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4DDAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6"></path><path d="M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"></path></svg><span style="font-size: 17px;"><strong>Testé 6 mois</strong><br>au CHU d'Angers</span></div>
+<div style="display: flex; gap: 14px; align-items: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4DDAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span style="font-size: 17px;"><strong>Posé en moins</strong><br>d'une journée</span></div>
+<div style="display: flex; gap: 14px; align-items: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4DDAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"></path><path d="M5 21V8l7-5 7 5v13"></path><path d="M10 21v-6h4v6"></path></svg><span style="font-size: 17px;"><strong>Conçu et fabriqué</strong><br>à Nantes</span></div>
+</div>
+</section>
+
+<section id="pour-qui">
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 48px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; text-wrap: balance;">Pour toutes celles et ceux pour qui s'asseoir et se relever est devenu difficile.</h2>
+<p style="margin: 0; color: #36505A;">Quel que soit votre âge, quelle qu'en soit la raison.</p>
+</div>
+<div class="grid3">
+<article style="background: #FFFFFF; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column;">
+<img src="img/manta-installe.jpg" alt="MANTA installé à hauteur d'assise dans une salle de bain" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; max-width: 100%;">
+<div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.15;">Vous voulez rester chez vous en vieillissant</h3>
+<p style="margin: 0; color: #36505A; font-size: 18px;">Les genoux, l'équilibre, la peur de tomber. MANTA vous accompagne à la bonne hauteur pour vous asseoir, puis vous aide à vous relever sans vous tenir au lavabo.</p>
+</div>
+</article>
+<article style="background: #FFFFFF; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column;">
+<img src="img/transfert-fauteuil.jpg" alt="Un homme en fauteuil roulant se transfère sur des toilettes MANTA mises à la hauteur de son fauteuil" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; max-width: 100%;">
+<div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.15;">Vous vivez avec un handicap ou une maladie</h3>
+<p style="margin: 0; color: #36505A; font-size: 18px;">Fauteuil roulant, maladie chronique, douleurs, fatigue. Vous réglez la cuvette à la hauteur de votre fauteuil ou de vos jours difficiles, et vous restez maître de votre intimité.</p>
+</div>
+</article>
+<article style="background: #FFFFFF; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column;">
+<img src="img/aidant.jpg" alt="Un soignant aide une femme âgée en fauteuil roulant dans une salle de bain adaptée" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; max-width: 100%;">
+<div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.15;">Vous aidez un proche au quotidien</h3>
+<p style="margin: 0; color: #36505A; font-size: 18px;">Moins de portage, moins de mal de dos, moins d'inquiétude. Dans l'étude du CHU d'Angers, les aidants ont noté l'utilité de MANTA 6,92 sur 7.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section id="comment" style="background: #FFFFFF;">
+<div class="wrap grid2" style="padding-top: 96px; padding-bottom: 96px; align-items: start;">
+<div style="display: flex; flex-direction: column; gap: 28px; min-width: 0;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px;">Deux boutons. C'est tout.</h2>
+<p style="margin: 0; color: #36505A;">MANTA remplace le bâti caché derrière des toilettes suspendues. Une télécommande règle la hauteur de la cuvette, au centimètre près, pour chaque personne de la maison.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px;">
+<li style="display: flex; gap: 16px; align-items: flex-start;"><span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #E3EFEC; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg></span><span><strong>Batterie de secours.</strong> En cas de coupure de courant, les toilettes restent utilisables.</span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start;"><span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #E3EFEC; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg></span><span><strong>Arrêt de sécurité.</strong> Une barre sensible sous la cuvette stoppe la descente au moindre contact.</span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start;"><span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #E3EFEC; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20h12"></path><path d="M12 4v12"></path><path d="M8 12l4 4 4-4"></path></svg></span><span><strong>Jusqu'à 248 kg testés.</strong> Robuste pour toutes les morphologies.</span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start;"><span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #E3EFEC; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"></path><path d="M7 21V10"></path><path d="M17 21V10"></path><path d="M5 10h14"></path></svg></span><span><strong>Pas besoin de mur porteur.</strong> Fixé au sol, 23,5 cm d'épaisseur seulement, posé en moins d'une journée.</span></li>
+</ul>
+</div>
+<div style="background: #F5F8F6; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 24px; min-width: 0;">
+<p style="margin: 0; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #0F6E68;">Essayez la télécommande</p>
+<div style="display: flex; gap: 28px; align-items: stretch; flex-wrap: wrap;">
+<div style="position: relative; width: 150px; height: 300px; flex: none;" aria-hidden="true">
+<div style="position: absolute; left: 70px; top: 0; bottom: 0; width: 4px; background: #C9D9D5; border-radius: 2px;"></div>
+<div style="position: absolute; left: 82px; top: -10px; font-size: 14px; color: #36505A;">74 cm</div>
+<div style="position: absolute; left: 82px; bottom: -10px; font-size: 14px; color: #36505A;">35,5 cm</div>
+<div id="seat" style="position: absolute; left: 0; top: 193px; transition: top .35s ease;">
+<div style="width: 96px; height: 34px; background: #0B2F3A; border-radius: 6px 30px 30px 6px;"></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px; justify-content: center; min-width: 0;">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 52px; line-height: 1; font-variant-numeric: tabular-nums;" id="hTxt">46,0 cm</span>
+<span style="color: #36505A; font-size: 17px;" id="hLbl">Position assise confortable</span>
+<div style="display: flex; gap: 12px; padding: 14px; background: #FFFFFF; border-radius: 22px; width: fit-content; box-shadow: 0 6px 18px rgba(11,47,58,0.12);">
+<button type="button" id="up" aria-label="Monter la cuvette" style="width: 64px; height: 64px; border-radius: 16px; border: none; background: #0B2F3A; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg></button>
+<button type="button" id="down" aria-label="Descendre la cuvette" style="width: 64px; height: 64px; border-radius: 16px; border: none; background: #0B2F3A; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="prix">
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 40px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 780px;">
+<p style="margin: 0; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #0F6E68;">Prix et aides</p>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; text-wrap: balance;">L'État peut financer jusqu'à 70 % de MANTA. Calculez votre part en 1 minute.</h2>
+<p style="margin: 0; color: #36505A;">Prix public : 14 239 € TTC, pose comprise. Répondez à trois questions, sans inscription.</p>
+</div>
+<div class="grid2" style="align-items: start; gap: 32px;">
+<div style="background: #FFFFFF; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 32px; min-width: 0;">
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-weight: 700; font-size: 20px;">1. La personne qui utilisera MANTA</span>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<button type="button" class="pill on" data-profil="70" aria-pressed="true">Elle a 70 ans ou plus</button>
+<button type="button" class="pill" data-profil="gir" aria-pressed="false">Elle a 60 à 69 ans et une perte d’autonomie</button>
+<button type="button" class="pill" data-profil="hand" aria-pressed="false">Elle vit avec un handicap ou une maladie (à tout âge)</button>
+<button type="button" class="pill" data-profil="none" aria-pressed="false">Aucune de ces situations</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-weight: 700; font-size: 20px;">2. Son foyer</span>
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<button type="button" class="pill on" data-region="autres" aria-pressed="true">Hors Île-de-France</button>
+<button type="button" class="pill" data-region="idf" aria-pressed="false">Île-de-France</button>
+</div>
+<div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+<span style="font-size: 18px;">Personnes dans le foyer</span>
+<div style="display: flex; align-items: center; gap: 6px; background: #F5F8F6; border-radius: 999px; padding: 4px;">
+<button type="button" id="moins" aria-label="Une personne de moins" style="width: 44px; height: 44px; border-radius: 999px; border: none; background: #FFFFFF; color: #0B2F3A; font-size: 24px; font-weight: 700; cursor: pointer;">−</button>
+<span style="min-width: 36px; text-align: center; font-weight: 700; font-size: 22px; font-variant-numeric: tabular-nums;" id="pers">1</span>
+<button type="button" id="plus" aria-label="Une personne de plus" style="width: 44px; height: 44px; border-radius: 999px; border: none; background: #FFFFFF; color: #0B2F3A; font-size: 24px; font-weight: 700; cursor: pointer;">+</button>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<label for="rfr" style="font-weight: 700; font-size: 20px;">3. Son revenu fiscal de référence</label>
+<span style="color: #36505A; font-size: 16px;">Sur le dernier avis d'impôt du foyer de la personne aidée.</span>
+<div style="display: flex; align-items: baseline; gap: 8px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 36px; font-variant-numeric: tabular-nums;" id="rfrTxt">16 000 €</span><span style="color: #36505A; font-size: 16px;">par an</span></div>
+<input id="rfr" type="range" min="5000" max="80000" step="500" value="16000">
+<div style="display: flex; justify-content: space-between; color: #36505A; font-size: 14px;"><span>5 000 €</span><span>80 000 € et plus</span></div>
+</div>
+</div>
+<div style="background: #0B2F3A; color: #FFFFFF; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 22px; min-width: 0;">
+<span style="font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #F4DDAE; font-weight: 700;">Votre reste à charge estimé</span>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(56px, 6vw, 80px); line-height: 0.95; letter-spacing: -2px; font-variant-numeric: tabular-nums;" id="reste">6 533 €</span>
+<span style="font-size: 18px; color: #CFE2DE;" id="mois">soit 54 € par mois sur 10 ans</span>
+<div style="display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.18);">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.18); font-size: 17px;"><span>MANTA + pose</span><span style="font-variant-numeric: tabular-nums;">14 239 €</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.18); font-size: 17px;"><span id="aideLbl">MaPrimeAdapt’ (70 %)</span><span style="font-variant-numeric: tabular-nums; color: #F4DDAE; font-weight: 700;" id="aide">− 8 306 €</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; font-size: 17px;"><span>Accompagnateur MaPrimeAdapt'</span><span style="font-variant-numeric: tabular-nums;" id="amo">+ 600 €</span></div>
+</div>
+<p style="margin: 0; background: rgba(255,255,255,0.08); border-radius: 16px; padding: 16px 18px; font-size: 17px;"><strong style="color: #F4DDAE;" id="stTitre">Ressources très modestes : aide de 70 %</strong><br><span id="stTexte"></span></p>
+<div style="display: flex; gap: 12px; flex-wrap: wrap;">
+<a href="assistant.html" class="btn btn-sable">Recevoir ma simulation</a>
+<a href="assistant.html" class="btn" style="color: #FFFFFF; border-color: rgba(255,255,255,0.5);">Être rappelé</a>
+</div>
+<span style="font-size: 14px; color: #CFE2DE;">Estimation selon les règles MaPrimeAdapt' 2026. Le montant final est confirmé par l'Anah. Ne signez rien avant son accord : nous vous guidons.</span>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background: #FFFFFF;">
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 40px;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; max-width: 760px; text-wrap: balance;">Les aides, on s'en occupe avec vous.</h2>
+<div class="grid4">
+<div style="border: 2px solid #DCE7E4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #0F6E68;">50 à 70 %</span>
+<strong style="font-size: 20px;">MaPrimeAdapt'</strong>
+<span style="color: #36505A; font-size: 17px;">Dès 70 ans, ou plus tôt en cas de perte d'autonomie ou de handicap, selon les revenus.</span>
+</div>
+<div style="border: 2px solid #DCE7E4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #0F6E68;">10 000 €</span>
+<strong style="font-size: 20px;">PCH aménagement</strong>
+<span style="color: #36505A; font-size: 17px;">Pour les personnes handicapées, sur 10 ans, à demander à la MDPH. Cumulable.</span>
+</div>
+<div style="border: 2px solid #DCE7E4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6"></path><path d="M5 10v9h14v-9"></path><path d="M9 19v-5h6v5"></path></svg>
+<strong style="font-size: 20px;">Caisses de retraite</strong>
+<span style="color: #36505A; font-size: 17px;">Agirc-Arrco, Assurance retraite, MSA : aides à l'adaptation du logement.</span>
+</div>
+<div style="border: 2px solid #DCE7E4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 6.5-7 11-7 11z"></path></svg>
+<strong style="font-size: 20px;">Mutuelles et communes</strong>
+<span style="color: #36505A; font-size: 17px;">Certaines prennent en charge une partie du reste à payer.</span>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 40px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px;">
+<p style="margin: 0; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #0F6E68;">Comment ça se passe</p>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; text-wrap: balance;">De votre première question à la pose, environ 8 semaines.</h2>
+</div>
+<ol class="grid5" style="margin: 0; padding: 0; list-style: none;">
+<li style="background: #FFFFFF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">1</span><strong style="font-size: 19px;">Vous estimez</strong><span style="color: #36505A; font-size: 16px;">Votre reste à charge en ligne, en une minute.</span></li>
+<li style="background: #FFFFFF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">2</span><strong style="font-size: 19px;">Vous posez vos questions</strong><span style="color: #36505A; font-size: 16px;">À notre assistant, jour et nuit. Envoyez-lui une photo de vos toilettes.</span></li>
+<li style="background: #F4DDAE; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0B2F3A;">3</span><strong style="font-size: 19px;">Pierre vous appelle</strong><span style="color: #0B2F3A; font-size: 16px;">Le fondateur de MANTA valide votre projet avec vous, de vive voix.</span></li>
+<li style="background: #FFFFFF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">4</span><strong style="font-size: 19px;">On monte le dossier d'aides</strong><span style="color: #36505A; font-size: 16px;">Devis, pièces à fournir, accompagnateur : on vous guide jusqu'à l'accord.</span></li>
+<li style="background: #FFFFFF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">5</span><strong style="font-size: 19px;">Pose et suivi</strong><span style="color: #36505A; font-size: 16px;">En moins d'une journée, puis un entretien tous les 6 mois.</span></li>
+</ol>
+</div>
+</section>
+
+<section style="background: #FFFFFF;">
+<div class="wrap grid2" style="padding-top: 96px; padding-bottom: 96px;">
+<img src="img/pose.jpg" alt="Un technicien MANTA installe le bâti motorisé derrière des toilettes suspendues" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 28px; display: block; max-width: 100%;">
+<div style="display: flex; flex-direction: column; gap: 28px; min-width: 0;">
+<p style="margin: 0; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #0F6E68;">Ils l'ont testé</p>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; text-wrap: balance;">6 mois d'essai au CHU d'Angers et en EHPAD.</h2>
+<p style="margin: 0; color: #36505A;">Une étude menée avec le Gérontopôle des Pays de la Loire auprès de 222 personnes : patients, aidants et soignants, dans 4 établissements.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1;">222</span><span style="font-size: 16px; color: #36505A;">participants</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1;">6,92<span style="font-size: 22px;">/7</span></span><span style="font-size: 16px; color: #36505A;">utilité selon les aidants</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1;">10/10</span><span style="font-size: 16px; color: #36505A;">utilité selon des usagers*</span></div>
+</div>
+<span style="font-size: 14px; color: #36505A;">* Panel de 8 représentants d'usagers, Silver Valley, avril 2025.</span>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap grid3" style="padding-top: 80px; padding-bottom: 80px;">
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">10 ans</span><strong style="font-size: 20px;">de garantie sur la structure</strong><span style="color: #36505A; font-size: 17px;">Châssis et mécanisme. Batterie, télécommande et cuvette : 2 ans.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">24 h</span><strong style="font-size: 20px;">pour intervenir en cas de panne</strong><span style="color: #36505A; font-size: 17px;">Un numéro direct, un humain au bout du fil.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">6 mois</span><strong style="font-size: 20px;">entre deux entretiens</strong><span style="color: #36505A; font-size: 17px;">Un technicien vérifie votre MANTA. On vous rappelle avant.</span></div>
+</div>
+</section>
+
+<section id="questions" style="background: #FFFFFF;">
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 32px; max-width: 920px;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px;">Vos questions</h2>
+<div style="display: flex; flex-direction: column; border-top: 2px solid #DCE7E4;">
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Et s'il y a une coupure de courant ?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Une batterie de secours prend le relais : vous pouvez continuer à monter et descendre la cuvette.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">De l'électricité dans les toilettes, est-ce sûr ?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Le moteur fonctionne en basse tension et il est étanche (IP66). MANTA est un dispositif médical certifié CE, contrôlé par l'APAVE selon la norme des appareils médicaux électriques.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Faut-il refaire toute la salle de bain ?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Non. Il faut une largeur libre de 85 cm, une arrivée d'eau, une évacuation standard et une prise électrique à proximité. Envoyez une photo à notre assistant : il vous dit tout de suite ce qu'il manque.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Je suis locataire, est-ce possible ?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Oui, avec l'accord écrit de votre propriétaire. MaPrimeAdapt' est ouverte aux locataires du parc privé.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Qui m'aide pour le dossier MaPrimeAdapt' ?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Nous préparons le devis et la liste des pièces, et nous vous mettons en relation avec un accompagnateur agréé, obligatoire pour cette aide. Important : rien ne doit être signé ni commencé avant l'accord de l'Anah.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Et si je change d'avis ?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Vous disposez de 14 jours pour vous rétracter après la signature, sans frais ni justification.</p></details>
+</div>
+</div>
+</section>
+
+<section style="background: #0B2F3A; color: #FFFFFF; overflow: hidden;">
+<div class="wrap grid2" style="padding-top: 96px; padding-bottom: 96px;">
+<div style="display: flex; flex-direction: column; gap: 24px; min-width: 0;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(36px, 4.4vw, 58px); line-height: 1.02; letter-spacing: -1.5px; text-wrap: balance;">Parlons de votre situation.</h2>
+<p style="margin: 0; color: #CFE2DE; font-size: 21px;">Notre assistant vous répond tout de suite. Quand vous êtes prêt, Pierre, le fondateur de MANTA, vous appelle au moment qui vous arrange.</p>
+<div style="display: flex; gap: 14px; flex-wrap: wrap;">
+<a href="assistant.html" class="btn btn-sable">Discuter avec l'assistant</a>
+<a href="assistant.html" class="btn" style="color: #FFFFFF; border-color: rgba(255,255,255,0.5);">Choisir un créneau d'appel</a>
+</div>
+<p style="margin: 0; font-size: 19px;">Ou appelez-nous : <strong style="font-size: 22px; letter-spacing: 0.5px;">01 45 34 14 71</strong></p>
+</div>
+<div style="display: flex; justify-content: center; align-items: center; min-width: 0;" aria-hidden="true">
+<svg viewBox="0 0 526 544" style="width: 100%; max-width: 420px; height: auto;"><path fill="#F4DDAE" d="M0.0 543.7C-0.0 542.6 1.9 537.9 5.3 530.5C5.9 529.2 6.9 527.2 7.4 526.0C8.0 524.8 8.9 522.9 9.4 521.7C10.7 518.9 12.3 515.6 13.6 513.3C14.1 512.3 15.0 510.7 15.6 509.7C16.8 507.4 21.4 499.1 21.8 498.2C26.8 489.5 40.0 470.1 48.5 459.3C57.3 448.1 57.2 448.2 68.1 435.8C72.3 430.9 80.6 422.1 88.5 414.0C95.1 407.2 96.3 405.9 97.1 403.7C97.8 401.9 97.8 397.6 97.2 395.7C96.1 392.7 96.8 390.0 99.2 388.1C100.7 386.8 113.3 380.4 117.4 378.8C124.6 376.0 125.1 375.2 123.9 367.5C122.5 358.9 122.5 357.9 123.8 355.5C124.7 354.0 127.8 351.7 131.8 349.5C133.1 348.8 134.7 347.9 135.4 347.4C136.1 347.0 136.7 346.7 136.8 346.7C136.9 346.7 137.8 346.3 138.8 345.8C144.7 342.9 150.6 340.8 156.7 339.5C162.3 338.2 164.8 337.9 173.0 337.7C182.2 337.5 183.0 337.3 184.1 335.5C184.8 334.5 184.8 331.6 184.2 327.5C182.8 319.2 182.1 314.0 181.2 304.8C180.9 302.1 180.4 297.9 180.2 295.5C179.1 285.8 178.9 283.7 178.0 263.8C177.0 243.8 178.8 211.2 182.2 187.7C182.4 185.9 182.9 182.6 183.2 180.3C183.5 178.0 183.9 175.0 184.2 173.5C184.4 172.0 184.9 169.4 185.2 167.7C186.2 161.2 187.2 156.0 188.2 151.3C188.4 150.1 188.9 148.0 189.2 146.5C189.5 145.0 189.9 142.8 190.2 141.5C190.5 140.2 190.9 138.3 191.2 137.2C191.4 136.2 191.9 134.4 192.2 133.2C192.5 132.1 192.9 130.3 193.2 129.3C193.4 128.3 193.9 126.3 194.3 124.8C195.1 121.4 195.9 118.5 196.3 117.2C196.5 116.6 197.1 114.6 197.7 112.7C199.3 107.0 199.6 106.0 200.5 103.2C201.0 101.7 201.5 100.0 201.7 99.5C201.8 99.0 202.1 98.0 202.4 97.3C202.6 96.7 202.9 95.6 203.2 95.0C203.4 94.4 203.8 93.3 204.0 92.7C204.2 92.0 204.5 91.0 204.7 90.5C205.0 89.3 206.5 85.0 207.2 83.2C207.5 82.4 207.9 81.3 208.2 80.7C210.6 74.1 218.3 55.7 221.1 49.7C222.7 46.2 224.0 43.4 225.4 40.4C228.1 34.5 229.4 31.8 230.2 30.0C230.7 29.0 231.9 26.5 232.9 24.4C233.9 22.3 234.7 20.6 234.7 20.5C234.7 20.4 235.5 18.6 236.5 16.5C237.6 14.3 238.7 11.9 239.0 11.2C242.9 2.7 244.6 -0.1 245.6 0.1C245.8 0.1 247.1 2.4 248.4 5.2C250.3 9.5 259.7 28.2 261.8 32.2C263.5 35.4 265.2 38.3 265.9 39.4C266.3 40.1 266.7 40.7 266.7 40.8C266.7 40.9 267.0 41.6 267.4 42.3C267.9 42.9 268.7 44.3 269.2 45.3C271.5 49.5 275.2 55.7 277.7 59.7C279.1 62.0 281.1 65.1 282.0 66.7C284.2 70.1 288.8 77.1 290.7 79.8C291.5 80.9 294.0 84.5 296.2 87.7C300.4 93.8 301.2 94.8 310.0 106.2C318.1 116.7 327.6 127.7 337.9 138.7C355.7 157.6 373.4 173.6 396.5 191.5C400.5 194.6 417.3 206.5 422.3 209.7C425.2 211.6 428.7 213.9 430.1 214.7C432.7 216.4 446.3 224.7 446.5 224.7C446.5 224.7 448.8 226.0 451.6 227.6C454.3 229.2 458.1 231.3 460.0 232.3C461.9 233.3 464.0 234.4 464.7 234.8C466.9 236.0 482.5 243.9 485.5 245.2C487.2 246.0 489.8 247.2 491.3 247.9C492.9 248.7 495.2 249.7 496.5 250.3C497.8 250.9 499.9 251.9 501.3 252.5C502.6 253.2 503.8 253.7 504.0 253.7C504.1 253.7 504.7 253.9 505.2 254.1C505.7 254.4 507.4 255.1 508.8 255.7C511.5 256.9 512.2 257.6 511.4 258.4C511.1 258.7 506.2 258.8 495.1 258.9C478.8 258.9 468.3 259.3 458.8 260.2C455.9 260.4 450.9 260.9 447.7 261.2C444.5 261.5 440.5 261.9 438.8 262.2C437.2 262.4 434.0 262.9 431.7 263.2C422.9 264.3 420.6 264.7 412.7 266.2C411.3 266.5 409.0 266.9 407.6 267.2C406.2 267.4 403.8 267.9 402.2 268.2C398.8 268.8 396.3 269.4 390.8 270.7C378.8 273.5 374.0 274.7 372.3 275.2C371.5 275.4 369.9 275.8 368.7 276.2C367.5 276.5 365.9 276.9 365.2 277.2C364.4 277.4 362.9 277.8 361.7 278.2C357.4 279.3 353.1 280.5 351.2 281.2C350.4 281.4 346.9 282.5 343.3 283.7C332.5 287.2 325.0 289.7 319.5 291.7C318.8 292.0 316.9 292.7 315.3 293.3C313.7 293.8 311.0 294.8 309.3 295.5C305.2 297.1 299.6 299.3 295.7 300.9C293.9 301.5 288.2 303.9 283.0 306.2C274.1 310.0 272.3 310.8 266.7 313.4C265.5 314.0 263.7 314.8 262.7 315.2C259.4 316.7 238.9 326.9 235.3 328.8C233.4 329.9 230.4 331.5 228.8 332.4C216.0 339.2 196.2 350.8 183.8 358.8C179.6 361.6 172.1 366.5 168.7 368.9C166.6 370.3 162.7 373.0 160.0 374.8C157.3 376.6 150.5 381.6 144.8 385.8C135.5 392.7 132.3 395.2 120.9 404.5C119.0 406.0 116.6 407.9 115.5 408.8C106.0 416.5 78.7 442.0 70.9 450.5C69.2 452.4 65.0 456.9 61.6 460.6C45.7 477.7 27.4 501.3 16.7 518.4C15.7 520.1 13.9 522.8 12.8 524.5C11.7 526.2 10.1 528.9 9.2 530.3C8.2 531.8 6.9 534.0 6.2 535.1C5.4 536.2 4.1 538.3 3.2 539.7C1.3 542.8 0.0 544.3 0.0 543.7ZM516.8 244.3C516.5 244.2 514.7 243.5 513.0 242.8C511.3 242.2 508.3 241.0 506.3 240.2C504.4 239.4 501.0 237.9 498.7 237.0C496.5 236.1 493.7 234.9 492.6 234.4C491.4 233.8 489.2 232.8 487.6 232.0C485.9 231.3 484.5 230.7 484.4 230.7C483.3 230.7 455.0 215.7 447.1 211.0C445.1 209.7 442.5 208.2 441.4 207.6C440.4 207.0 438.5 205.9 437.3 205.2C436.1 204.4 433.7 202.8 431.8 201.7C421.7 195.3 404.5 183.5 403.9 182.5C403.8 182.3 403.9 181.9 404.1 181.7C405.0 181.0 411.7 177.0 414.8 175.3C416.7 174.3 419.3 172.9 420.6 172.1C422.0 171.3 423.1 170.7 423.2 170.7C423.4 170.7 427.2 168.3 429.5 166.8C430.4 166.3 432.3 165.0 433.7 164.2C446.6 155.8 461.2 143.3 472.0 131.4C477.3 125.4 482.3 119.4 484.3 116.4C485.0 115.3 486.6 112.9 487.9 111.0C489.2 109.1 490.8 106.5 491.5 105.2C492.2 103.9 493.2 102.1 493.7 101.2C495.4 98.1 496.0 96.9 498.2 91.7C499.4 88.8 500.9 84.9 501.6 82.8C502.8 79.0 503.1 78.1 504.4 74.8C505.8 71.5 506.1 71.9 508.5 79.3C509.7 82.9 511.1 87.6 511.7 89.7C512.3 91.8 513.2 95.0 513.7 96.8C515.6 103.4 515.6 103.3 517.2 110.7C517.8 113.4 518.5 116.8 519.2 119.8C520.1 123.8 520.6 126.9 521.2 130.7C521.5 132.8 521.9 135.8 522.2 137.5C525.2 156.9 526.0 184.5 524.3 204.2C523.5 213.9 523.3 215.3 523.0 217.5C521.0 232.4 520.8 233.5 519.3 241.3C518.7 244.7 518.4 245.0 516.8 244.3Z"></path></svg>
+</div>
+</div>
+</section>
+
+<footer style="background: #071F27; color: #CFE2DE;">
+<div class="wrap" style="padding-top: 56px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 16px;">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 26px; color: #FFFFFF;">Manta</span>
+<span>MANTA SAS · 22 boulevard Benoni-Goullin, 44200 Nantes</span>
+<span>01 45 34 14 71 · contact@manta-health.com</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 16px; max-width: 520px;">
+<strong style="color: #FFFFFF;">Ils nous accompagnent</strong>
+<span>Gérontopôle des Pays de la Loire · CHU d'Angers · Groupe VYV · Harmonie Mutuelle · Silver Valley · Club Silver Éco de la CCI</span>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.14); padding-top: 20px;">
+<span>Dispositif médical de classe I, marquage CE, règlement (UE) 2017/745 · EUDAMED SRN FR-MF-000052993</span>
+<span><a href="#haut" style="color: #CFE2DE;">Mentions légales</a> · <a href="#haut" style="color: #CFE2DE;">Données personnelles</a></span>
+</div>
+</div>
+</footer>
+
+</div>
+<script>
+(function(){
+  var PRIX_HT=11866.03, PRIX_TTC=14239.24;
+  var PLAF={autres:{base:[[17363,22259],[25393,32553],[30540,39148],[35676,45735],[40835,52348]],plus:[5151,6598]},
+            idf:{base:[[24031,29253],[35270,42933],[42357,51564],[49455,60208],[56580,68877]],plus:[7116,8663]}};
+  var s={profil:'70',region:'autres',pers:1,rfr:16000,h:460};
+  function $(id){return document.getElementById(id);}
+  function eur(n){return Math.round(n).toLocaleString('fr-FR')+' €';}
+  function calc(){
+    var t=PLAF[s.region],k=Math.min(s.pers,5)-1,x=Math.max(0,s.pers-5);
+    var tm=t.base[k][0]+x*t.plus[0], m=t.base[k][1]+x*t.plus[1];
+    var ok=s.profil!=='none', taux=0;
+    if(ok){ if(s.rfr<=tm) taux=.7; else if(s.rfr<=m) taux=.5; }
+    var aide=taux?Math.round(PRIX_HT*taux):0, amo=taux?600:0, reste=Math.max(0,Math.round(PRIX_TTC+amo-aide));
+    var ti,tx;
+    if(taux===.7){ti='Ressources très modestes : aide de 70 %';tx='Le foyer est sous le plafond de '+eur(tm)+'. Il peut aussi demander une aide à sa caisse de retraite ou à sa mutuelle.';}
+    else if(taux===.5){ti='Ressources modestes : aide de 50 %';tx='Le foyer est sous le plafond de '+eur(m)+'. D’autres aides peuvent réduire encore ce montant.';}
+    else if(!ok){ti='MaPrimeAdapt’ n’est pas accessible';tx='D’autres solutions existent : caisse de retraite, mutuelle, location. Notre assistant vous les présente.';}
+    else {ti='Revenus au-dessus du plafond';tx='Pas de MaPrimeAdapt’, mais la caisse de retraite, la mutuelle ou la location peuvent aider. Parlons-en.';}
+    if(s.profil==='hand') tx+=' Avec la PCH (jusqu’à 10 000 €), le reste à charge peut baisser encore.';
+    $('pers').textContent=s.pers; $('rfrTxt').textContent=eur(s.rfr);
+    $('reste').textContent=eur(reste); $('mois').textContent='soit '+eur(reste/120)+' par mois sur 10 ans';
+    $('aideLbl').textContent=taux?'MaPrimeAdapt’ ('+Math.round(taux*100)+' %)':'MaPrimeAdapt’';
+    $('aide').textContent=aide?'− '+eur(aide):'0 €'; $('amo').textContent=amo?'+ '+eur(amo):'non requis';
+    $('stTitre').textContent=ti; $('stTexte').textContent=tx;
+    document.querySelectorAll('[data-profil]').forEach(function(b){var on=b.dataset.profil===s.profil;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
+    document.querySelectorAll('[data-region]').forEach(function(b){var on=b.dataset.region===s.region;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
+  }
+  function seat(){
+    var pct=(s.h-355)/(740-355); $('seat').style.top=Math.round((1-pct)*266)+'px';
+    $('hTxt').textContent=(s.h/10).toLocaleString('fr-FR',{minimumFractionDigits:1,maximumFractionDigits:1})+' cm';
+    $('hLbl').textContent=s.h<=420?'Position basse, idéale pour les enfants et les petites tailles':(s.h>=600?'Position haute : se relever sans effort, transfert depuis un fauteuil':'Position assise confortable');
+  }
+  document.querySelectorAll('[data-profil]').forEach(function(b){b.addEventListener('click',function(){s.profil=b.dataset.profil;calc();});});
+  document.querySelectorAll('[data-region]').forEach(function(b){b.addEventListener('click',function(){s.region=b.dataset.region;calc();});});
+  $('moins').addEventListener('click',function(){s.pers=Math.max(1,s.pers-1);calc();});
+  $('plus').addEventListener('click',function(){s.pers=Math.min(10,s.pers+1);calc();});
+  $('rfr').addEventListener('input',function(e){s.rfr=parseInt(e.target.value,10)||0;calc();});
+  $('up').addEventListener('click',function(){s.h=Math.min(740,s.h+55);seat();});
+  $('down').addEventListener('click',function(){s.h=Math.max(355,s.h-55);seat();});
+  calc(); seat();
+})();
+</script>
+</body>
+</html>
