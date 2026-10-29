@@ -293,6 +293,16 @@ main>:first-child{padding-top:84px}
 .vid .in{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px}
 .vid h3{font-size:22px;font-weight:800;line-height:1.2}
 .vid-link{font-size:15px;font-weight:700}
+
+.test-wrap{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.remote-test{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 20px;background:#FFF4DC;border:2px solid var(--sable);color:var(--marine);font-size:16px;font-weight:700;border-radius:999px;animation:appel 1.6s ease-out .8s 3}
+.remote-test svg{color:var(--canard);flex:none}
+.remote-test:hover{background:var(--sable)}
+.remote-test.on{background:var(--marine);border-color:var(--marine);color:var(--blanc);animation:none}
+.remote-test.on svg{color:var(--sable)}
+.test-sub{font-size:14px;color:var(--gris);padding-left:4px}
+@keyframes appel{0%{box-shadow:0 0 0 0 rgba(244,221,174,.9)}100%{box-shadow:0 0 0 14px rgba(244,221,174,0)}}
+@media (prefers-reduced-motion:reduce){.remote-test{animation:none}}
 @media (max-width:520px){#haut [style*="left: -16px"]{left:12px!important;bottom:12px!important}}
 .grid2{gap:48px}
 #haut .grid2,#haut{scroll-margin-top:100px}section[id]{scroll-margin-top:96px}</style>
@@ -403,7 +413,7 @@ Poser une question
 <span class="remote-hint">Maintenez un bouton appuyé, comme sur la vraie télécommande. Vitesse réelle à vide&nbsp;: avec une personne assise, le mouvement est plus lent.</span>
 </div>
 <div class="remote-foot">
-<button type="button" class="pill remote-test" aria-pressed="false">Tester l'arrêt de sécurité</button>
+<div class="test-wrap"><button type="button" class="pill remote-test" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><span class="rt-label">Tester l'arrêt de sécurité</span></button><span class="test-sub">Glissez un objet sous la cuvette et regardez-la s'arrêter.</span></div>
 <span class="remote-msg" role="status">Dessin à l'échelle&nbsp;: de 35,5 à 74 cm de hauteur.</span>
 </div>
 </div></div>
@@ -732,7 +742,7 @@ var m=h.querySelector('details.menu');if(m){m.querySelectorAll('a').forEach(func
     test.addEventListener('click',function(){
       if(!obst&&s-DROP<OBST+20){msg.classList.remove('alerte');msg.textContent='Montez d\'abord la cuvette au-dessus de 52 cm pour glisser un objet dessous.';return;}
       obst=!obst;test.classList.toggle('on',obst);test.setAttribute('aria-pressed',obst);ob.setAttribute('visibility',obst?'visible':'hidden');
-      test.textContent=obst?'Retirer l\'objet':'Tester l\'arrêt de sécurité';msg.classList.remove('alerte');
+      test.querySelector('.rt-label').textContent=obst?'Retirer l\'objet':'Tester l\'arrêt de sécurité';msg.classList.remove('alerte');
       msg.textContent=obst?'Un objet est glissé sous la cuvette. Maintenez le bouton du bas : la descente s\'arrêtera seule.':'Objet retiré.';
     });
     draw();
