@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MANTA – Pour les particuliers</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Toilettes réglables en hauteur à domicile : prix, aides MaPrimeAdapt', pose.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;display=swap">
+<style>
+/* Mise en page : bandes pleine largeur alternant fond menthe pâle, blanc et marine ; contenu centré sur 1200 px. Style repris de la maquette « vente aux particuliers ». */
+:root{
+  --marine:#0B2F3A; --marine-nuit:#071F27; --canard:#0F6E68; --sable:#F4DDAE;
+  --fond:#F5F8F6; --blanc:#FFFFFF; --gris:#36505A; --ligne:#DCE7E4; --menthe:#E3EFEC; --brume:#CFE2DE;
+  --f-titre:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --f-texte:'Atkinson Hyperlegible',Verdana,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--fond);color:var(--marine);font:19px/1.55 var(--f-texte);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--blanc)}
+img{max-width:100%}
+a{color:var(--canard)}a:hover{color:var(--marine)}
+h1,h2,h3{font-family:var(--f-titre);margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,4vw,env(safe-area-inset-left,0px));padding-right:max(16px,4vw,env(safe-area-inset-right,0px))}
+.sec{padding-block:96px}
+.sec-s{padding-block:64px}
+.bg-blanc{background:var(--blanc)}
+.bg-marine{background:var(--marine);color:var(--blanc)}
+.stack{display:flex;flex-direction:column;gap:24px;min-width:0}
+.stack-s{display:flex;flex-direction:column;gap:12px;min-width:0}
+.row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.eyebrow{font-weight:700;font-size:16px;letter-spacing:1.5px;text-transform:uppercase;color:var(--canard)}
+.bg-marine .eyebrow{color:var(--sable)}
+.display{font-weight:800;font-size:clamp(40px,5.2vw,66px);line-height:1.03;letter-spacing:-1.5px}
+.h2{font-weight:800;font-size:clamp(32px,3.6vw,46px);line-height:1.08;letter-spacing:-1px}
+.h3{font-weight:700;font-size:25px;line-height:1.15}
+.lead{font-size:21px;color:var(--gris);max-width:34em}
+.bg-marine .lead,.bg-marine .muted{color:var(--brume)}
+.muted{color:var(--gris)}
+.small{font-size:16px}.xs{font-size:14px}
+.measure{max-width:760px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;align-items:center}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.grid5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.top{align-items:start}
+@media (max-width:1000px){.grid4,.grid5{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:1fr}}
+@media (max-width:800px){.grid2{grid-template-columns:1fr;gap:32px}.sec{padding-block:72px}}
+@media (max-width:520px){.grid4,.grid5{grid-template-columns:1fr}.btn{width:100%}}
+
+/* Boutons (repris de la maquette) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;font:700 19px var(--f-texte);text-decoration:none;cursor:pointer;border:2px solid transparent;text-align:center}
+.btn-main{background:var(--marine);color:var(--blanc)}.btn-main:hover{background:var(--canard);color:var(--blanc)}
+.btn-line{background:transparent;color:var(--marine);border-color:var(--marine)}.btn-line:hover{background:var(--marine);color:var(--blanc)}
+.btn-sable{background:var(--sable);color:var(--marine)}.btn-sable:hover{background:var(--blanc);color:var(--marine)}
+.btn-ghost{color:var(--blanc);border-color:rgba(255,255,255,.5);background:transparent}.btn-ghost:hover{background:var(--blanc);color:var(--marine)}
+.btn-sm{min-height:48px;font-size:17px;padding:0 22px}
+.pill{min-height:48px;padding:0 18px;border-radius:999px;border:2px solid #C9D9D5;background:var(--blanc);color:var(--marine);font:700 17px var(--f-texte);cursor:pointer;text-align:left}
+.pill.on{background:var(--marine);border-color:var(--marine);color:var(--blanc)}
+.pill:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--canard);outline-offset:3px}
+summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}.plus{transition:transform .2s}
+input[type=range]{width:100%;accent-color:var(--canard);height:32px}
+
+/* Bandeau de simulation */
+.sim-bar{background:var(--sable);color:var(--marine);font:700 14px var(--f-texte)}
+.sim-bar .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;align-items:center;padding-block:8px}
+.sim-bar a{color:var(--marine)}
+
+/* En-tête v1 (remplacé) */
+.v1-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--blanc);border-bottom:1px solid var(--ligne)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:80px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--marine)}
+.brand b{font-family:var(--f-titre);font-weight:800;font-size:30px;letter-spacing:-.5px}
+.nav{display:flex;gap:26px;align-items:center;font-size:17px;font-weight:700}
+.nav a{text-decoration:none;color:var(--marine)}
+.nav a.here{color:var(--canard);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.nav a.btn{color:var(--blanc)}
+.menu{display:none;position:relative}
+.menu summary{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border-radius:999px;border:2px solid var(--marine);font-weight:700;font-size:17px}
+.menu-panel{position:absolute;right:0;top:calc(100% + 10px);background:var(--blanc);border-radius:20px;box-shadow:0 16px 40px rgba(11,47,58,.18);padding:10px;display:flex;flex-direction:column;min-width:260px}
+.menu-panel a{padding:14px 16px;border-radius:12px;text-decoration:none;color:var(--marine);font-weight:700}
+.menu-panel a:hover{background:var(--menthe)}
+.menu-panel a.here{background:var(--menthe)}
+@media (max-width:1060px){.nav{display:none}.menu{display:block}}
+
+/* Pied de page */
+.site-foot{background:var(--marine-nuit);color:var(--brume);font-size:16px}
+.site-foot a{color:var(--brume)}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1.4fr;gap:40px;padding-block:56px 32px}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr}}
+.foot-grid strong{color:var(--blanc)}
+.foot-links{display:flex;flex-direction:column;gap:8px}
+.foot-links a{text-decoration:none}.foot-links a:hover{text-decoration:underline;color:var(--blanc)}
+.foot-bottom{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;font-size:14px;border-top:1px solid rgba(255,255,255,.14);padding-block:20px 32px}
+
+/* Éléments communs */
+.photo{width:100%;display:block;object-fit:cover;border-radius:28px;max-width:100%}
+.r43{aspect-ratio:4/3}.r45{aspect-ratio:4/5}.r11{aspect-ratio:1/1}.r169{aspect-ratio:16/10}
+.badge{position:absolute;left:-16px;bottom:32px;background:var(--sable);border-radius:20px;padding:18px 22px;display:flex;flex-direction:column;gap:2px;box-shadow:0 12px 32px rgba(11,47,58,.18)}
+.badge b{font-family:var(--f-titre);font-weight:800;font-size:34px;line-height:1}
+.badge span{font-size:16px}
+@media (max-width:520px){.badge{left:12px;bottom:12px}}
+.card{background:var(--blanc);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card-line{border:2px solid var(--ligne);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card-img{background:var(--blanc);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card-img img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;max-width:100%}
+.card-img .in{padding:24px 26px 28px;display:flex;flex-direction:column;gap:10px}
+.icon-box{flex:none;width:48px;height:48px;border-radius:14px;background:var(--menthe);color:var(--canard);display:flex;align-items:center;justify-content:center}
+.big{font-family:var(--f-titre);font-weight:800;font-size:44px;line-height:1;color:var(--canard);font-variant-numeric:tabular-nums}
+.bg-marine .big{color:var(--sable)}
+.band{display:flex;gap:14px;align-items:center;font-size:17px}
+.choice{display:flex;align-items:center;justify-content:space-between;gap:16px;text-decoration:none;color:var(--marine);background:var(--fond);border:2px solid var(--ligne);border-radius:22px;padding:20px 22px}
+.choice:hover{border-color:var(--marine);color:var(--marine)}
+.choice strong{font-family:var(--f-titre);font-size:22px;display:block;line-height:1.15}
+.choice span{color:var(--gris);font-size:16px}
+.choice .go{flex:none;width:48px;height:48px;border-radius:50%;background:var(--marine);color:var(--blanc);display:flex;align-items:center;justify-content:center}
+.checks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px}
+.checks li{display:flex;gap:16px;align-items:flex-start}
+.checks .icon-box{width:40px;height:40px;border-radius:12px}
+.logos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.logos figure{margin:0;background:var(--blanc);border:2px solid var(--ligne);border-radius:18px;height:112px;display:flex;align-items:center;justify-content:center;padding:14px}
+.logos img{max-height:80px;max-width:100%;object-fit:contain}
+@media (max-width:1000px){.logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.steps{margin:0;padding:0;list-style:none}
+.steps li{background:var(--blanc);border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:10px}
+.steps li.hl{background:var(--sable)}
+.steps .n{font-family:var(--f-titre);font-weight:800;font-size:44px;line-height:1;color:var(--canard)}
+.steps li.hl .n{color:var(--marine)}
+.steps strong{font-size:19px}
+.steps span{color:var(--gris);font-size:16px}
+.steps li.hl span{color:var(--marine)}
+.cta-raie{display:flex;justify-content:center;align-items:center;min-width:0}
+.cta-raie svg{width:100%;max-width:400px;height:auto}
+.quote{font-family:var(--f-titre);font-weight:700;font-size:clamp(26px,3vw,36px);line-height:1.2;letter-spacing:-.5px}
+.tech{width:100%;border-collapse:collapse;font-size:17px}
+.tech th,.tech td{text-align:left;padding:14px 0;border-bottom:1px solid var(--ligne);vertical-align:top}
+.tech th{width:38%;padding-right:20px;color:var(--gris);font-weight:400}
+.tech td{font-weight:700;font-variant-numeric:tabular-nums}
+.scroll-x{overflow-x:auto}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.gallery a{display:block;border-radius:16px;overflow:hidden;background:var(--menthe)}
+.gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .3s}
+.gallery a:hover img{transform:scale(1.04)}
+.news{display:grid;grid-template-columns:180px minmax(0,1fr);gap:32px;padding-block:44px;border-top:2px solid var(--ligne)}
+.news:first-of-type{border-top:none}
+.news .date{font-family:var(--f-titre);font-weight:800;font-size:22px;color:var(--canard)}
+@media (max-width:760px){.news{grid-template-columns:1fr;gap:12px}}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.stats .big{font-size:clamp(30px,7vw,44px)}
+.big-fit{font-size:clamp(30px,2.6vw,40px);white-space:nowrap}
+.timeline{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.timeline li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px;padding-block:22px;border-top:2px solid var(--ligne)}
+.timeline li:first-child{border-top:none}
+.timeline .y{font-family:var(--f-titre);font-weight:800;font-size:30px;line-height:1;color:var(--canard);font-variant-numeric:tabular-nums}
+.verif{background:var(--sable);border-radius:6px;padding:1px 6px;font-weight:700}
+.note{background:var(--sable);color:var(--marine);border-radius:20px;padding:18px 22px;font-size:17px}
+.legal h2{font-size:28px;font-weight:800;margin-top:12px}
+.legal p,.legal li{color:var(--gris)}
+.legal strong{color:var(--marine)}
+
+/* Formulaire */
+.form{display:flex;flex-direction:column;gap:20px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label,.field legend{font-weight:700;font-size:18px}
+.field input,.field select,.field textarea{font:18px var(--f-texte);color:var(--marine);background:var(--fond);border:2px solid var(--ligne);border-radius:16px;padding:14px 16px;min-height:56px;width:100%}
+.field textarea{min-height:140px;resize:vertical}
+.field fieldset{border:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.ok{background:var(--menthe);border-radius:16px;padding:16px 18px;font-weight:700}
+
+/* Visionneuse photos */
+dialog.lb{border:none;padding:0;background:transparent;max-width:min(92vw,1100px);max-height:92vh}
+dialog.lb::backdrop{background:rgba(7,31,39,.86)}
+dialog.lb img{display:block;max-width:100%;max-height:84vh;border-radius:16px;margin:0 auto}
+dialog.lb button{margin:12px auto 0;display:flex}
+
+/* ===== Version 2 ===== */
+/* Barre de menu flottante */
+.site-head{position:sticky;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:50;height:68px;margin-block:10px -78px;padding-left:max(12px,2vw,env(safe-area-inset-left,0px));padding-right:max(12px,2vw,env(safe-area-inset-right,0px));pointer-events:none;background:none;border:none}
+main>:first-child{padding-top:84px}
+.nav-bar{pointer-events:auto;position:relative;max-width:1240px;height:68px;margin:0 auto;display:flex;align-items:center;gap:12px;justify-content:space-between;padding:8px 8px 8px 18px;border-radius:999px;background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border:1px solid rgba(11,47,58,.08);box-shadow:0 2px 10px rgba(11,47,58,.05);transition:background .3s,box-shadow .3s}
+.site-head.scrolled .nav-bar{background:rgba(255,255,255,.93);box-shadow:0 12px 32px rgba(11,47,58,.14)}
+.brand svg{animation:glide 7s ease-in-out infinite;transform-origin:50% 60%}
+.brand:hover svg{animation-duration:2.2s}
+@keyframes glide{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-5deg)}}
+.brand b{font-size:27px}
+.nav-links{display:flex;gap:2px;align-items:center;font-size:16px;font-weight:700}
+.nav-links a{text-decoration:none;color:var(--marine);padding:10px 14px;border-radius:999px;transition:background .2s}
+.nav-links a:hover{background:var(--menthe);color:var(--marine)}
+.nav-links a.here{background:var(--marine);color:var(--blanc)}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.nav-actions .btn{min-height:50px;font-size:16px;padding:0 20px}
+.btn-sable.pulse{position:relative}
+.menu{display:none;position:static}
+.menu summary{display:flex;align-items:center;gap:8px;min-height:50px;padding:0 18px;border-radius:999px;background:var(--marine);color:var(--blanc);font-weight:700;font-size:16px;border:none}
+.menu-panel{position:absolute;left:0;right:0;top:calc(100% + 10px);background:var(--blanc);border-radius:24px;box-shadow:0 20px 44px rgba(11,47,58,.2);padding:10px;display:flex;flex-direction:column;min-width:0}
+.menu-panel a{padding:15px 16px;border-radius:14px;text-decoration:none;color:var(--marine);font-weight:700;font-size:18px}
+.menu-panel a.here{background:var(--menthe)}
+.menu-panel .btn{margin-top:6px}
+.menu-panel a.btn-main{color:var(--blanc)}
+@media (max-width:1180px){.nav-links{display:none}.menu{display:block}}
+@media (max-width:760px){.nav-actions{display:none}}
+
+/* Bandeau de logos qui défile */
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;gap:16px;width:max-content;animation:defile 46s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee figure{margin:0;flex:none;width:210px;height:112px;background:var(--blanc);border:2px solid var(--ligne);border-radius:18px;display:flex;align-items:center;justify-content:center;padding:14px}
+.marquee img{max-height:80px;max-width:100%;object-fit:contain}
+@keyframes defile{to{transform:translateX(calc(-50% - 8px))}}
+@media (prefers-reduced-motion:reduce){.marquee{-webkit-mask-image:none;mask-image:none}.marquee-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}.marquee figure.dup{display:none}}
+
+/* Télécommande animée */
+.remote{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-areas:'stage info' 'stage hand' 'foot foot';gap:16px 28px;align-items:center;background:var(--fond);border-radius:32px;padding:28px}
+.bg-fond .remote,.remote.on-fond{background:var(--blanc)}
+.remote-stage{grid-area:stage;min-width:0;position:relative}
+.remote-info{grid-area:info;min-width:0;display:flex;flex-direction:column;gap:8px;align-self:end}
+.remote-hand{grid-area:hand;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px;align-self:start}
+.remote-stage svg{display:block;width:100%;height:auto;max-height:600px;margin:0 auto;touch-action:none}
+.remote-side{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.remote-h{font-family:var(--f-titre);font-weight:800;font-size:clamp(38px,4.4vw,58px);line-height:1;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.remote-zone{color:var(--gris);font-size:16px;min-height:2.6em}
+.handset{width:118px;padding:16px 16px 20px;border-radius:40px;background:linear-gradient(180deg,#F1F4F4,#D6DEDF);box-shadow:inset 0 2px 0 #FFFFFF,0 14px 28px rgba(11,47,58,.2);display:flex;flex-direction:column;align-items:center;gap:14px;margin-block:4px}
+.hs-led{width:10px;height:10px;border-radius:50%;background:#9AA7AA;transition:background .2s,box-shadow .2s}
+.handset.moving .hs-led{background:#38C98A;box-shadow:0 0 12px #38C98A}
+.hs-btn{width:76px;height:76px;border-radius:50%;border:none;background:var(--marine);color:var(--blanc);box-shadow:0 5px 0 #041A22,0 8px 14px rgba(11,47,58,.25);display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;transition:transform .08s,box-shadow .08s,background .2s}
+.hs-btn:hover{background:#12414F}
+.hs-btn.on{transform:translateY(4px);box-shadow:0 1px 0 #041A22;background:var(--canard)}
+.hs-brand{font:800 12px var(--f-titre);letter-spacing:2px;color:#7D8C90;text-transform:uppercase}
+.remote-hint{font-size:15px;color:var(--gris)}
+.remote-foot{grid-area:foot;display:flex;gap:12px 16px;flex-wrap:wrap;align-items:center;border-top:2px solid var(--ligne);padding-top:16px}
+.remote-msg{font-size:16px;font-weight:700;color:var(--canard);flex:1;min-width:200px}
+.remote-msg.alerte{color:#B4441F}
+.remote-test{min-height:46px;font-size:16px}
+.remote-test.on{background:var(--sable);border-color:var(--sable);color:var(--marine)}
+@media (max-width:560px){.remote{padding:18px;gap:12px 14px;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'info info' 'stage hand' 'foot foot'}.remote-hand{align-self:center;align-items:center;text-align:center;max-width:120px}.remote-hint{font-size:13px}.remote-zone{min-height:0}.handset{width:96px;padding:12px 12px 16px}.hs-btn{width:64px;height:64px}}
+
+.hero-remote{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)!important;gap:40px!important}
+.hero-remote .display{font-size:clamp(38px,4.4vw,58px)}
+@media (max-width:800px){.hero-remote{grid-template-columns:1fr!important}}
+.bg-blanc .steps li{background:var(--fond)}
+/* Parcours établissements */
+.quiz{background:var(--blanc);color:var(--marine);border-radius:32px;padding:32px;display:flex;flex-direction:column;gap:22px;min-width:0;box-shadow:0 24px 60px rgba(0,0,0,.18)}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:700;font-size:15px;color:var(--gris)}
+.quiz-bar{flex:1;max-width:220px;height:8px;border-radius:99px;background:var(--menthe);overflow:hidden}
+.quiz-bar i{display:block;height:100%;width:33%;background:var(--canard);border-radius:99px;transition:width .4s ease}
+.quiz-q{font-family:var(--f-titre);font-weight:800;font-size:clamp(24px,2.4vw,30px);line-height:1.15}
+.quiz-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){.quiz-opts{grid-template-columns:1fr}.quiz{padding:22px}}
+.quiz-opt{display:flex;align-items:center;gap:12px;text-align:left;min-height:76px;padding:14px 16px;border-radius:20px;border:2px solid var(--ligne);background:var(--fond);color:var(--marine);font:700 17px/1.25 var(--f-texte);cursor:pointer;transition:border-color .2s,transform .15s,background .2s}
+.quiz-opt:hover{border-color:var(--canard);transform:translateY(-2px)}
+.quiz-opt .icon-box{width:44px;height:44px;background:var(--blanc)}
+.quiz-anim{animation:entre .35s ease}
+@keyframes entre{from{opacity:.2;transform:translateX(14px)}to{opacity:1;transform:none}}
+.quiz-back{background:none;border:none;color:var(--canard);font:700 16px var(--f-texte);cursor:pointer;padding:6px 0;align-self:flex-start}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--menthe);border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px}
+.pret{background:var(--sable);border-radius:22px;padding:20px 22px;display:flex;flex-direction:column;gap:8px}
+.pret strong{font-family:var(--f-titre);font-size:24px;line-height:1.15}
+.bg-marine .checks .icon-box{background:rgba(255,255,255,.1);color:var(--sable)}
+
+/* Équipe */
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:1000px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.team{grid-template-columns:1fr}}
+.member{background:var(--blanc);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.member-photo{aspect-ratio:4/3;background:var(--menthe);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--canard);font-weight:700;font-size:15px;border-bottom:2px dashed #B9CCC7}
+.member-photo svg{width:84px;height:auto;opacity:.5}
+.member .in{padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px}
+.member h3{font-size:24px;font-weight:800}
+.member .role{color:var(--canard);font-weight:700;font-size:16px}
+.a-remplir{background:#FFF4DC;border:2px dashed var(--sable);border-radius:12px;padding:10px 12px;font-size:15px;color:var(--gris)}
+
+/* Vidéos du test de sécurité */
+.vids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:760px){.vids{grid-template-columns:1fr}}
+.vid{background:var(--blanc);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.bg-blanc .vid{background:var(--fond)}
+.vid-frame{position:relative;aspect-ratio:1/1;background:#0B2F3A}
+.vid-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.vid-tag{position:absolute;left:14px;top:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 14px;font-weight:700;font-size:15px;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.vid-tag.non{background:#FBE3DA;color:#8A2E12}
+.vid-tag.oui{background:#DDF3EA;color:#0B5A50}
+.vid-num{font-family:var(--f-titre);font-weight:800}
+.vid .in{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px}
+.vid h3{font-size:22px;font-weight:800;line-height:1.2}
+.vid-link{font-size:15px;font-weight:700}
+@media (max-width:520px){#haut [style*="left: -16px"]{left:12px!important;bottom:12px!important}}
+.grid2{gap:48px}
+#haut .grid2,#haut{scroll-margin-top:100px}section[id]{scroll-margin-top:96px}</style>
+</head>
+<body>
+<div class="sim-bar"><div class="wrap"><span>Simulation du nouveau site manta-health.com · Version 2 du 29/10/2026 · non publiée, à valider par Pierre</span><a href="notes.html">Notes de la simulation →</a></div></div>
+<header class="site-head" id="tete"><div class="nav-bar">
+<a href="index.html" class="brand" aria-label="Manta, accueil"><svg viewBox="0 0 526 544" width="40" height="42" aria-hidden="true"><path fill="#0B2F3A" d="M0.0 543.7C-0.0 542.6 1.9 537.9 5.3 530.5C5.9 529.2 6.9 527.2 7.4 526.0C8.0 524.8 8.9 522.9 9.4 521.7C10.7 518.9 12.3 515.6 13.6 513.3C14.1 512.3 15.0 510.7 15.6 509.7C16.8 507.4 21.4 499.1 21.8 498.2C26.8 489.5 40.0 470.1 48.5 459.3C57.3 448.1 57.2 448.2 68.1 435.8C72.3 430.9 80.6 422.1 88.5 414.0C95.1 407.2 96.3 405.9 97.1 403.7C97.8 401.9 97.8 397.6 97.2 395.7C96.1 392.7 96.8 390.0 99.2 388.1C100.7 386.8 113.3 380.4 117.4 378.8C124.6 376.0 125.1 375.2 123.9 367.5C122.5 358.9 122.5 357.9 123.8 355.5C124.7 354.0 127.8 351.7 131.8 349.5C133.1 348.8 134.7 347.9 135.4 347.4C136.1 347.0 136.7 346.7 136.8 346.7C136.9 346.7 137.8 346.3 138.8 345.8C144.7 342.9 150.6 340.8 156.7 339.5C162.3 338.2 164.8 337.9 173.0 337.7C182.2 337.5 183.0 337.3 184.1 335.5C184.8 334.5 184.8 331.6 184.2 327.5C182.8 319.2 182.1 314.0 181.2 304.8C180.9 302.1 180.4 297.9 180.2 295.5C179.1 285.8 178.9 283.7 178.0 263.8C177.0 243.8 178.8 211.2 182.2 187.7C182.4 185.9 182.9 182.6 183.2 180.3C183.5 178.0 183.9 175.0 184.2 173.5C184.4 172.0 184.9 169.4 185.2 167.7C186.2 161.2 187.2 156.0 188.2 151.3C188.4 150.1 188.9 148.0 189.2 146.5C189.5 145.0 189.9 142.8 190.2 141.5C190.5 140.2 190.9 138.3 191.2 137.2C191.4 136.2 191.9 134.4 192.2 133.2C192.5 132.1 192.9 130.3 193.2 129.3C193.4 128.3 193.9 126.3 194.3 124.8C195.1 121.4 195.9 118.5 196.3 117.2C196.5 116.6 197.1 114.6 197.7 112.7C199.3 107.0 199.6 106.0 200.5 103.2C201.0 101.7 201.5 100.0 201.7 99.5C201.8 99.0 202.1 98.0 202.4 97.3C202.6 96.7 202.9 95.6 203.2 95.0C203.4 94.4 203.8 93.3 204.0 92.7C204.2 92.0 204.5 91.0 204.7 90.5C205.0 89.3 206.5 85.0 207.2 83.2C207.5 82.4 207.9 81.3 208.2 80.7C210.6 74.1 218.3 55.7 221.1 49.7C222.7 46.2 224.0 43.4 225.4 40.4C228.1 34.5 229.4 31.8 230.2 30.0C230.7 29.0 231.9 26.5 232.9 24.4C233.9 22.3 234.7 20.6 234.7 20.5C234.7 20.4 235.5 18.6 236.5 16.5C237.6 14.3 238.7 11.9 239.0 11.2C242.9 2.7 244.6 -0.1 245.6 0.1C245.8 0.1 247.1 2.4 248.4 5.2C250.3 9.5 259.7 28.2 261.8 32.2C263.5 35.4 265.2 38.3 265.9 39.4C266.3 40.1 266.7 40.7 266.7 40.8C266.7 40.9 267.0 41.6 267.4 42.3C267.9 42.9 268.7 44.3 269.2 45.3C271.5 49.5 275.2 55.7 277.7 59.7C279.1 62.0 281.1 65.1 282.0 66.7C284.2 70.1 288.8 77.1 290.7 79.8C291.5 80.9 294.0 84.5 296.2 87.7C300.4 93.8 301.2 94.8 310.0 106.2C318.1 116.7 327.6 127.7 337.9 138.7C355.7 157.6 373.4 173.6 396.5 191.5C400.5 194.6 417.3 206.5 422.3 209.7C425.2 211.6 428.7 213.9 430.1 214.7C432.7 216.4 446.3 224.7 446.5 224.7C446.5 224.7 448.8 226.0 451.6 227.6C454.3 229.2 458.1 231.3 460.0 232.3C461.9 233.3 464.0 234.4 464.7 234.8C466.9 236.0 482.5 243.9 485.5 245.2C487.2 246.0 489.8 247.2 491.3 247.9C492.9 248.7 495.2 249.7 496.5 250.3C497.8 250.9 499.9 251.9 501.3 252.5C502.6 253.2 503.8 253.7 504.0 253.7C504.1 253.7 504.7 253.9 505.2 254.1C505.7 254.4 507.4 255.1 508.8 255.7C511.5 256.9 512.2 257.6 511.4 258.4C511.1 258.7 506.2 258.8 495.1 258.9C478.8 258.9 468.3 259.3 458.8 260.2C455.9 260.4 450.9 260.9 447.7 261.2C444.5 261.5 440.5 261.9 438.8 262.2C437.2 262.4 434.0 262.9 431.7 263.2C422.9 264.3 420.6 264.7 412.7 266.2C411.3 266.5 409.0 266.9 407.6 267.2C406.2 267.4 403.8 267.9 402.2 268.2C398.8 268.8 396.3 269.4 390.8 270.7C378.8 273.5 374.0 274.7 372.3 275.2C371.5 275.4 369.9 275.8 368.7 276.2C367.5 276.5 365.9 276.9 365.2 277.2C364.4 277.4 362.9 277.8 361.7 278.2C357.4 279.3 353.1 280.5 351.2 281.2C350.4 281.4 346.9 282.5 343.3 283.7C332.5 287.2 325.0 289.7 319.5 291.7C318.8 292.0 316.9 292.7 315.3 293.3C313.7 293.8 311.0 294.8 309.3 295.5C305.2 297.1 299.6 299.3 295.7 300.9C293.9 301.5 288.2 303.9 283.0 306.2C274.1 310.0 272.3 310.8 266.7 313.4C265.5 314.0 263.7 314.8 262.7 315.2C259.4 316.7 238.9 326.9 235.3 328.8C233.4 329.9 230.4 331.5 228.8 332.4C216.0 339.2 196.2 350.8 183.8 358.8C179.6 361.6 172.1 366.5 168.7 368.9C166.6 370.3 162.7 373.0 160.0 374.8C157.3 376.6 150.5 381.6 144.8 385.8C135.5 392.7 132.3 395.2 120.9 404.5C119.0 406.0 116.6 407.9 115.5 408.8C106.0 416.5 78.7 442.0 70.9 450.5C69.2 452.4 65.0 456.9 61.6 460.6C45.7 477.7 27.4 501.3 16.7 518.4C15.7 520.1 13.9 522.8 12.8 524.5C11.7 526.2 10.1 528.9 9.2 530.3C8.2 531.8 6.9 534.0 6.2 535.1C5.4 536.2 4.1 538.3 3.2 539.7C1.3 542.8 0.0 544.3 0.0 543.7ZM516.8 244.3C516.5 244.2 514.7 243.5 513.0 242.8C511.3 242.2 508.3 241.0 506.3 240.2C504.4 239.4 501.0 237.9 498.7 237.0C496.5 236.1 493.7 234.9 492.6 234.4C491.4 233.8 489.2 232.8 487.6 232.0C485.9 231.3 484.5 230.7 484.4 230.7C483.3 230.7 455.0 215.7 447.1 211.0C445.1 209.7 442.5 208.2 441.4 207.6C440.4 207.0 438.5 205.9 437.3 205.2C436.1 204.4 433.7 202.8 431.8 201.7C421.7 195.3 404.5 183.5 403.9 182.5C403.8 182.3 403.9 181.9 404.1 181.7C405.0 181.0 411.7 177.0 414.8 175.3C416.7 174.3 419.3 172.9 420.6 172.1C422.0 171.3 423.1 170.7 423.2 170.7C423.4 170.7 427.2 168.3 429.5 166.8C430.4 166.3 432.3 165.0 433.7 164.2C446.6 155.8 461.2 143.3 472.0 131.4C477.3 125.4 482.3 119.4 484.3 116.4C485.0 115.3 486.6 112.9 487.9 111.0C489.2 109.1 490.8 106.5 491.5 105.2C492.2 103.9 493.2 102.1 493.7 101.2C495.4 98.1 496.0 96.9 498.2 91.7C499.4 88.8 500.9 84.9 501.6 82.8C502.8 79.0 503.1 78.1 504.4 74.8C505.8 71.5 506.1 71.9 508.5 79.3C509.7 82.9 511.1 87.6 511.7 89.7C512.3 91.8 513.2 95.0 513.7 96.8C515.6 103.4 515.6 103.3 517.2 110.7C517.8 113.4 518.5 116.8 519.2 119.8C520.1 123.8 520.6 126.9 521.2 130.7C521.5 132.8 521.9 135.8 522.2 137.5C525.2 156.9 526.0 184.5 524.3 204.2C523.5 213.9 523.3 215.3 523.0 217.5C521.0 232.4 520.8 233.5 519.3 241.3C518.7 244.7 518.4 245.0 516.8 244.3Z"></path></svg><b>Manta</b></a>
+<nav class="nav-links" aria-label="Menu principal"><a href="particuliers.html" class="here" aria-current="page">Particuliers</a><a href="etablissements.html">Établissements</a><a href="histoire.html">Qui sommes-nous</a><a href="actualites.html">Actualités</a><a href="contact.html">Contact</a></nav>
+<div class="nav-actions"><a href="index.html#telecommande" class="btn btn-sable">Essayer la télécommande</a><a href="etablissements.html#pret" class="btn btn-main">Prêt gratuit</a></div>
+<details class="menu"><summary aria-label="Ouvrir le menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>Menu</summary>
+<nav class="menu-panel" aria-label="Menu mobile"><a href="index.html">Accueil</a><a href="particuliers.html" class="here" aria-current="page">Particuliers</a><a href="etablissements.html">Établissements</a><a href="histoire.html">Qui sommes-nous</a><a href="actualites.html">Actualités</a><a href="contact.html">Contact</a><a href="index.html#telecommande" class="btn btn-sable">Essayer la télécommande</a><a href="etablissements.html#pret" class="btn btn-main">Prêt gratuit pour les établissements</a></nav></details>
+</div></header>
+<main id="contenu">
+<nav aria-label="Dans cette page" class="bg-blanc" style="border-bottom:1px solid var(--ligne)"><div class="wrap row" style="gap:8px 24px;padding-block:12px;font-size:16px;font-weight:700">
+<span class="muted" style="font-weight:400">Dans cette page&nbsp;:</span><a href="#pour-qui">Pour qui&nbsp;?</a><a href="#comment">Comment ça marche</a><a href="#prix">Prix et aides</a><a href="#questions">Questions</a></div></nav><section id="haut" style="background: #FFFFFF;">
+<div class="wrap grid2" style="padding-top: 72px; padding-bottom: 88px;">
+<div style="display: flex; flex-direction: column; gap: 28px; min-width: 0;">
+<p style="margin: 0; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #0F6E68;">Toilettes réglables en hauteur</p>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(42px, 5.2vw, 68px); line-height: 1.02; letter-spacing: -1.5px; text-wrap: balance;">Aller aux toilettes seul, en sécurité, chez soi.</h1>
+<p style="margin: 0; font-size: 21px; color: #36505A; max-width: 34em;">MANTA monte et descend vos toilettes d'une simple pression. Pour les personnes âgées, en situation de handicap ou atteintes d'une maladie, et pour ceux qui les aident au quotidien.</p>
+<div style="display: flex; gap: 14px; flex-wrap: wrap;">
+<a href="#prix" class="btn btn-main">Calculer mon reste à charge</a>
+<a href="assistant.html" class="btn btn-line">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"></path></svg>
+Poser une question
+</a>
+</div>
+<p style="margin: 0; font-size: 17px; color: #36505A;">14 239 € TTC pose comprise · <strong style="color: #0B2F3A;">jusqu'à 70 % pris en charge par MaPrimeAdapt'</strong>, selon vos ressources.</p>
+</div>
+<div style="position: relative; min-width: 0;">
+<img src="img/salle-de-bain.jpg" alt="Toilettes MANTA installées dans une salle de bain de maison, avec barres d'appui" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 28px; display: block; max-width: 100%;">
+<div style="position: absolute; left: -16px; bottom: 32px; background: #F4DDAE; border-radius: 20px; padding: 18px 22px; display: flex; flex-direction: column; gap: 2px; box-shadow: 0 12px 32px rgba(11,47,58,0.18);">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 34px; line-height: 1;">35,5 → 74 cm</span>
+<span style="font-size: 16px;">de hauteur, réglable à tout moment</span>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-label="Nos garanties" style="background: #0B2F3A; color: #FFFFFF;">
+<div class="wrap grid4" style="padding-top: 32px; padding-bottom: 32px;">
+<div style="display: flex; gap: 14px; align-items: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4DDAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><span style="font-size: 17px;"><strong>Dispositif médical</strong><br>certifié CE</span></div>
+<div style="display: flex; gap: 14px; align-items: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4DDAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6"></path><path d="M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"></path></svg><span style="font-size: 17px;"><strong>Testé 6 mois</strong><br>au CHU d'Angers</span></div>
+<div style="display: flex; gap: 14px; align-items: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4DDAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span style="font-size: 17px;"><strong>Posé en moins</strong><br>d'une journée</span></div>
+<div style="display: flex; gap: 14px; align-items: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4DDAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"></path><path d="M5 21V8l7-5 7 5v13"></path><path d="M10 21v-6h4v6"></path></svg><span style="font-size: 17px;"><strong>Conçu</strong><br>à Nantes</span></div>
+</div>
+</section>
+
+<section id="pour-qui">
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 48px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; text-wrap: balance;">Pour toutes celles et ceux pour qui s'asseoir et se relever est devenu difficile.</h2>
+<p style="margin: 0; color: #36505A;">Quel que soit votre âge, quelle qu'en soit la raison.</p>
+</div>
+<div class="grid3">
+<article style="background: #FFFFFF; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column;">
+<img src="img/manta-installe.jpg" alt="MANTA installé à hauteur d'assise dans une salle de bain" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; max-width: 100%;">
+<div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.15;">Vous voulez rester chez vous en vieillissant</h3>
+<p style="margin: 0; color: #36505A; font-size: 18px;">Les genoux, l'équilibre, la peur de tomber. MANTA vous accompagne à la bonne hauteur pour vous asseoir, puis vous aide à vous relever sans vous tenir au lavabo.</p>
+</div>
+</article>
+<article style="background: #FFFFFF; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column;">
+<img src="img/transfert-fauteuil.jpg" alt="Un homme en fauteuil roulant se transfère sur des toilettes MANTA mises à la hauteur de son fauteuil" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; max-width: 100%;">
+<div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.15;">Vous vivez avec un handicap ou une maladie</h3>
+<p style="margin: 0; color: #36505A; font-size: 18px;">Fauteuil roulant, maladie chronique, douleurs, fatigue. Vous réglez la cuvette à la hauteur de votre fauteuil ou de vos jours difficiles, et vous restez maître de votre intimité.</p>
+</div>
+</article>
+<article style="background: #FFFFFF; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column;">
+<img src="img/aidant.jpg" alt="Un soignant aide une femme âgée en fauteuil roulant dans une salle de bain adaptée" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; max-width: 100%;">
+<div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.15;">Vous aidez un proche au quotidien</h3>
+<p style="margin: 0; color: #36505A; font-size: 18px;">Moins de portage, moins de mal de dos, moins d'inquiétude. Dans l'étude du CHU d'Angers, les aidants ont noté l'utilité de MANTA 6,92 sur 7.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section id="comment" style="background: #FFFFFF;">
+<div class="wrap grid2" style="padding-top: 96px; padding-bottom: 96px; align-items: start;">
+<div style="display: flex; flex-direction: column; gap: 28px; min-width: 0;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px;">Deux boutons. C'est tout.</h2>
+<p style="margin: 0; color: #36505A;">MANTA remplace le bâti caché derrière des toilettes suspendues. Une télécommande règle la hauteur de la cuvette, au centimètre près, pour chaque personne de la maison.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px;">
+<li style="display: flex; gap: 16px; align-items: flex-start;"><span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #E3EFEC; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg></span><span><strong>Batterie de secours.</strong> En cas de coupure de courant, les toilettes restent utilisables.</span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start;"><span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #E3EFEC; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg></span><span><strong>Arrêt de sécurité.</strong> Une barre sensible sous la cuvette stoppe la descente au moindre contact.</span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start;"><span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #E3EFEC; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20h12"></path><path d="M12 4v12"></path><path d="M8 12l4 4 4-4"></path></svg></span><span><strong>Jusqu'à 248 kg testés.</strong> Robuste pour toutes les morphologies.</span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start;"><span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #E3EFEC; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"></path><path d="M7 21V10"></path><path d="M17 21V10"></path><path d="M5 10h14"></path></svg></span><span><strong>Pas besoin de mur porteur.</strong> Fixé au sol, 23,5 cm d'épaisseur seulement, posé en moins d'une journée.</span></li>
+</ul>
+</div>
+<div style="min-width:0"><div class="remote " data-remote style="scroll-margin-top:100px">
+<div class="remote-stage"><svg viewBox="-20 0 840 1500" role="img" aria-label="Dessin à l'échelle du MANTA : la cuvette est à 46 centimètres du sol"></svg></div>
+<div class="remote-info">
+<p class="eyebrow">Essayez la télécommande</p>
+<output class="remote-h">46,0 cm</output>
+<span class="remote-zone">Position assise confortable</span>
+</div>
+<div class="remote-hand">
+<div class="handset" role="group" aria-label="Télécommande MANTA">
+<span class="hs-led" aria-hidden="true"></span>
+<button type="button" class="hs-btn" data-dir="1" aria-label="Monter la cuvette (maintenir appuyé)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg></button>
+<button type="button" class="hs-btn" data-dir="-1" aria-label="Descendre la cuvette (maintenir appuyé)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+<span class="hs-brand" aria-hidden="true">Manta</span>
+</div>
+<span class="remote-hint">Maintenez un bouton appuyé, comme sur la vraie télécommande.</span>
+</div>
+<div class="remote-foot">
+<button type="button" class="pill remote-test" aria-pressed="false">Tester l'arrêt de sécurité</button>
+<span class="remote-msg" role="status">Dessin à l'échelle&nbsp;: de 35,5 à 74 cm de hauteur.</span>
+</div>
+</div></div>
+</div>
+</section>
+
+<section class="bg-blanc" id="securite" style="scroll-margin-top:96px"><div class="wrap sec stack" style="gap:36px"><div class="stack-s measure"><p class="eyebrow">Le test de sécurité en vidéo</p>
+<h2 class="h2">Une bouteille d'eau sous la cuvette. Deux résultats.</h2>
+<p class="muted">Même test, même bouteille&nbsp;: sans dispositif de sécurité, la cuvette écrase tout. Avec la barre sensible de MANTA, la descente s'arrête net.</p></div><div class="vids">
+<article class="vid"><div class="vid-frame"><span class="vid-tag non"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 9l6 6"></path><path d="M15 9l-6 6"></path></svg><span><span class="vid-num">1</span> · Sans dispositif de sécurité</span></span>
+<video data-seg="10.7,26.9" src="https://manta-health.com/wp-content/uploads/2022/12/InShot_20221215_145948796.mp4#t=10.7,26.9" poster="img/video-sans.jpg" muted playsinline preload="none" aria-label="Vidéo : sans dispositif de sécurité, la cuvette descend et écrase une bouteille d'eau"></video></div>
+<div class="in"><h3>La cuvette écrase la bouteille.</h3><p class="muted small">Un bâti sans barre de sécurité continue de descendre, quoi qu'il y ait dessous.</p><a class="vid-link" href="https://manta-health.com/wp-content/uploads/2022/12/InShot_20221215_145948796.mp4#t=10.7" target="_blank" rel="noopener">Ouvrir la vidéo →</a></div></article>
+<article class="vid"><div class="vid-frame"><span class="vid-tag oui"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.7 2.7L16 10"></path></svg><span><span class="vid-num">2</span> · Avec le dispositif de sécurité MANTA</span></span>
+<video data-seg="0,10.6" src="https://manta-health.com/wp-content/uploads/2022/12/InShot_20221215_145948796.mp4#t=0,10.6" poster="img/video-avec.jpg" muted playsinline preload="none" aria-label="Vidéo : avec le dispositif de sécurité MANTA, la cuvette s'arrête au contact de la bouteille"></video></div>
+<div class="in"><h3>MANTA s'arrête au contact.</h3><p class="muted small">La barre sensible sous la cuvette détecte la bouteille et coupe la descente.</p><a class="vid-link" href="https://manta-health.com/wp-content/uploads/2022/12/InShot_20221215_145948796.mp4" target="_blank" rel="noopener">Ouvrir la vidéo →</a></div></article>
+</div></div></section>
+
+<section id="prix">
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 40px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 780px;">
+<p style="margin: 0; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #0F6E68;">Prix et aides</p>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; text-wrap: balance;">L'État peut financer jusqu'à 70 % de MANTA. Calculez votre part en 1 minute.</h2>
+<p style="margin: 0; color: #36505A;">Prix public&nbsp;: 14 239 € TTC, pose comprise. Répondez à trois questions, sans inscription.</p>
+<p style="margin: 0; font-size: 16px;"><strong>Simulateur réservé aux particuliers.</strong> Vous représentez un établissement de santé&nbsp;? <a href="etablissements.html#pret" style="font-weight:700">Découvrez le prêt gratuit →</a></p>
+</div>
+<div class="grid2" style="align-items: start; gap: 32px;">
+<div style="background: #FFFFFF; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 32px; min-width: 0;">
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-weight: 700; font-size: 20px;">1. La personne qui utilisera MANTA</span>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<button type="button" class="pill on" data-profil="70" aria-pressed="true">Elle a 70 ans ou plus</button>
+<button type="button" class="pill" data-profil="gir" aria-pressed="false">Elle a 60 à 69 ans et une perte d’autonomie</button>
+<button type="button" class="pill" data-profil="hand" aria-pressed="false">Elle vit avec un handicap ou une maladie (à tout âge)</button>
+<button type="button" class="pill" data-profil="none" aria-pressed="false">Aucune de ces situations</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-weight: 700; font-size: 20px;">2. Son foyer</span>
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<button type="button" class="pill on" data-region="autres" aria-pressed="true">Hors Île-de-France</button>
+<button type="button" class="pill" data-region="idf" aria-pressed="false">Île-de-France</button>
+</div>
+<div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+<span style="font-size: 18px;">Personnes dans le foyer</span>
+<div style="display: flex; align-items: center; gap: 6px; background: #F5F8F6; border-radius: 999px; padding: 4px;">
+<button type="button" id="moins" aria-label="Une personne de moins" style="width: 44px; height: 44px; border-radius: 999px; border: none; background: #FFFFFF; color: #0B2F3A; font-size: 24px; font-weight: 700; cursor: pointer;">−</button>
+<span style="min-width: 36px; text-align: center; font-weight: 700; font-size: 22px; font-variant-numeric: tabular-nums;" id="pers">1</span>
+<button type="button" id="plus" aria-label="Une personne de plus" style="width: 44px; height: 44px; border-radius: 999px; border: none; background: #FFFFFF; color: #0B2F3A; font-size: 24px; font-weight: 700; cursor: pointer;">+</button>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<label for="rfr" style="font-weight: 700; font-size: 20px;">3. Son revenu fiscal de référence</label>
+<span style="color: #36505A; font-size: 16px;">Sur le dernier avis d'impôt du foyer de la personne aidée.</span>
+<div style="display: flex; align-items: baseline; gap: 8px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 36px; font-variant-numeric: tabular-nums;" id="rfrTxt">16 000 €</span><span style="color: #36505A; font-size: 16px;">par an</span></div>
+<input id="rfr" type="range" min="5000" max="80000" step="500" value="16000">
+<div style="display: flex; justify-content: space-between; color: #36505A; font-size: 14px;"><span>5 000 €</span><span>80 000 € et plus</span></div>
+</div>
+</div>
+<div style="background: #0B2F3A; color: #FFFFFF; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 22px; min-width: 0;">
+<span style="font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #F4DDAE; font-weight: 700;">Votre reste à charge estimé</span>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(56px, 6vw, 80px); line-height: 0.95; letter-spacing: -2px; font-variant-numeric: tabular-nums;" id="reste">6 533 €</span>
+<span style="font-size: 18px; color: #CFE2DE;" id="mois">soit 54 € par mois sur 10 ans</span>
+<div style="display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.18);">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.18); font-size: 17px;"><span>MANTA + pose</span><span style="font-variant-numeric: tabular-nums;">14 239 €</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.18); font-size: 17px;"><span id="aideLbl">MaPrimeAdapt’ (70 %)</span><span style="font-variant-numeric: tabular-nums; color: #F4DDAE; font-weight: 700;" id="aide">− 8 306 €</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; font-size: 17px;"><span>Accompagnateur MaPrimeAdapt'</span><span style="font-variant-numeric: tabular-nums;" id="amo">+ 600 €</span></div>
+</div>
+<p style="margin: 0; background: rgba(255,255,255,0.08); border-radius: 16px; padding: 16px 18px; font-size: 17px;"><strong style="color: #F4DDAE;" id="stTitre">Ressources très modestes&nbsp;: aide de 70 %</strong><br><span id="stTexte"></span></p>
+<div style="display: flex; gap: 12px; flex-wrap: wrap;">
+<a href="assistant.html" class="btn btn-sable">Recevoir ma simulation</a>
+<a href="assistant.html" class="btn" style="color: #FFFFFF; border-color: rgba(255,255,255,0.5);">Être rappelé</a>
+</div>
+<span style="font-size: 14px; color: #CFE2DE;">Estimation selon les règles MaPrimeAdapt' 2026. Le montant final est confirmé par l'Anah. Ne signez rien avant son accord&nbsp;: nous vous guidons.</span>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background: #FFFFFF;">
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 40px;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; max-width: 760px; text-wrap: balance;">Les aides, on s'en occupe avec vous.</h2>
+<div class="grid4">
+<div style="border: 2px solid #DCE7E4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #0F6E68;">50 à 70 %</span>
+<strong style="font-size: 20px;">MaPrimeAdapt'</strong>
+<span style="color: #36505A; font-size: 17px;">Dès 70 ans, ou plus tôt en cas de perte d'autonomie ou de handicap, selon les revenus.</span>
+</div>
+<div style="border: 2px solid #DCE7E4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #0F6E68;">10 000 €</span>
+<strong style="font-size: 20px;">PCH aménagement</strong>
+<span style="color: #36505A; font-size: 17px;">Pour les personnes handicapées, sur 10 ans, à demander à la MDPH. Cumulable.</span>
+</div>
+<div style="border: 2px solid #DCE7E4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6"></path><path d="M5 10v9h14v-9"></path><path d="M9 19v-5h6v5"></path></svg>
+<strong style="font-size: 20px;">Caisses de retraite</strong>
+<span style="color: #36505A; font-size: 17px;">Agirc-Arrco, Assurance retraite, MSA&nbsp;: aides à l'adaptation du logement.</span>
+</div>
+<div style="border: 2px solid #DCE7E4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0F6E68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 6.5-7 11-7 11z"></path></svg>
+<strong style="font-size: 20px;">Mutuelles et communes</strong>
+<span style="color: #36505A; font-size: 17px;">Certaines prennent en charge une partie du reste à payer.</span>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 40px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px;">
+<p style="margin: 0; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #0F6E68;">Comment ça se passe</p>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; text-wrap: balance;">De votre première question à la pose, environ 8 semaines.</h2>
+</div>
+<ol class="grid5" style="margin: 0; padding: 0; list-style: none;">
+<li style="background: #FFFFFF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">1</span><strong style="font-size: 19px;">Vous estimez</strong><span style="color: #36505A; font-size: 16px;">Votre reste à charge en ligne, en une minute.</span></li>
+<li style="background: #FFFFFF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">2</span><strong style="font-size: 19px;">Vous posez vos questions</strong><span style="color: #36505A; font-size: 16px;">À notre assistant, jour et nuit. Envoyez-lui une photo de vos toilettes.</span></li>
+<li style="background: #F4DDAE; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0B2F3A;">3</span><strong style="font-size: 19px;">Pierre vous appelle</strong><span style="color: #0B2F3A; font-size: 16px;">Le fondateur de MANTA valide votre projet avec vous, de vive voix.</span></li>
+<li style="background: #FFFFFF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">4</span><strong style="font-size: 19px;">On monte le dossier d'aides</strong><span style="color: #36505A; font-size: 16px;">Devis, pièces à fournir, accompagnateur&nbsp;: on vous guide jusqu'à l'accord.</span></li>
+<li style="background: #FFFFFF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">5</span><strong style="font-size: 19px;">Pose et suivi</strong><span style="color: #36505A; font-size: 16px;">En moins d'une journée, puis un entretien tous les 6 mois.</span></li>
+</ol>
+</div>
+</section>
+
+<section style="background: #FFFFFF;">
+<div class="wrap grid2" style="padding-top: 96px; padding-bottom: 96px;">
+<img src="img/pose.jpg" alt="Un technicien MANTA installe le bâti motorisé derrière des toilettes suspendues" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 28px; display: block; max-width: 100%;">
+<div style="display: flex; flex-direction: column; gap: 28px; min-width: 0;">
+<p style="margin: 0; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #0F6E68;">Ils l'ont testé</p>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px; text-wrap: balance;">6 mois d'essai au CHU d'Angers et en EHPAD.</h2>
+<p style="margin: 0; color: #36505A;">Une étude menée avec le Gérontopôle des Pays de la Loire auprès de 222 personnes&nbsp;: patients, aidants et soignants, dans 4 établissements.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1;">222</span><span style="font-size: 16px; color: #36505A;">participants</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1;">6,92<span style="font-size: 22px;">/7</span></span><span style="font-size: 16px; color: #36505A;">utilité selon les aidants</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1;">10/10</span><span style="font-size: 16px; color: #36505A;">utilité selon des usagers*</span></div>
+</div>
+<span style="font-size: 14px; color: #36505A;">* Panel de 8 représentants d'usagers, Silver Valley, avril 2025.</span>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap grid3" style="padding-top: 80px; padding-bottom: 80px;">
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">10 ans</span><strong style="font-size: 20px;">de garantie sur la structure</strong><span style="color: #36505A; font-size: 17px;">Châssis et mécanisme. Batterie, télécommande et cuvette&nbsp;: 2 ans.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">24 h</span><strong style="font-size: 20px;">pour intervenir en cas de panne</strong><span style="color: #36505A; font-size: 17px;">Un numéro direct, un humain au bout du fil.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #0F6E68;">6 mois</span><strong style="font-size: 20px;">entre deux entretiens</strong><span style="color: #36505A; font-size: 17px;">Un technicien vérifie votre MANTA. On vous rappelle avant.</span></div>
+</div>
+</section>
+
+<section id="questions" style="background: #FFFFFF;">
+<div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 32px; max-width: 920px;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px;">Vos questions</h2>
+<div style="display: flex; flex-direction: column; border-top: 2px solid #DCE7E4;">
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Et s'il y a une coupure de courant&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Une batterie de secours prend le relais&nbsp;: vous pouvez continuer à monter et descendre la cuvette.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">De l'électricité dans les toilettes, est-ce sûr&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Le moteur fonctionne en basse tension et il est étanche (IP66). MANTA est un dispositif médical certifié CE, contrôlé par l'APAVE selon la norme des appareils médicaux électriques.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Faut-il refaire toute la salle de bain&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Non. Il faut une largeur libre de 85 cm, une arrivée d'eau, une évacuation standard et une prise électrique à proximité. Envoyez une photo à notre assistant&nbsp;: il vous dit tout de suite ce qu'il manque.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Je suis locataire, est-ce possible&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Oui, avec l'accord écrit de votre propriétaire. MaPrimeAdapt' est ouverte aux locataires du parc privé.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Qui m'aide pour le dossier MaPrimeAdapt'&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Nous préparons le devis et la liste des pièces, et nous vous mettons en relation avec un accompagnateur agréé, obligatoire pour cette aide. Important&nbsp;: rien ne doit être signé ni commencé avant l'accord de l'Anah.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Et si je change d'avis&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Vous disposez de 14 jours pour vous rétracter après la signature, sans frais ni justification.</p></details>
+</div>
+</div>
+</section>
+
+<section style="background: #0B2F3A; color: #FFFFFF; overflow: hidden;">
+<div class="wrap grid2" style="padding-top: 96px; padding-bottom: 96px;">
+<div style="display: flex; flex-direction: column; gap: 24px; min-width: 0;">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(36px, 4.4vw, 58px); line-height: 1.02; letter-spacing: -1.5px; text-wrap: balance;">Parlons de votre situation.</h2>
+<p style="margin: 0; color: #CFE2DE; font-size: 21px;">Notre assistant vous répond tout de suite. Quand vous êtes prêt, Pierre, le fondateur de MANTA, vous appelle au moment qui vous arrange.</p>
+<div style="display: flex; gap: 14px; flex-wrap: wrap;">
+<a href="assistant.html" class="btn btn-sable">Discuter avec l'assistant</a>
+<a href="assistant.html" class="btn" style="color: #FFFFFF; border-color: rgba(255,255,255,0.5);">Choisir un créneau d'appel</a>
+</div>
+<p style="margin: 0; font-size: 19px;">Ou appelez-nous&nbsp;: <strong style="font-size: 22px; letter-spacing: 0.5px;">01 45 34 14 71</strong></p>
+</div>
+<div style="display: flex; justify-content: center; align-items: center; min-width: 0;" aria-hidden="true">
+<svg viewBox="0 0 526 544" style="width: 100%; max-width: 420px; height: auto;"><path fill="#F4DDAE" d="M0.0 543.7C-0.0 542.6 1.9 537.9 5.3 530.5C5.9 529.2 6.9 527.2 7.4 526.0C8.0 524.8 8.9 522.9 9.4 521.7C10.7 518.9 12.3 515.6 13.6 513.3C14.1 512.3 15.0 510.7 15.6 509.7C16.8 507.4 21.4 499.1 21.8 498.2C26.8 489.5 40.0 470.1 48.5 459.3C57.3 448.1 57.2 448.2 68.1 435.8C72.3 430.9 80.6 422.1 88.5 414.0C95.1 407.2 96.3 405.9 97.1 403.7C97.8 401.9 97.8 397.6 97.2 395.7C96.1 392.7 96.8 390.0 99.2 388.1C100.7 386.8 113.3 380.4 117.4 378.8C124.6 376.0 125.1 375.2 123.9 367.5C122.5 358.9 122.5 357.9 123.8 355.5C124.7 354.0 127.8 351.7 131.8 349.5C133.1 348.8 134.7 347.9 135.4 347.4C136.1 347.0 136.7 346.7 136.8 346.7C136.9 346.7 137.8 346.3 138.8 345.8C144.7 342.9 150.6 340.8 156.7 339.5C162.3 338.2 164.8 337.9 173.0 337.7C182.2 337.5 183.0 337.3 184.1 335.5C184.8 334.5 184.8 331.6 184.2 327.5C182.8 319.2 182.1 314.0 181.2 304.8C180.9 302.1 180.4 297.9 180.2 295.5C179.1 285.8 178.9 283.7 178.0 263.8C177.0 243.8 178.8 211.2 182.2 187.7C182.4 185.9 182.9 182.6 183.2 180.3C183.5 178.0 183.9 175.0 184.2 173.5C184.4 172.0 184.9 169.4 185.2 167.7C186.2 161.2 187.2 156.0 188.2 151.3C188.4 150.1 188.9 148.0 189.2 146.5C189.5 145.0 189.9 142.8 190.2 141.5C190.5 140.2 190.9 138.3 191.2 137.2C191.4 136.2 191.9 134.4 192.2 133.2C192.5 132.1 192.9 130.3 193.2 129.3C193.4 128.3 193.9 126.3 194.3 124.8C195.1 121.4 195.9 118.5 196.3 117.2C196.5 116.6 197.1 114.6 197.7 112.7C199.3 107.0 199.6 106.0 200.5 103.2C201.0 101.7 201.5 100.0 201.7 99.5C201.8 99.0 202.1 98.0 202.4 97.3C202.6 96.7 202.9 95.6 203.2 95.0C203.4 94.4 203.8 93.3 204.0 92.7C204.2 92.0 204.5 91.0 204.7 90.5C205.0 89.3 206.5 85.0 207.2 83.2C207.5 82.4 207.9 81.3 208.2 80.7C210.6 74.1 218.3 55.7 221.1 49.7C222.7 46.2 224.0 43.4 225.4 40.4C228.1 34.5 229.4 31.8 230.2 30.0C230.7 29.0 231.9 26.5 232.9 24.4C233.9 22.3 234.7 20.6 234.7 20.5C234.7 20.4 235.5 18.6 236.5 16.5C237.6 14.3 238.7 11.9 239.0 11.2C242.9 2.7 244.6 -0.1 245.6 0.1C245.8 0.1 247.1 2.4 248.4 5.2C250.3 9.5 259.7 28.2 261.8 32.2C263.5 35.4 265.2 38.3 265.9 39.4C266.3 40.1 266.7 40.7 266.7 40.8C266.7 40.9 267.0 41.6 267.4 42.3C267.9 42.9 268.7 44.3 269.2 45.3C271.5 49.5 275.2 55.7 277.7 59.7C279.1 62.0 281.1 65.1 282.0 66.7C284.2 70.1 288.8 77.1 290.7 79.8C291.5 80.9 294.0 84.5 296.2 87.7C300.4 93.8 301.2 94.8 310.0 106.2C318.1 116.7 327.6 127.7 337.9 138.7C355.7 157.6 373.4 173.6 396.5 191.5C400.5 194.6 417.3 206.5 422.3 209.7C425.2 211.6 428.7 213.9 430.1 214.7C432.7 216.4 446.3 224.7 446.5 224.7C446.5 224.7 448.8 226.0 451.6 227.6C454.3 229.2 458.1 231.3 460.0 232.3C461.9 233.3 464.0 234.4 464.7 234.8C466.9 236.0 482.5 243.9 485.5 245.2C487.2 246.0 489.8 247.2 491.3 247.9C492.9 248.7 495.2 249.7 496.5 250.3C497.8 250.9 499.9 251.9 501.3 252.5C502.6 253.2 503.8 253.7 504.0 253.7C504.1 253.7 504.7 253.9 505.2 254.1C505.7 254.4 507.4 255.1 508.8 255.7C511.5 256.9 512.2 257.6 511.4 258.4C511.1 258.7 506.2 258.8 495.1 258.9C478.8 258.9 468.3 259.3 458.8 260.2C455.9 260.4 450.9 260.9 447.7 261.2C444.5 261.5 440.5 261.9 438.8 262.2C437.2 262.4 434.0 262.9 431.7 263.2C422.9 264.3 420.6 264.7 412.7 266.2C411.3 266.5 409.0 266.9 407.6 267.2C406.2 267.4 403.8 267.9 402.2 268.2C398.8 268.8 396.3 269.4 390.8 270.7C378.8 273.5 374.0 274.7 372.3 275.2C371.5 275.4 369.9 275.8 368.7 276.2C367.5 276.5 365.9 276.9 365.2 277.2C364.4 277.4 362.9 277.8 361.7 278.2C357.4 279.3 353.1 280.5 351.2 281.2C350.4 281.4 346.9 282.5 343.3 283.7C332.5 287.2 325.0 289.7 319.5 291.7C318.8 292.0 316.9 292.7 315.3 293.3C313.7 293.8 311.0 294.8 309.3 295.5C305.2 297.1 299.6 299.3 295.7 300.9C293.9 301.5 288.2 303.9 283.0 306.2C274.1 310.0 272.3 310.8 266.7 313.4C265.5 314.0 263.7 314.8 262.7 315.2C259.4 316.7 238.9 326.9 235.3 328.8C233.4 329.9 230.4 331.5 228.8 332.4C216.0 339.2 196.2 350.8 183.8 358.8C179.6 361.6 172.1 366.5 168.7 368.9C166.6 370.3 162.7 373.0 160.0 374.8C157.3 376.6 150.5 381.6 144.8 385.8C135.5 392.7 132.3 395.2 120.9 404.5C119.0 406.0 116.6 407.9 115.5 408.8C106.0 416.5 78.7 442.0 70.9 450.5C69.2 452.4 65.0 456.9 61.6 460.6C45.7 477.7 27.4 501.3 16.7 518.4C15.7 520.1 13.9 522.8 12.8 524.5C11.7 526.2 10.1 528.9 9.2 530.3C8.2 531.8 6.9 534.0 6.2 535.1C5.4 536.2 4.1 538.3 3.2 539.7C1.3 542.8 0.0 544.3 0.0 543.7ZM516.8 244.3C516.5 244.2 514.7 243.5 513.0 242.8C511.3 242.2 508.3 241.0 506.3 240.2C504.4 239.4 501.0 237.9 498.7 237.0C496.5 236.1 493.7 234.9 492.6 234.4C491.4 233.8 489.2 232.8 487.6 232.0C485.9 231.3 484.5 230.7 484.4 230.7C483.3 230.7 455.0 215.7 447.1 211.0C445.1 209.7 442.5 208.2 441.4 207.6C440.4 207.0 438.5 205.9 437.3 205.2C436.1 204.4 433.7 202.8 431.8 201.7C421.7 195.3 404.5 183.5 403.9 182.5C403.8 182.3 403.9 181.9 404.1 181.7C405.0 181.0 411.7 177.0 414.8 175.3C416.7 174.3 419.3 172.9 420.6 172.1C422.0 171.3 423.1 170.7 423.2 170.7C423.4 170.7 427.2 168.3 429.5 166.8C430.4 166.3 432.3 165.0 433.7 164.2C446.6 155.8 461.2 143.3 472.0 131.4C477.3 125.4 482.3 119.4 484.3 116.4C485.0 115.3 486.6 112.9 487.9 111.0C489.2 109.1 490.8 106.5 491.5 105.2C492.2 103.9 493.2 102.1 493.7 101.2C495.4 98.1 496.0 96.9 498.2 91.7C499.4 88.8 500.9 84.9 501.6 82.8C502.8 79.0 503.1 78.1 504.4 74.8C505.8 71.5 506.1 71.9 508.5 79.3C509.7 82.9 511.1 87.6 511.7 89.7C512.3 91.8 513.2 95.0 513.7 96.8C515.6 103.4 515.6 103.3 517.2 110.7C517.8 113.4 518.5 116.8 519.2 119.8C520.1 123.8 520.6 126.9 521.2 130.7C521.5 132.8 521.9 135.8 522.2 137.5C525.2 156.9 526.0 184.5 524.3 204.2C523.5 213.9 523.3 215.3 523.0 217.5C521.0 232.4 520.8 233.5 519.3 241.3C518.7 244.7 518.4 245.0 516.8 244.3Z"></path></svg>
+</div>
+</div>
+</section>
+
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<div class="foot-grid">
+<div class="stack-s"><a href="index.html" class="brand" style="color:#FFFFFF" aria-label="Manta, accueil"><svg viewBox="0 0 526 544" width="36" height="38" aria-hidden="true"><path fill="#F4DDAE" d="M0.0 543.7C-0.0 542.6 1.9 537.9 5.3 530.5C5.9 529.2 6.9 527.2 7.4 526.0C8.0 524.8 8.9 522.9 9.4 521.7C10.7 518.9 12.3 515.6 13.6 513.3C14.1 512.3 15.0 510.7 15.6 509.7C16.8 507.4 21.4 499.1 21.8 498.2C26.8 489.5 40.0 470.1 48.5 459.3C57.3 448.1 57.2 448.2 68.1 435.8C72.3 430.9 80.6 422.1 88.5 414.0C95.1 407.2 96.3 405.9 97.1 403.7C97.8 401.9 97.8 397.6 97.2 395.7C96.1 392.7 96.8 390.0 99.2 388.1C100.7 386.8 113.3 380.4 117.4 378.8C124.6 376.0 125.1 375.2 123.9 367.5C122.5 358.9 122.5 357.9 123.8 355.5C124.7 354.0 127.8 351.7 131.8 349.5C133.1 348.8 134.7 347.9 135.4 347.4C136.1 347.0 136.7 346.7 136.8 346.7C136.9 346.7 137.8 346.3 138.8 345.8C144.7 342.9 150.6 340.8 156.7 339.5C162.3 338.2 164.8 337.9 173.0 337.7C182.2 337.5 183.0 337.3 184.1 335.5C184.8 334.5 184.8 331.6 184.2 327.5C182.8 319.2 182.1 314.0 181.2 304.8C180.9 302.1 180.4 297.9 180.2 295.5C179.1 285.8 178.9 283.7 178.0 263.8C177.0 243.8 178.8 211.2 182.2 187.7C182.4 185.9 182.9 182.6 183.2 180.3C183.5 178.0 183.9 175.0 184.2 173.5C184.4 172.0 184.9 169.4 185.2 167.7C186.2 161.2 187.2 156.0 188.2 151.3C188.4 150.1 188.9 148.0 189.2 146.5C189.5 145.0 189.9 142.8 190.2 141.5C190.5 140.2 190.9 138.3 191.2 137.2C191.4 136.2 191.9 134.4 192.2 133.2C192.5 132.1 192.9 130.3 193.2 129.3C193.4 128.3 193.9 126.3 194.3 124.8C195.1 121.4 195.9 118.5 196.3 117.2C196.5 116.6 197.1 114.6 197.7 112.7C199.3 107.0 199.6 106.0 200.5 103.2C201.0 101.7 201.5 100.0 201.7 99.5C201.8 99.0 202.1 98.0 202.4 97.3C202.6 96.7 202.9 95.6 203.2 95.0C203.4 94.4 203.8 93.3 204.0 92.7C204.2 92.0 204.5 91.0 204.7 90.5C205.0 89.3 206.5 85.0 207.2 83.2C207.5 82.4 207.9 81.3 208.2 80.7C210.6 74.1 218.3 55.7 221.1 49.7C222.7 46.2 224.0 43.4 225.4 40.4C228.1 34.5 229.4 31.8 230.2 30.0C230.7 29.0 231.9 26.5 232.9 24.4C233.9 22.3 234.7 20.6 234.7 20.5C234.7 20.4 235.5 18.6 236.5 16.5C237.6 14.3 238.7 11.9 239.0 11.2C242.9 2.7 244.6 -0.1 245.6 0.1C245.8 0.1 247.1 2.4 248.4 5.2C250.3 9.5 259.7 28.2 261.8 32.2C263.5 35.4 265.2 38.3 265.9 39.4C266.3 40.1 266.7 40.7 266.7 40.8C266.7 40.9 267.0 41.6 267.4 42.3C267.9 42.9 268.7 44.3 269.2 45.3C271.5 49.5 275.2 55.7 277.7 59.7C279.1 62.0 281.1 65.1 282.0 66.7C284.2 70.1 288.8 77.1 290.7 79.8C291.5 80.9 294.0 84.5 296.2 87.7C300.4 93.8 301.2 94.8 310.0 106.2C318.1 116.7 327.6 127.7 337.9 138.7C355.7 157.6 373.4 173.6 396.5 191.5C400.5 194.6 417.3 206.5 422.3 209.7C425.2 211.6 428.7 213.9 430.1 214.7C432.7 216.4 446.3 224.7 446.5 224.7C446.5 224.7 448.8 226.0 451.6 227.6C454.3 229.2 458.1 231.3 460.0 232.3C461.9 233.3 464.0 234.4 464.7 234.8C466.9 236.0 482.5 243.9 485.5 245.2C487.2 246.0 489.8 247.2 491.3 247.9C492.9 248.7 495.2 249.7 496.5 250.3C497.8 250.9 499.9 251.9 501.3 252.5C502.6 253.2 503.8 253.7 504.0 253.7C504.1 253.7 504.7 253.9 505.2 254.1C505.7 254.4 507.4 255.1 508.8 255.7C511.5 256.9 512.2 257.6 511.4 258.4C511.1 258.7 506.2 258.8 495.1 258.9C478.8 258.9 468.3 259.3 458.8 260.2C455.9 260.4 450.9 260.9 447.7 261.2C444.5 261.5 440.5 261.9 438.8 262.2C437.2 262.4 434.0 262.9 431.7 263.2C422.9 264.3 420.6 264.7 412.7 266.2C411.3 266.5 409.0 266.9 407.6 267.2C406.2 267.4 403.8 267.9 402.2 268.2C398.8 268.8 396.3 269.4 390.8 270.7C378.8 273.5 374.0 274.7 372.3 275.2C371.5 275.4 369.9 275.8 368.7 276.2C367.5 276.5 365.9 276.9 365.2 277.2C364.4 277.4 362.9 277.8 361.7 278.2C357.4 279.3 353.1 280.5 351.2 281.2C350.4 281.4 346.9 282.5 343.3 283.7C332.5 287.2 325.0 289.7 319.5 291.7C318.8 292.0 316.9 292.7 315.3 293.3C313.7 293.8 311.0 294.8 309.3 295.5C305.2 297.1 299.6 299.3 295.7 300.9C293.9 301.5 288.2 303.9 283.0 306.2C274.1 310.0 272.3 310.8 266.7 313.4C265.5 314.0 263.7 314.8 262.7 315.2C259.4 316.7 238.9 326.9 235.3 328.8C233.4 329.9 230.4 331.5 228.8 332.4C216.0 339.2 196.2 350.8 183.8 358.8C179.6 361.6 172.1 366.5 168.7 368.9C166.6 370.3 162.7 373.0 160.0 374.8C157.3 376.6 150.5 381.6 144.8 385.8C135.5 392.7 132.3 395.2 120.9 404.5C119.0 406.0 116.6 407.9 115.5 408.8C106.0 416.5 78.7 442.0 70.9 450.5C69.2 452.4 65.0 456.9 61.6 460.6C45.7 477.7 27.4 501.3 16.7 518.4C15.7 520.1 13.9 522.8 12.8 524.5C11.7 526.2 10.1 528.9 9.2 530.3C8.2 531.8 6.9 534.0 6.2 535.1C5.4 536.2 4.1 538.3 3.2 539.7C1.3 542.8 0.0 544.3 0.0 543.7ZM516.8 244.3C516.5 244.2 514.7 243.5 513.0 242.8C511.3 242.2 508.3 241.0 506.3 240.2C504.4 239.4 501.0 237.9 498.7 237.0C496.5 236.1 493.7 234.9 492.6 234.4C491.4 233.8 489.2 232.8 487.6 232.0C485.9 231.3 484.5 230.7 484.4 230.7C483.3 230.7 455.0 215.7 447.1 211.0C445.1 209.7 442.5 208.2 441.4 207.6C440.4 207.0 438.5 205.9 437.3 205.2C436.1 204.4 433.7 202.8 431.8 201.7C421.7 195.3 404.5 183.5 403.9 182.5C403.8 182.3 403.9 181.9 404.1 181.7C405.0 181.0 411.7 177.0 414.8 175.3C416.7 174.3 419.3 172.9 420.6 172.1C422.0 171.3 423.1 170.7 423.2 170.7C423.4 170.7 427.2 168.3 429.5 166.8C430.4 166.3 432.3 165.0 433.7 164.2C446.6 155.8 461.2 143.3 472.0 131.4C477.3 125.4 482.3 119.4 484.3 116.4C485.0 115.3 486.6 112.9 487.9 111.0C489.2 109.1 490.8 106.5 491.5 105.2C492.2 103.9 493.2 102.1 493.7 101.2C495.4 98.1 496.0 96.9 498.2 91.7C499.4 88.8 500.9 84.9 501.6 82.8C502.8 79.0 503.1 78.1 504.4 74.8C505.8 71.5 506.1 71.9 508.5 79.3C509.7 82.9 511.1 87.6 511.7 89.7C512.3 91.8 513.2 95.0 513.7 96.8C515.6 103.4 515.6 103.3 517.2 110.7C517.8 113.4 518.5 116.8 519.2 119.8C520.1 123.8 520.6 126.9 521.2 130.7C521.5 132.8 521.9 135.8 522.2 137.5C525.2 156.9 526.0 184.5 524.3 204.2C523.5 213.9 523.3 215.3 523.0 217.5C521.0 232.4 520.8 233.5 519.3 241.3C518.7 244.7 518.4 245.0 516.8 244.3Z"></path></svg><b>Manta</b></a>
+<span>Améliorer la qualité de vie des personnes en perte d'autonomie et de leurs aidants.</span>
+<span>MANTA SAS · 22 boulevard Benoni-Goullin, 44200 Nantes</span>
+<span>01 45 34 14 71 · contact@manta-health.com</span></div>
+<div class="foot-links"><strong>Le site</strong><a href="index.html">Accueil</a><a href="particuliers.html">Particuliers</a><a href="etablissements.html">Établissements</a><a href="histoire.html">Qui sommes-nous</a><a href="actualites.html">Actualités</a><a href="contact.html">Contact</a></div>
+<div class="stack-s"><strong>Ils nous accompagnent</strong><span>Gérontopôle des Pays de la Loire · CHU d'Angers · Harmonie Mutuelle et Harmonie Médical Service (Groupe VYV) · Silver Valley · Club Business Silver Eco de la CCI · TiMOTION · LUMINUM · Famatech · AFU · Normbau · MedicApp Connect</span></div>
+</div>
+<div class="foot-bottom"><span>Dispositif médical de classe I, marquage CE, règlement (UE) 2017/745 · EUDAMED SRN FR-MF-000052993</span>
+<span><a href="mentions-legales.html">Mentions légales</a> · <a href="mentions-legales.html#donnees">Données personnelles</a> · © 2026 MANTA SAS</span></div>
+</div></footer>
+<script>
+(function(){var h=document.getElementById('tete');if(!h)return;function f(){h.classList.toggle('scrolled',window.scrollY>8);}window.addEventListener('scroll',f,{passive:true});f();
+var m=h.querySelector('details.menu');if(m){m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.open=false;});});document.addEventListener('click',function(e){if(m.open&&!m.contains(e.target))m.open=false;});}})();
+</script>
+<script>
+(function(){
+  var PRIX_HT=11866.03, PRIX_TTC=14239.24;
+  var PLAF={autres:{base:[[17363,22259],[25393,32553],[30540,39148],[35676,45735],[40835,52348]],plus:[5151,6598]},
+            idf:{base:[[24031,29253],[35270,42933],[42357,51564],[49455,60208],[56580,68877]],plus:[7116,8663]}};
+  var s={profil:'70',region:'autres',pers:1,rfr:16000,h:460};
+  function $(id){return document.getElementById(id);}
+  function eur(n){return Math.round(n).toLocaleString('fr-FR')+' €';}
+  function calc(){
+    var t=PLAF[s.region],k=Math.min(s.pers,5)-1,x=Math.max(0,s.pers-5);
+    var tm=t.base[k][0]+x*t.plus[0], m=t.base[k][1]+x*t.plus[1];
+    var ok=s.profil!=='none', taux=0;
+    if(ok){ if(s.rfr<=tm) taux=.7; else if(s.rfr<=m) taux=.5; }
+    var aide=taux?Math.round(PRIX_HT*taux):0, amo=taux?600:0, reste=Math.max(0,Math.round(PRIX_TTC+amo-aide));
+    var ti,tx;
+    if(taux===.7){ti='Ressources très modestes : aide de 70 %';tx='Le foyer est sous le plafond de '+eur(tm)+'. Il peut aussi demander une aide à sa caisse de retraite ou à sa mutuelle.';}
+    else if(taux===.5){ti='Ressources modestes : aide de 50 %';tx='Le foyer est sous le plafond de '+eur(m)+'. D’autres aides peuvent réduire encore ce montant.';}
+    else if(!ok){ti='MaPrimeAdapt’ n’est pas accessible';tx='D’autres solutions existent : caisse de retraite, mutuelle, location. Notre assistant vous les présente.';}
+    else {ti='Revenus au-dessus du plafond';tx='Pas de MaPrimeAdapt’, mais la caisse de retraite, la mutuelle ou la location peuvent aider. Parlons-en.';}
+    if(s.profil==='hand') tx+=' Avec la PCH (jusqu’à 10 000 €), le reste à charge peut baisser encore.';
+    $('pers').textContent=s.pers; $('rfrTxt').textContent=eur(s.rfr);
+    $('reste').textContent=eur(reste); $('mois').textContent='soit '+eur(reste/120)+' par mois sur 10 ans';
+    $('aideLbl').textContent=taux?'MaPrimeAdapt’ ('+Math.round(taux*100)+' %)':'MaPrimeAdapt’';
+    $('aide').textContent=aide?'− '+eur(aide):'0 €'; $('amo').textContent=amo?'+ '+eur(amo):'non requis';
+    $('stTitre').textContent=ti; $('stTexte').textContent=tx;
+    document.querySelectorAll('[data-profil]').forEach(function(b){var on=b.dataset.profil===s.profil;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
+    document.querySelectorAll('[data-region]').forEach(function(b){var on=b.dataset.region===s.region;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
+  }
+  function seat(){
+    var pct=(s.h-355)/(740-355); $('seat').style.top=Math.round((1-pct)*266)+'px';
+    $('hTxt').textContent=(s.h/10).toLocaleString('fr-FR',{minimumFractionDigits:1,maximumFractionDigits:1})+' cm';
+    $('hLbl').textContent=s.h<=420?'Position basse, idéale pour les enfants et les petites tailles':(s.h>=600?'Position haute : se relever sans effort, transfert depuis un fauteuil':'Position assise confortable');
+  }
+  document.querySelectorAll('[data-profil]').forEach(function(b){b.addEventListener('click',function(){s.profil=b.dataset.profil;calc();});});
+  document.querySelectorAll('[data-region]').forEach(function(b){b.addEventListener('click',function(){s.region=b.dataset.region;calc();});});
+  $('moins').addEventListener('click',function(){s.pers=Math.max(1,s.pers-1);calc();});
+  $('plus').addEventListener('click',function(){s.pers=Math.min(10,s.pers+1);calc();});
+  $('rfr').addEventListener('input',function(e){s.rfr=parseInt(e.target.value,10)||0;calc();});
+  calc();
+})();
+</script><script>
+(function(){
+  /* Vitesse PROVISOIRE : 20 mm/s (à confirmer par Pierre). Amplitude réelle 355 à 740 mm. */
+  var SPEED=20, MIN=355, MAX=740, DROP=300, OBST=200, FLOOR=1440;
+  var NS='http://www.w3.org/2000/svg';
+  function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+  function Y(y){return FLOOR-y;}
+  function fmt(mm){return (mm/10).toLocaleString('fr-FR',{minimumFractionDigits:1,maximumFractionDigits:1})+' cm';}
+  document.querySelectorAll('[data-remote]').forEach(function(root,idx){
+    var svg=root.querySelector('svg'), out=root.querySelector('.remote-h'), zone=root.querySelector('.remote-zone'),
+        msg=root.querySelector('.remote-msg'), hs=root.querySelector('.handset'), test=root.querySelector('.remote-test');
+    var s=460, dir=0, last=0, raf=0, obst=false, idp='m'+idx;
+    var defs=el('defs',{},svg);
+    var g=el('linearGradient',{id:idp+'p',x1:'0',x2:'1',y1:'0',y2:'0'},defs);
+    el('stop',{offset:'0','stop-color':'#FFFFFF'},g);el('stop',{offset:'.82','stop-color':'#F4F7F6'},g);el('stop',{offset:'1','stop-color':'#E2EAE8'},g);
+    var gc=el('linearGradient',{id:idp+'c',x1:'0',x2:'0',y1:'0',y2:'1'},defs);
+    el('stop',{offset:'0','stop-color':'#FFFFFF'},gc);el('stop',{offset:'1','stop-color':'#E9EFEE'},gc);
+    /* sol */
+    el('rect',{x:-20,y:FLOOR,width:840,height:60,fill:'#DCE7E4'},svg);
+    el('line',{x1:-20,x2:820,y1:FLOOR,y2:FLOOR,stroke:'#B9CCC7','stroke-width':4},svg);
+    /* panneau (coque) */
+    el('path',{d:'M40 '+FLOOR+' V100 Q40 40 100 40 H500 Q560 40 560 100 V'+FLOOR+' Z',fill:'url(#'+idp+'p)',stroke:'#C9D9D5','stroke-width':4},svg);
+    /* plaque de commande de chasse */
+    el('rect',{x:205,y:Y(1262),width:190,height:62,rx:8,fill:'#D3DADB',stroke:'#9DAAAD','stroke-width':3},svg);
+    el('rect',{x:216,y:Y(1252),width:80,height:42,rx:5,fill:'#C1CACB'},svg);
+    el('rect',{x:304,y:Y(1252),width:80,height:42,rx:5,fill:'#C1CACB'},svg);
+    /* soufflet */
+    var souf=el('g',{},svg);
+    var soufR=el('rect',{x:178,width:244,rx:6,fill:'#EEF3F2',stroke:'#B9CCC7','stroke-width':3},souf);
+    var slats=[];for(var i=0;i<16;i++)slats.push(el('line',{x1:186,x2:414,stroke:'#C9D9D5','stroke-width':4,'stroke-linecap':'round'},souf));
+    /* obstacle */
+    var ob=el('g',{visibility:'hidden'},svg);
+    el('rect',{x:232,y:Y(OBST),width:136,height:OBST,rx:10,fill:'#F4DDAE',stroke:'#0B2F3A','stroke-width':4},ob);
+    var ot=el('text',{x:300,y:Y(OBST/2)+10,'text-anchor':'middle','font-size':28,'font-weight':700,fill:'#0B2F3A','font-family':'Atkinson Hyperlegible, Verdana, sans-serif'},ob);ot.textContent='Objet';
+    /* chariot mobile : abattant relevé, lunette, cuvette */
+    var car=el('g',{},svg);
+    el('path',{d:'M125 -26 V-265 A175 175 0 0 1 475 -265 V-26 Z',fill:'#FFFFFF',stroke:'#C9D9D5','stroke-width':4},car);
+    el('path',{d:'M168 -40 V-262 A132 132 0 0 1 432 -262 V-40',fill:'none',stroke:'#E1E9E7','stroke-width':4},car);
+    el('rect',{x:150,y:-34,width:34,height:14,rx:4,fill:'#B9C4C6'},car);el('rect',{x:416,y:-34,width:34,height:14,rx:4,fill:'#B9C4C6'},car);
+    el('rect',{x:98,y:-26,width:404,height:28,rx:14,fill:'#FFFFFF',stroke:'#B9CCC7','stroke-width':4},car);
+    el('path',{d:'M108 2 H492 C494 40 486 86 474 120 C452 196 404 300 300 300 C196 300 148 196 126 120 C114 86 106 40 108 2 Z',fill:'url(#'+idp+'c)',stroke:'#B9CCC7','stroke-width':4},car);
+    el('path',{d:'M150 24 H450',stroke:'#E1E9E7','stroke-width':4,'stroke-linecap':'round'},car);
+    /* règle graduée */
+    var rx=660;
+    el('rect',{x:rx-12,y:Y(MAX),width:24,height:MAX-MIN,rx:12,fill:'#E3EFEC'},svg);
+    el('line',{x1:rx,x2:rx,y1:Y(820),y2:Y(300),stroke:'#9DB3AE','stroke-width':3},svg);
+    for(var v=300;v<=820;v+=10){var big=v%50===0;el('line',{x1:rx,x2:rx+(big?40:18),y1:Y(v),y2:Y(v),stroke:big?'#36505A':'#9DB3AE','stroke-width':big?4:2.5},svg);
+      if(big){var t=el('text',{x:rx+52,y:Y(v)+15,'font-size':44,fill:'#36505A','font-family':'Atkinson Hyperlegible, Verdana, sans-serif'},svg);t.textContent=(v/10)+'';}}
+    [[MIN,'35,5'],[MAX,'74']].forEach(function(p){var t=el('text',{x:rx-26,y:Y(p[0])+14,'text-anchor':'end','font-size':40,'font-weight':700,fill:'#0F6E68','font-family':'Atkinson Hyperlegible, Verdana, sans-serif'},svg);t.textContent=p[1];});
+    var u=el('text',{x:rx+52,y:Y(820)-20,'font-size':40,'font-weight':700,fill:'#36505A','font-family':'Atkinson Hyperlegible, Verdana, sans-serif'},svg);u.textContent='cm';
+    var mk=el('g',{},svg);
+    el('line',{x1:506,x2:rx-14,y1:0,y2:0,stroke:'#0F6E68','stroke-width':4,'stroke-dasharray':'12 10'},mk);
+    el('circle',{cx:rx,cy:0,r:14,fill:'#0F6E68',stroke:'#FFFFFF','stroke-width':4},mk);
+    function label(){
+      if(s<=MIN+0.5)return 'Butée basse\u00a0: 35,5 cm, la position la plus basse.';
+      if(s>=MAX-0.5)return 'Butée haute\u00a0: 74 cm, pour se relever ou se transférer sans effort.';
+      if(s<=420)return 'Position basse\u00a0: enfants et petites tailles.';
+      if(s<600)return 'Position assise confortable.';
+      return 'Position haute\u00a0: se relever sans effort, transfert depuis un fauteuil.';
+    }
+    function draw(){
+      var bottom=s-DROP;
+      soufR.setAttribute('y',Y(bottom));soufR.setAttribute('height',Math.max(0,bottom-18));
+      for(var i=0;i<slats.length;i++){var yy=18+(bottom-18)*(i+1)/(slats.length+1);slats[i].setAttribute('y1',Y(yy));slats[i].setAttribute('y2',Y(yy));}
+      car.setAttribute('transform','translate(0 '+Y(s)+')');
+      mk.setAttribute('transform','translate(0 '+Y(s)+')');
+      out.textContent=fmt(s);zone.textContent=label();
+    }
+    function stop(){if(!dir)return;dir=0;cancelAnimationFrame(raf);hs.classList.remove('moving');root.querySelectorAll('.hs-btn').forEach(function(b){b.classList.remove('on');});
+      svg.setAttribute('aria-label','Dessin à l\'échelle du MANTA : la cuvette est à '+fmt(s).replace(' cm',' centimètres')+' du sol');}
+    function step(t){
+      var dt=Math.min(0.1,(t-last)/1000);last=t;
+      var ns=s+dir*SPEED*dt;
+      if(obst&&dir<0&&ns-DROP<=OBST+2){s=OBST+2+DROP;draw();stop();msg.textContent='Arrêt de sécurité\u00a0: la barre sensible sous la cuvette a touché l\'objet. La descente s\'arrête net.';msg.classList.add('alerte');return;}
+      if(ns<=MIN){s=MIN;draw();stop();msg.textContent='Butée basse atteinte\u00a0: 35,5 cm.';return;}
+      if(ns>=MAX){s=MAX;draw();stop();msg.textContent='Butée haute atteinte\u00a0: 74 cm.';return;}
+      s=ns;draw();raf=requestAnimationFrame(step);
+    }
+    function start(d,btn){if(dir===d)return;stop();dir=d;btn.classList.add('on');hs.classList.add('moving');msg.classList.remove('alerte');
+      msg.textContent=d>0?'Montée…':'Descente…';last=performance.now();raf=requestAnimationFrame(step);}
+    root.querySelectorAll('.hs-btn').forEach(function(b){
+      var d=parseInt(b.dataset.dir,10);
+      b.addEventListener('pointerdown',function(e){e.preventDefault();try{b.setPointerCapture(e.pointerId);}catch(_){}start(d,b);});
+      ['pointerup','pointercancel','lostpointercapture'].forEach(function(ev){b.addEventListener(ev,function(){if(dir){stop();if(!msg.classList.contains('alerte'))msg.textContent='Arrêt à '+fmt(s)+'.';}});});
+      b.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();start(d,b);}});
+      b.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter'){stop();if(!msg.classList.contains('alerte'))msg.textContent='Arrêt à '+fmt(s)+'.';}});
+      b.addEventListener('blur',stop);
+      b.addEventListener('contextmenu',function(e){e.preventDefault();});
+    });
+    test.addEventListener('click',function(){
+      if(!obst&&s-DROP<OBST+20){msg.classList.remove('alerte');msg.textContent='Montez d\'abord la cuvette au-dessus de 52 cm pour glisser un objet dessous.';return;}
+      obst=!obst;test.classList.toggle('on',obst);test.setAttribute('aria-pressed',obst);ob.setAttribute('visibility',obst?'visible':'hidden');
+      test.textContent=obst?'Retirer l\'objet':'Tester l\'arrêt de sécurité';msg.classList.remove('alerte');
+      msg.textContent=obst?'Un objet est glissé sous la cuvette. Maintenez le bouton du bas : la descente s\'arrêtera seule.':'Objet retiré.';
+    });
+    draw();
+  });
+})();
+</script><script>
+(function(){
+  var vids=document.querySelectorAll('video[data-seg]');if(!vids.length)return;
+  vids.forEach(function(v){
+    var seg=v.dataset.seg.split(',').map(Number),a=seg[0],b=seg[1];
+    v.addEventListener('loadedmetadata',function(){if(v.currentTime<a||v.currentTime>b)v.currentTime=a;});
+    v.addEventListener('timeupdate',function(){if(v.currentTime>=b-0.05)v.currentTime=a;});
+    v.addEventListener('ended',function(){v.currentTime=a;v.play().catch(function(){});});
+  });
+  if(!('IntersectionObserver' in window)){vids.forEach(function(v){v.preload='metadata';});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
+    if(e.isIntersecting){if(v.preload==='none')v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{threshold:.35});
+  vids.forEach(function(v){io.observe(v);});
+})();
+</script>
+</body>
+</html>
