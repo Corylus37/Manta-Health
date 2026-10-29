@@ -505,8 +505,8 @@ var m=h.querySelector('details.menu');if(m){m.querySelectorAll('a').forEach(func
     el('circle',{cx:282,cy:1295,r:2.8,fill:'#FFFFFF'},dog);el('circle',{cx:324,cy:1295,r:2.8,fill:'#FFFFFF'},dog);
     el('circle',{cx:263,cy:1318,r:8,fill:'#F29A86',opacity:.5},dog);el('circle',{cx:337,cy:1318,r:8,fill:'#F29A86',opacity:.5},dog);
     var bulle=el('g',{visibility:'hidden'},ob);
-    el('rect',{x:380,y:1196,width:150,height:58,rx:29,fill:'#FFFFFF',stroke:K,'stroke-width':4},bulle);
-    var bt=el('text',{x:455,y:1236,'text-anchor':'middle','font-size':34,'font-weight':700,fill:K,'font-family':'Atkinson Hyperlegible, Verdana, sans-serif'},bulle);bt.textContent='Ouf !';
+    el('rect',{x:398,y:1262,width:146,height:56,rx:28,fill:'#FFFFFF',stroke:K,'stroke-width':4},bulle);
+    var bt=el('text',{x:471,y:1301,'text-anchor':'middle','font-size':34,'font-weight':700,fill:K,'font-family':'Atkinson Hyperlegible, Verdana, sans-serif'},bulle);bt.textContent='Ouf !';
     var calme=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function entre(){if(calme)return;dog.style.transition='none';dog.style.transform='translateX(-520px)';dog.getBoundingClientRect();dog.style.transition='transform .9s cubic-bezier(.2,.8,.2,1)';dog.style.transform='translateX(0)';}
     /* chariot mobile : abattant relevé, lunette, cuvette */
