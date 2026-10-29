@@ -154,7 +154,7 @@ input[type=range]{width:100%;accent-color:var(--canard);height:32px}
 @media (max-width:760px){.news{grid-template-columns:1fr;gap:12px}}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .stats .big{font-size:clamp(30px,7vw,44px)}
-.big-fit{font-size:clamp(30px,2.6vw,40px);white-space:nowrap}
+.big-fit{font-size:clamp(26px,2.3vw,36px);overflow-wrap:anywhere}
 .timeline{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
 .timeline li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px;padding-block:22px;border-top:2px solid var(--ligne)}
 .timeline li:first-child{border-top:none}
@@ -400,7 +400,7 @@ Poser une question
 <button type="button" class="hs-btn" data-dir="-1" aria-label="Descendre la cuvette (maintenir appuyé)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
 <span class="hs-brand" aria-hidden="true">Manta</span>
 </div>
-<span class="remote-hint">Maintenez un bouton appuyé, comme sur la vraie télécommande.</span>
+<span class="remote-hint">Maintenez un bouton appuyé, comme sur la vraie télécommande. Vitesse réelle à vide&nbsp;: avec une personne assise, le mouvement est plus lent.</span>
 </div>
 <div class="remote-foot">
 <button type="button" class="pill remote-test" aria-pressed="false">Tester l'arrêt de sécurité</button>
@@ -557,7 +557,7 @@ Poser une question
 <h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -1px;">Vos questions</h2>
 <div style="display: flex; flex-direction: column; border-top: 2px solid #DCE7E4;">
 <details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Et s'il y a une coupure de courant&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Une batterie de secours prend le relais&nbsp;: vous pouvez continuer à monter et descendre la cuvette.</p></details>
-<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">De l'électricité dans les toilettes, est-ce sûr&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Le moteur fonctionne en basse tension et il est étanche (IP66). MANTA est un dispositif médical certifié CE, contrôlé par l'APAVE selon la norme des appareils médicaux électriques.</p></details>
+<details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">De l'électricité dans les toilettes, est-ce sûr&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Le moteur fonctionne en très basse tension (24 V), avec un mouvement doux et silencieux. MANTA est un dispositif médical certifié CE, contrôlé par l'APAVE selon la norme des appareils médicaux électriques.</p></details>
 <details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Faut-il refaire toute la salle de bain&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Non. Il faut une largeur libre de 85 cm, une arrivée d'eau, une évacuation standard et une prise électrique à proximité. Envoyez une photo à notre assistant&nbsp;: il vous dit tout de suite ce qu'il manque.</p></details>
 <details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Je suis locataire, est-ce possible&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Oui, avec l'accord écrit de votre propriétaire. MaPrimeAdapt' est ouverte aux locataires du parc privé.</p></details>
 <details style="border-bottom: 2px solid #DCE7E4;"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-weight: 700; font-size: 20px;">Qui m'aide pour le dossier MaPrimeAdapt'&nbsp;?<span class="plus" style="font-size: 32px; color: #0F6E68; line-height: 1;" aria-hidden="true">+</span></summary><p style="margin: 0 0 22px; color: #36505A;">Nous préparons le devis et la liste des pièces, et nous vous mettons en relation avec un accompagnateur agréé, obligatoire pour cette aide. Important&nbsp;: rien ne doit être signé ni commencé avant l'accord de l'Anah.</p></details>
@@ -643,8 +643,8 @@ var m=h.querySelector('details.menu');if(m){m.querySelectorAll('a').forEach(func
 })();
 </script><script>
 (function(){
-  /* Vitesse PROVISOIRE : 20 mm/s (à confirmer par Pierre). Amplitude réelle 355 à 740 mm. */
-  var SPEED=20, MIN=355, MAX=740, DROP=300, OBST=200, FLOOR=1440;
+  /* Vitesse réelle à vide donnée par Pierre : 12 à 15 mm/s (13,5 retenu). En charge : 5 à 8 mm/s. */
+  var SPEED=13.5, MIN=355, MAX=740, DROP=300, OBST=200, FLOOR=1440;
   var NS='http://www.w3.org/2000/svg';
   function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
   function Y(y){return FLOOR-y;}
@@ -668,9 +668,10 @@ var m=h.querySelector('details.menu');if(m){m.querySelectorAll('a').forEach(func
     el('rect',{x:216,y:Y(1252),width:80,height:42,rx:5,fill:'#C1CACB'},svg);
     el('rect',{x:304,y:Y(1252),width:80,height:42,rx:5,fill:'#C1CACB'},svg);
     /* soufflet */
+    var CACHE=190; /* cache plastique fixe sur le support */
     var souf=el('g',{},svg);
     var soufR=el('rect',{x:178,width:244,rx:6,fill:'#EEF3F2',stroke:'#B9CCC7','stroke-width':3},souf);
-    var slats=[];for(var i=0;i<16;i++)slats.push(el('line',{x1:186,x2:414,stroke:'#C9D9D5','stroke-width':4,'stroke-linecap':'round'},souf));
+    soufR.setAttribute('y',Y(CACHE));soufR.setAttribute('height',CACHE-18);for(var i=1;i<=9;i++){var yy=18+(CACHE-18)*i/10;el('line',{x1:190,x2:410,y1:Y(yy),y2:Y(yy),stroke:'#C9D9D5','stroke-width':4,'stroke-linecap':'round'},souf);}
     /* obstacle */
     var ob=el('g',{visibility:'hidden'},svg);
     el('rect',{x:232,y:Y(OBST),width:136,height:OBST,rx:10,fill:'#F4DDAE',stroke:'#0B2F3A','stroke-width':4},ob);
@@ -703,8 +704,6 @@ var m=h.querySelector('details.menu');if(m){m.querySelectorAll('a').forEach(func
     }
     function draw(){
       var bottom=s-DROP;
-      soufR.setAttribute('y',Y(bottom));soufR.setAttribute('height',Math.max(0,bottom-18));
-      for(var i=0;i<slats.length;i++){var yy=18+(bottom-18)*(i+1)/(slats.length+1);slats[i].setAttribute('y1',Y(yy));slats[i].setAttribute('y2',Y(yy));}
       car.setAttribute('transform','translate(0 '+Y(s)+')');
       mk.setAttribute('transform','translate(0 '+Y(s)+')');
       out.textContent=fmt(s);zone.textContent=label();

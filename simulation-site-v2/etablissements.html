@@ -154,7 +154,7 @@ input[type=range]{width:100%;accent-color:var(--canard);height:32px}
 @media (max-width:760px){.news{grid-template-columns:1fr;gap:12px}}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .stats .big{font-size:clamp(30px,7vw,44px)}
-.big-fit{font-size:clamp(30px,2.6vw,40px);white-space:nowrap}
+.big-fit{font-size:clamp(26px,2.3vw,36px);overflow-wrap:anywhere}
 .timeline{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
 .timeline li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px;padding-block:22px;border-top:2px solid var(--ligne)}
 .timeline li:first-child{border-top:none}
@@ -342,7 +342,7 @@ main>:first-child{padding-top:84px}
 <section><div class="wrap sec stack" style="gap:40px">
 <div class="stack-s measure"><p class="eyebrow">Pourquoi MANTA</p><h2 class="h2">Pensé pour les contraintes d'un établissement de santé.</h2></div>
 <div class="grid3">
-<div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg></span><h3 class="h3" style="font-size:22px">Sécurité du patient</h3><p class="muted small">Barre sensible qui stoppe la descente, batterie de secours en cas de coupure, charge testée jusqu'à 248 kg.</p></div>
+<div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg></span><h3 class="h3" style="font-size:22px">Sécurité du patient</h3><p class="muted small">Barre sensible qui stoppe la descente, système autobloquant qui empêche la cuvette de s'affaisser, batterie de secours en cas de coupure.</p></div>
 <div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"></path><path d="M8 7l4-4 4 4"></path><path d="M8 17l4 4 4-4"></path></svg></span><h3 class="h3" style="font-size:22px">Bonne hauteur pour chacun</h3><p class="muted small">De 35,5 à 74 cm&nbsp;: position basse pour s'asseoir, position haute pour se relever ou se transférer depuis un fauteuil.</p></div>
 <div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7l5.7 5.6a8 8 0 1 1-11.4 0z"></path></svg></span><h3 class="h3" style="font-size:22px">Hygiène hospitalière</h3><p class="muted small">Compatible avec un bio-nettoyage hospitalier de niveau 3.</p></div>
 <div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 1.3-1.3a4 4 0 0 0-5-5L3 10l8-8 3 3z"></path></svg></span><h3 class="h3" style="font-size:22px">Pose rapide</h3><p class="muted small">Moins d'une journée, fixé sur dalle, sans mur porteur. 77,5 cm de large et 23,5 cm d'épaisseur.</p></div>
@@ -365,8 +365,8 @@ main>:first-child{padding-top:84px}
 <div class="stack-s measure"><p class="eyebrow">Deux versions</p><h2 class="h2">MANTA L et MANTA XL.</h2>
 <p class="muted">Nous vous conseillons la version adaptée à vos locaux lors de l'étude technique sur place.</p></div>
 <div class="grid2 top" style="gap:24px">
-<article class="card-img"><img src="img/manta-l-1.jpg" alt="Un MANTA blanc avec barres d'appui, présenté en salle d'exposition"><div class="in"><h3 class="h3">MANTA L</h3><p class="muted small">Version 550 mm · référence MT-L-BL</p></div></article>
-<article class="card-img"><img src="img/manta-xl-6.jpg" alt="Un MANTA XL blanc sur son socle de présentation"><div class="in"><h3 class="h3">MANTA XL</h3><p class="muted small">Version 754 mm · référence MT-XL-BL</p></div></article>
+<article class="card-img"><img src="img/manta-l-1.jpg" alt="Un MANTA blanc avec barres d'appui, présenté en salle d'exposition"><div class="in"><h3 class="h3">MANTA L</h3><p class="muted small">55 cm de large · référence MT-L-BL</p></div></article>
+<article class="card-img"><img src="img/manta-xl-6.jpg" alt="Un MANTA XL blanc sur son socle de présentation"><div class="in"><h3 class="h3">MANTA XL</h3><p class="muted small">75,4 cm de large · référence MT-XL-BL</p></div></article>
 </div></div></section>
 
 <section id="fiche" class="bg-blanc" style="scroll-margin-top:96px"><div class="wrap sec grid2 top">
@@ -378,7 +378,9 @@ main>:first-child{padding-top:84px}
 <tr><th scope="row">Charge</th><td>248 kg testés</td></tr>
 <tr><th scope="row">Poids du bâti</th><td>61,3 kg, châssis acier S235</td></tr>
 <tr><th scope="row">Encombrement</th><td>77,5 cm × 23,5 cm d'épaisseur</td></tr>
-<tr><th scope="row">Motorisation</th><td>TiMOTION, basse tension, IP66, batterie de secours</td></tr>
+<tr><th scope="row">Motorisation</th><td>TiMOTION, très basse tension 24 V, système autobloquant, mouvement doux et silencieux</td></tr>
+<tr><th scope="row">Secours</th><td>Batterie lithium fer phosphate qui prend le relais en cas de coupure</td></tr>
+<tr><th scope="row">Largeur</th><td>MANTA L&nbsp;: 55 cm · MANTA XL&nbsp;: 75,4 cm</td></tr>
 <tr><th scope="row">Commande</th><td>Télécommande à 2 boutons</td></tr>
 <tr><th scope="row">Sécurité</th><td>Barre sensible qui stoppe la descente</td></tr>
 <tr><th scope="row">Hygiène</th><td>Bio-nettoyage hospitalier niveau 3</td></tr>
@@ -396,9 +398,9 @@ main>:first-child{padding-top:84px}
 <div class="stack-s measure"><p class="eyebrow">Ils l'ont testé</p><h2 class="h2">Quatre établissements, une étude de 222 participants.</h2>
 <p class="muted">Depuis 2023, MANTA est utilisé en conditions réelles. L'étude d'expérience utilisateur menée avec le Gérontopôle des Pays de la Loire et le CHU d'Angers s'est terminée en 2026.</p></div>
 <div class="grid3">
-<article class="card-img"><img src="img/maze-milon-1.jpg" alt="Une résidente à côté d'un MANTA installé à l'EHPAD de Mazé-Milon" style="object-position:center 30%"><div class="in"><h3 class="h3" style="font-size:21px">EHPAD Baugeois Vallée</h3><p class="muted small">Mazé-Milon (Maine-et-Loire)</p></div></article>
+<article class="card-img"><img src="img/maze-milon-1.jpg" alt="Une résidente à côté d'un MANTA installé à l'EHPAD de Mazé-Milon" style="object-position:center 30%"><div class="in"><h3 class="h3" style="font-size:21px">Établissement de santé Baugeois Vallée</h3><p class="muted small">Mazé-Milon (Maine-et-Loire)</p></div></article>
 <article class="card-img"><img src="img/chu-angers-2.jpg" alt="MANTA installé au CHU d'Angers"><div class="in"><h3 class="h3" style="font-size:21px">CHU d'Angers</h3><p class="muted small">Service de gériatrie</p></div></article>
-<article class="card-img"><img src="img/ch-cholet.jpg" alt="Pose de MANTA au CH de Cholet"><div class="in"><h3 class="h3" style="font-size:21px">CH de Cholet</h3><p class="muted small">Et le centre de rééducation Les Capucins, à Angers</p></div></article>
+<article class="card-img"><img src="img/ch-cholet.jpg" alt="Pose de MANTA au CH de Cholet"><div class="in"><h3 class="h3" style="font-size:21px">CH de Cholet</h3><p class="muted small">Et l'EHPAD Les Capucins, à Angers</p></div></article>
 </div>
 <a href="actualites.html#experimentations" style="font-weight:700">Toutes les photos des expérimentations →</a>
 </div></section>
