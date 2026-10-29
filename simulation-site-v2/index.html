@@ -326,6 +326,10 @@ main>:first-child{padding-top:84px}
 
 .nav-links a,.nav-actions .btn{white-space:nowrap}
 @media (max-width:1120px) and (min-width:761px){.nav-actions{margin-left:auto}}
+
+.queue{transform-box:fill-box;transform-origin:0% 100%;animation:remue .5s ease-in-out infinite alternate}
+@keyframes remue{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+@media (prefers-reduced-motion:reduce){.queue{animation:none}}
 </style>
 </head>
 <body>
@@ -480,23 +484,29 @@ var m=h.querySelector('details.menu');if(m){m.querySelectorAll('a').forEach(func
     /* obstacle */
     var ob=el('g',{visibility:'hidden'},svg);
     /* petit chien dessiné : 20 cm de haut, sous la cuvette */
-    var dog=el('g',{},ob), K='#0B2F3A', F='#E2B07A', D='#B9844A', C='#F7E6C4';
-    el('path',{d:'M200 1352 C178 1336 166 1312 172 1286',fill:'none',stroke:F,'stroke-width':16,'stroke-linecap':'round'},dog);
-    el('path',{d:'M200 1352 C178 1336 166 1312 172 1286',fill:'none',stroke:K,'stroke-width':4,'stroke-linecap':'round','stroke-dasharray':'0 0',opacity:.0},dog);
-    [[214,1392],[250,1396],[316,1396],[350,1392]].forEach(function(p){el('rect',{x:p[0],y:p[1],width:24,height:1438-p[1],rx:11,fill:F,stroke:K,'stroke-width':4},dog);});
-    el('ellipse',{cx:285,cy:1372,rx:98,ry:46,fill:F,stroke:K,'stroke-width':5},dog);
-    el('ellipse',{cx:300,cy:1384,rx:52,ry:20,fill:C},dog);
-    el('path',{d:'M352 1340 Q372 1352 396 1350',fill:'none',stroke:'#0F6E68','stroke-width':10,'stroke-linecap':'round'},dog);
-    el('ellipse',{cx:364,cy:1290,rx:17,ry:33,fill:D,stroke:K,'stroke-width':4,transform:'rotate(-22 364 1290)'},dog);
-    el('circle',{cx:392,cy:1310,r:50,fill:F,stroke:K,'stroke-width':5},dog);
-    el('ellipse',{cx:426,cy:1286,rx:17,ry:33,fill:D,stroke:K,'stroke-width':4,transform:'rotate(24 426 1286)'},dog);
-    el('ellipse',{cx:432,cy:1330,rx:28,ry:19,fill:C,stroke:K,'stroke-width':4},dog);
-    el('ellipse',{cx:453,cy:1322,rx:9,ry:7,fill:K},dog);
-    el('circle',{cx:402,cy:1300,r:7.5,fill:K},dog);el('circle',{cx:404.5,cy:1297.5,r:2.5,fill:'#FFFFFF'},dog);
-    el('path',{d:'M424 1342 Q434 1350 446 1342',fill:'none',stroke:K,'stroke-width':3.5,'stroke-linecap':'round'},dog);
+    var dog=el('g',{},ob), K='#0B2F3A', F='#E8B47A', D='#A9703F', W='#FFF4E6';
+    /* chiot assis de face, 19 cm de haut */
+    el('ellipse',{cx:300,cy:1438,rx:92,ry:9,fill:'#0B2F3A',opacity:.12},dog);
+    var tail=el('path',{d:'M352 1418 C392 1414 404 1386 392 1362',fill:'none',stroke:F,'stroke-width':16,'stroke-linecap':'round'},dog);
+    tail.setAttribute('class','queue');
+    el('path',{d:'M300 1336 C352 1336 366 1390 362 1418 C360 1434 344 1438 300 1438 C256 1438 240 1434 238 1418 C234 1390 248 1336 300 1336 Z',fill:F},dog);
+    el('ellipse',{cx:300,cy:1396,rx:30,ry:34,fill:W},dog);
+    el('ellipse',{cx:276,cy:1432,rx:21,ry:10,fill:W},dog);el('ellipse',{cx:324,cy:1432,rx:21,ry:10,fill:W},dog);
+    el('path',{d:'M262 1356 Q300 1374 338 1356',fill:'none',stroke:'#0F6E68','stroke-width':9,'stroke-linecap':'round'},dog);
+    el('circle',{cx:300,cy:1371,r:7,fill:'#F4DDAE',stroke:'#C9A24E','stroke-width':2},dog);
+    el('ellipse',{cx:246,cy:1314,rx:19,ry:38,fill:D,transform:'rotate(18 246 1314)'},dog);
+    el('ellipse',{cx:354,cy:1314,rx:19,ry:38,fill:D,transform:'rotate(-18 354 1314)'},dog);
+    el('circle',{cx:300,cy:1306,r:56,fill:F},dog);
+    el('path',{d:'M290 1252 Q300 1240 306 1254',fill:'none',stroke:F,'stroke-width':8,'stroke-linecap':'round'},dog);
+    el('ellipse',{cx:300,cy:1330,rx:30,ry:21,fill:W},dog);
+    el('ellipse',{cx:300,cy:1319,rx:10,ry:7,fill:K},dog);
+    el('path',{d:'M290 1333 Q295 1339 300 1333 Q305 1339 310 1333',fill:'none',stroke:K,'stroke-width':3,'stroke-linecap':'round'},dog);
+    el('circle',{cx:279,cy:1298,r:8,fill:K},dog);el('circle',{cx:321,cy:1298,r:8,fill:K},dog);
+    el('circle',{cx:282,cy:1295,r:2.8,fill:'#FFFFFF'},dog);el('circle',{cx:324,cy:1295,r:2.8,fill:'#FFFFFF'},dog);
+    el('circle',{cx:263,cy:1318,r:8,fill:'#F29A86',opacity:.5},dog);el('circle',{cx:337,cy:1318,r:8,fill:'#F29A86',opacity:.5},dog);
     var bulle=el('g',{visibility:'hidden'},ob);
-    el('rect',{x:470,y:1196,width:150,height:58,rx:29,fill:'#FFFFFF',stroke:K,'stroke-width':4},bulle);
-    var bt=el('text',{x:545,y:1236,'text-anchor':'middle','font-size':34,'font-weight':700,fill:K,'font-family':'Atkinson Hyperlegible, Verdana, sans-serif'},bulle);bt.textContent='Ouf !';
+    el('rect',{x:380,y:1196,width:150,height:58,rx:29,fill:'#FFFFFF',stroke:K,'stroke-width':4},bulle);
+    var bt=el('text',{x:455,y:1236,'text-anchor':'middle','font-size':34,'font-weight':700,fill:K,'font-family':'Atkinson Hyperlegible, Verdana, sans-serif'},bulle);bt.textContent='Ouf !';
     var calme=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function entre(){if(calme)return;dog.style.transition='none';dog.style.transform='translateX(-520px)';dog.getBoundingClientRect();dog.style.transition='transform .9s cubic-bezier(.2,.8,.2,1)';dog.style.transform='translateX(0)';}
     /* chariot mobile : abattant relevé, lunette, cuvette */
