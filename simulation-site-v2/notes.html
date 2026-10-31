@@ -326,6 +326,30 @@ main>:first-child{padding-top:84px}
 
 .nav-links a,.nav-actions .btn{white-space:nowrap}
 @media (max-width:1120px) and (min-width:761px){.nav-actions{margin-left:auto}}
+
+.queue{transform-box:fill-box;transform-origin:0% 100%;animation:remue .5s ease-in-out infinite alternate}
+@keyframes remue{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+@media (prefers-reduced-motion:reduce){.queue{animation:none}}
+
+/* Télécommande réelle MANTA (photo du 31/10/2026) */
+.handset-wrap{display:flex;flex-direction:column;align-items:center;margin-block:4px}
+.handset{width:140px;height:396px;box-sizing:border-box;padding:20px 14px 0;gap:0;border-radius:30px;background:linear-gradient(180deg,#F2F3F2,#E4E7E6);border:3px solid #D3D8D7;box-shadow:inset 0 0 0 6px #ECEFEE,inset 0 2px 0 7px #FFFFFF,0 14px 28px rgba(11,47,58,.18);display:flex;flex-direction:column;align-items:center}
+.hs-dot{width:5px;height:5px;border-radius:50%;background:#4A5559;margin-bottom:14px}
+.hs-row{display:flex;align-items:center;justify-content:center;gap:14px}
+.hs-btn{width:38px;height:38px;border-radius:50%;border:2px solid #C9CFCE;background:radial-gradient(circle at 50% 35%,#FFFFFF 0%,#F4F5F5 70%,#E6E9E8 100%);color:#9AA2A4;box-shadow:0 3px 0 #C3C9C8,0 4px 8px rgba(11,47,58,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;transition:transform .08s,box-shadow .08s,color .15s}
+.hs-btn:hover{color:#7E888B;background:radial-gradient(circle at 50% 35%,#FFFFFF 0%,#F4F5F5 70%,#E6E9E8 100%)}
+.hs-btn.on{transform:translateY(3px);box-shadow:0 0 0 #C3C9C8,inset 0 2px 4px rgba(11,47,58,.18);color:#0F6E68;background:radial-gradient(circle at 50% 35%,#F4F5F5 0%,#E9ECEB 100%)}
+.hs-led{width:6px;height:6px;border-radius:50%;background:#5A6569;flex:none;transition:background .2s,box-shadow .2s}
+.handset.moving .hs-led{background:#38C98A;box-shadow:0 0 8px #38C98A}
+.hs-logo{display:flex;flex-direction:column;align-items:center;margin-top:92px;color:#1B2A3A}
+.hs-logo svg{width:44px;height:auto}
+.hs-logo span{font:400 19px/1 Georgia,'Times New Roman',serif;letter-spacing:.2px;margin-top:2px}
+.hs-logo sup{font:400 7px Arial,sans-serif;margin-left:2px;vertical-align:8px}
+.hs-batt{display:flex;gap:2px;margin-top:42px;padding:3px 4px 3px 3px;border:2px solid #8E989B;border-radius:3px;position:relative}
+.hs-batt::after{content:"";position:absolute;right:-5px;top:50%;width:3px;height:6px;margin-top:-3px;background:#8E989B;border-radius:0 1px 1px 0}
+.hs-batt i{display:block;width:5px;height:9px;background:#8E989B}
+.hs-cable{display:block;width:14px;height:26px;margin-top:-2px;background:repeating-linear-gradient(180deg,#DADFDE 0 4px,#C3C9C8 4px 6px);border-radius:0 0 5px 5px}
+@media (max-width:560px){.remote-hand{max-width:132px!important}.handset{width:118px;height:330px;padding:16px 10px 0}.hs-btn{width:36px;height:36px}.hs-row{gap:8px}.hs-logo{margin-top:64px}.hs-logo svg{width:36px}.hs-logo span{font-size:16px}.hs-batt{margin-top:30px}}
 </style>
 </head>
 <body>
@@ -346,6 +370,7 @@ main>:first-child{padding-top:84px}
 <section><div class="wrap" style="padding-block:48px 96px"><div class="stack legal measure" style="gap:18px;max-width:860px">
 <h2>Ce qui change dans la version 2</h2>
 <table class="tech">
+<tr><th scope="row">Télécommande réelle</th><td>La télécommande de la démonstration reproduit maintenant la vraie télécommande MANTA, d'après la photo envoyée par Pierre le 31/10&nbsp;: boîtier gris clair, deux boutons ronds (haut à gauche, bas à droite), voyant entre les deux, logo raie manta «&nbsp;Manta SAS&nbsp;», indicateur de batterie et câble spiralé.</td></tr>
 <tr><th scope="row">Le chien</th><td>Dans le test de sécurité de la télécommande, l'objet est remplacé par un petit chien dessiné qui se glisse sous la cuvette&nbsp;: MANTA s'arrête juste au-dessus de lui (clin d'œil à «&nbsp;Paf le chien&nbsp;», sans écrire l'expression).</td></tr>
 <tr><th scope="row">Menu</th><td>Allégé le 29/10 au soir&nbsp;: 5 liens (Particuliers, Établissements, Professionnels, Qui sommes-nous, Contact) et un seul bouton, «&nbsp;Essayer la télécommande&nbsp;». Actualités est en bas de page et dans Qui sommes-nous&nbsp;; le prêt gratuit reste en avant sur l'accueil et la page Établissements. Avant&nbsp;: Barre flottante et moderne, raie manta animée, deux boutons mis en avant&nbsp;: «&nbsp;Essayer la télécommande&nbsp;» et «&nbsp;Prêt gratuit&nbsp;». Les intitulés restent simples pour tous les publics.</td></tr>
 <tr><th scope="row"><a href="index.html#telecommande">Télécommande</a></th><td>Le MANTA est dessiné à l'échelle. La cuvette monte et descend vraiment, de 35,5 à 74 cm, tant qu'on maintient le bouton. On peut aussi tester l'arrêt de sécurité avec un objet sous la cuvette. Sur l'accueil et la page Particuliers.</td></tr>
