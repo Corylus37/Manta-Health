@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MANTA – Notes de la simulation</title>
+<meta name="description" content="Ce qui change et ce qu'il faut valider.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#0B2F3A">
+<style>
+/* Polices hébergées sur le site (licence OFL, fichiers dans fonts/) : plus aucune requête vers Google Fonts (RGPD). */
+@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/atkinson-400.woff) format('woff')}
+@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/atkinson-700.woff) format('woff')}
+@font-face{font-family:'Atkinson Hyperlegible';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/atkinson-400i.woff) format('woff')}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:600 800;font-display:swap;src:url(fonts/bricolage-var.woff) format('woff')}
+</style>
+<style>
+/* Mise en page : bandes pleine largeur alternant fond menthe pâle, blanc et marine ; contenu centré sur 1200 px. Style repris de la maquette « vente aux particuliers ». */
+:root{
+  --marine:#0B2F3A; --marine-nuit:#071F27; --canard:#0F6E68; --sable:#F4DDAE;
+  --fond:#F5F8F6; --blanc:#FFFFFF; --gris:#36505A; --ligne:#DCE7E4; --menthe:#E3EFEC; --brume:#CFE2DE;
+  --f-titre:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --f-texte:'Atkinson Hyperlegible',Verdana,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--fond);color:var(--marine);font:19px/1.55 var(--f-texte);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--blanc)}
+img{max-width:100%}
+a{color:var(--canard)}a:hover{color:var(--marine)}
+h1,h2,h3{font-family:var(--f-titre);margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,4vw,env(safe-area-inset-left,0px));padding-right:max(16px,4vw,env(safe-area-inset-right,0px))}
+.sec{padding-block:96px}
+.sec-s{padding-block:64px}
+.bg-blanc{background:var(--blanc)}
+.bg-marine{background:var(--marine);color:var(--blanc)}
+.stack{display:flex;flex-direction:column;gap:24px;min-width:0}
+.stack-s{display:flex;flex-direction:column;gap:12px;min-width:0}
+.row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.eyebrow{font-weight:700;font-size:16px;letter-spacing:1.5px;text-transform:uppercase;color:var(--canard)}
+.bg-marine .eyebrow{color:var(--sable)}
+.display{font-weight:800;font-size:clamp(40px,5.2vw,66px);line-height:1.03;letter-spacing:-1.5px}
+.h2{font-weight:800;font-size:clamp(32px,3.6vw,46px);line-height:1.08;letter-spacing:-1px}
+.h3{font-weight:700;font-size:25px;line-height:1.15}
+.lead{font-size:21px;color:var(--gris);max-width:34em}
+.bg-marine .lead,.bg-marine .muted{color:var(--brume)}
+.muted{color:var(--gris)}
+.small{font-size:16px}.xs{font-size:14px}
+.measure{max-width:760px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;align-items:center}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.grid5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.top{align-items:start}
+@media (max-width:1000px){.grid4,.grid5{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:1fr}}
+@media (max-width:800px){.grid2{grid-template-columns:1fr;gap:32px}.sec{padding-block:72px}}
+@media (max-width:520px){.grid4,.grid5{grid-template-columns:1fr}.btn{width:100%}}
+
+/* Boutons (repris de la maquette) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;font:700 19px var(--f-texte);text-decoration:none;cursor:pointer;border:2px solid transparent;text-align:center}
+.btn-main{background:var(--marine);color:var(--blanc)}.btn-main:hover{background:var(--canard);color:var(--blanc)}
+.btn-line{background:transparent;color:var(--marine);border-color:var(--marine)}.btn-line:hover{background:var(--marine);color:var(--blanc)}
+.btn-sable{background:var(--sable);color:var(--marine)}.btn-sable:hover{background:var(--blanc);color:var(--marine)}
+.btn-ghost{color:var(--blanc);border-color:rgba(255,255,255,.5);background:transparent}.btn-ghost:hover{background:var(--blanc);color:var(--marine)}
+.btn-sm{min-height:48px;font-size:17px;padding:0 22px}
+.pill{min-height:48px;padding:0 18px;border-radius:999px;border:2px solid #C9D9D5;background:var(--blanc);color:var(--marine);font:700 17px var(--f-texte);cursor:pointer;text-align:left}
+.pill.on{background:var(--marine);border-color:var(--marine);color:var(--blanc)}
+.pill:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--canard);outline-offset:3px}
+summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}.plus{transition:transform .2s}
+input[type=range]{width:100%;accent-color:var(--canard);height:32px}
+
+/* Bandeau de simulation */
+.sim-bar{background:var(--sable);color:var(--marine);font:700 14px var(--f-texte)}
+.sim-bar .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;align-items:center;padding-block:8px}
+.sim-bar a{color:var(--marine)}
+
+/* En-tête v1 (remplacé) */
+.v1-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--blanc);border-bottom:1px solid var(--ligne)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:80px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--marine)}
+.brand b{font-family:var(--f-titre);font-weight:800;font-size:30px;letter-spacing:-.5px}
+.nav{display:flex;gap:26px;align-items:center;font-size:17px;font-weight:700}
+.nav a{text-decoration:none;color:var(--marine)}
+.nav a.here{color:var(--canard);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.nav a.btn{color:var(--blanc)}
+.menu{display:none;position:relative}
+.menu summary{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border-radius:999px;border:2px solid var(--marine);font-weight:700;font-size:17px}
+.menu-panel{position:absolute;right:0;top:calc(100% + 10px);background:var(--blanc);border-radius:20px;box-shadow:0 16px 40px rgba(11,47,58,.18);padding:10px;display:flex;flex-direction:column;min-width:260px}
+.menu-panel a{padding:14px 16px;border-radius:12px;text-decoration:none;color:var(--marine);font-weight:700}
+.menu-panel a:hover{background:var(--menthe)}
+.menu-panel a.here{background:var(--menthe)}
+@media (max-width:1060px){.nav{display:none}.menu{display:block}}
+
+/* Pied de page */
+.site-foot{background:var(--marine-nuit);color:var(--brume);font-size:16px}
+.site-foot a{color:var(--brume)}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1.4fr;gap:40px;padding-block:56px 32px}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr}}
+.foot-grid strong{color:var(--blanc)}
+.foot-links{display:flex;flex-direction:column;gap:8px}
+.foot-links a{text-decoration:none}.foot-links a:hover{text-decoration:underline;color:var(--blanc)}
+.foot-bottom{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;font-size:14px;border-top:1px solid rgba(255,255,255,.14);padding-block:20px 32px}
+
+/* Éléments communs */
+.photo{width:100%;display:block;object-fit:cover;border-radius:28px;max-width:100%}
+.r43{aspect-ratio:4/3}.r45{aspect-ratio:4/5}.r11{aspect-ratio:1/1}.r169{aspect-ratio:16/10}
+.badge{position:absolute;left:-16px;bottom:32px;background:var(--sable);border-radius:20px;padding:18px 22px;display:flex;flex-direction:column;gap:2px;box-shadow:0 12px 32px rgba(11,47,58,.18)}
+.badge b{font-family:var(--f-titre);font-weight:800;font-size:34px;line-height:1}
+.badge span{font-size:16px}
+@media (max-width:520px){.badge{left:12px;bottom:12px}}
+.card{background:var(--blanc);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card-line{border:2px solid var(--ligne);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card-img{background:var(--blanc);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card-img img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;max-width:100%}
+.card-img .in{padding:24px 26px 28px;display:flex;flex-direction:column;gap:10px}
+.icon-box{flex:none;width:48px;height:48px;border-radius:14px;background:var(--menthe);color:var(--canard);display:flex;align-items:center;justify-content:center}
+.big{font-family:var(--f-titre);font-weight:800;font-size:44px;line-height:1;color:var(--canard);font-variant-numeric:tabular-nums}
+.bg-marine .big{color:var(--sable)}
+.band{display:flex;gap:14px;align-items:center;font-size:17px}
+.choice{display:flex;align-items:center;justify-content:space-between;gap:16px;text-decoration:none;color:var(--marine);background:var(--fond);border:2px solid var(--ligne);border-radius:22px;padding:20px 22px}
+.choice:hover{border-color:var(--marine);color:var(--marine)}
+.choice strong{font-family:var(--f-titre);font-size:22px;display:block;line-height:1.15}
+.choice span{color:var(--gris);font-size:16px}
+.choice .go{flex:none;width:48px;height:48px;border-radius:50%;background:var(--marine);color:var(--blanc);display:flex;align-items:center;justify-content:center}
+.checks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px}
+.checks li{display:flex;gap:16px;align-items:flex-start}
+.checks .icon-box{width:40px;height:40px;border-radius:12px}
+.logos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.logos figure{margin:0;background:var(--blanc);border:2px solid var(--ligne);border-radius:18px;height:112px;display:flex;align-items:center;justify-content:center;padding:14px}
+.logos img{max-height:80px;max-width:100%;object-fit:contain}
+@media (max-width:1000px){.logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.steps{margin:0;padding:0;list-style:none}
+.steps li{background:var(--blanc);border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:10px}
+.steps li.hl{background:var(--sable)}
+.steps .n{font-family:var(--f-titre);font-weight:800;font-size:44px;line-height:1;color:var(--canard)}
+.steps li.hl .n{color:var(--marine)}
+.steps strong{font-size:19px}
+.steps span{color:var(--gris);font-size:16px}
+.steps li.hl span{color:var(--marine)}
+.cta-raie{display:flex;justify-content:center;align-items:center;min-width:0}
+.cta-raie svg{width:100%;max-width:400px;height:auto}
+.quote{font-family:var(--f-titre);font-weight:700;font-size:clamp(26px,3vw,36px);line-height:1.2;letter-spacing:-.5px}
+.tech{width:100%;border-collapse:collapse;font-size:17px}
+.tech th,.tech td{text-align:left;padding:14px 0;border-bottom:1px solid var(--ligne);vertical-align:top}
+.tech th{width:38%;padding-right:20px;color:var(--gris);font-weight:400}
+.tech td{font-weight:700;font-variant-numeric:tabular-nums}
+.scroll-x{overflow-x:auto}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.gallery a{display:block;border-radius:16px;overflow:hidden;background:var(--menthe)}
+.gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .3s}
+.gallery a:hover img{transform:scale(1.04)}
+.news{display:grid;grid-template-columns:180px minmax(0,1fr);gap:32px;padding-block:44px;border-top:2px solid var(--ligne)}
+.news:first-of-type{border-top:none}
+.news .date{font-family:var(--f-titre);font-weight:800;font-size:22px;color:var(--canard)}
+@media (max-width:760px){.news{grid-template-columns:1fr;gap:12px}}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.stats .big{font-size:clamp(30px,7vw,44px)}
+.big-fit{font-size:clamp(24px,2.1vw,32px);line-height:1.1;overflow-wrap:break-word;max-width:100%}
+.timeline{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.timeline li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px;padding-block:22px;border-top:2px solid var(--ligne)}
+.timeline li:first-child{border-top:none}
+.timeline .y{font-family:var(--f-titre);font-weight:800;font-size:30px;line-height:1;color:var(--canard);font-variant-numeric:tabular-nums}
+.verif{background:var(--sable);border-radius:6px;padding:1px 6px;font-weight:700}
+.note{background:var(--sable);color:var(--marine);border-radius:20px;padding:18px 22px;font-size:17px}
+.legal h2{font-size:28px;font-weight:800;margin-top:12px}
+.legal p,.legal li{color:var(--gris)}
+.legal strong{color:var(--marine)}
+
+/* Formulaire */
+.form{display:flex;flex-direction:column;gap:20px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label,.field legend{font-weight:700;font-size:18px}
+.field input,.field select,.field textarea{font:18px var(--f-texte);color:var(--marine);background:var(--fond);border:2px solid var(--ligne);border-radius:16px;padding:14px 16px;min-height:56px;width:100%}
+.field textarea{min-height:140px;resize:vertical}
+.field fieldset{border:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.ok{background:var(--menthe);border-radius:16px;padding:16px 18px;font-weight:700}
+
+/* Visionneuse photos */
+dialog.lb{border:none;padding:0;background:transparent;max-width:min(92vw,1100px);max-height:92vh}
+dialog.lb::backdrop{background:rgba(7,31,39,.86)}
+dialog.lb img{display:block;max-width:100%;max-height:84vh;border-radius:16px;margin:0 auto}
+dialog.lb button{margin:12px auto 0;display:flex}
+
+/* ===== Version 2 ===== */
+/* Barre de menu flottante */
+.site-head{position:sticky;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:50;height:68px;margin-block:10px -78px;padding-left:max(12px,2vw,env(safe-area-inset-left,0px));padding-right:max(12px,2vw,env(safe-area-inset-right,0px));pointer-events:none;background:none;border:none}
+main>:first-child{padding-top:84px}
+.nav-bar{pointer-events:auto;position:relative;max-width:1240px;height:68px;margin:0 auto;display:flex;align-items:center;gap:12px;justify-content:space-between;padding:8px 8px 8px 18px;border-radius:999px;background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border:1px solid rgba(11,47,58,.08);box-shadow:0 2px 10px rgba(11,47,58,.05);transition:background .3s,box-shadow .3s}
+.site-head.scrolled .nav-bar{background:rgba(255,255,255,.93);box-shadow:0 12px 32px rgba(11,47,58,.14)}
+.brand svg{animation:glide 7s ease-in-out infinite;transform-origin:50% 60%}
+
+@keyframes glide{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-5deg)}}
+.brand b{font-size:27px}
+.nav-links{display:flex;gap:2px;align-items:center;font-size:16px;font-weight:700}
+.nav-links a{text-decoration:none;color:var(--marine);padding:10px 14px;border-radius:999px;transition:background .2s}
+.nav-links a:hover{background:var(--menthe);color:var(--marine)}
+.nav-links a.here{background:var(--marine);color:var(--blanc)}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.nav-actions .btn{min-height:50px;font-size:16px;padding:0 20px}
+.btn-sable.pulse{position:relative}
+.menu{display:none;position:static}
+.menu summary{display:flex;align-items:center;gap:8px;min-height:50px;padding:0 18px;border-radius:999px;background:var(--marine);color:var(--blanc);font-weight:700;font-size:16px;border:none}
+.menu-panel{position:absolute;left:0;right:0;top:calc(100% + 10px);background:var(--blanc);border-radius:24px;box-shadow:0 20px 44px rgba(11,47,58,.2);padding:10px;display:flex;flex-direction:column;min-width:0}
+.menu-panel a{padding:15px 16px;border-radius:14px;text-decoration:none;color:var(--marine);font-weight:700;font-size:18px}
+.menu-panel a.here{background:var(--menthe)}
+.menu-panel .btn{margin-top:6px}
+.menu-panel a.btn-main{color:var(--blanc)}
+@media (max-width:1120px){.nav-links{display:none}.menu{display:block}}
+@media (max-width:760px){.nav-actions{display:none}}
+
+/* Bandeau de logos qui défile */
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;gap:16px;width:max-content;animation:defile 46s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee figure{margin:0;flex:none;width:210px;height:112px;background:var(--blanc);border:2px solid var(--ligne);border-radius:18px;display:flex;align-items:center;justify-content:center;padding:14px}
+.marquee img{max-height:80px;max-width:100%;object-fit:contain}
+@keyframes defile{to{transform:translateX(calc(-50% - 8px))}}
+@media (prefers-reduced-motion:reduce){.marquee{-webkit-mask-image:none;mask-image:none}.marquee-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}.marquee figure.dup{display:none}}
+
+/* Télécommande animée */
+.remote{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-areas:'stage info' 'stage hand' 'foot foot';gap:16px 28px;align-items:center;background:var(--fond);border-radius:32px;padding:28px}
+.bg-fond .remote,.remote.on-fond{background:var(--blanc)}
+.remote-stage{grid-area:stage;min-width:0;position:relative}
+.remote-info{grid-area:info;min-width:0;display:flex;flex-direction:column;gap:8px;align-self:end}
+.remote-hand{grid-area:hand;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px;align-self:start}
+.remote-stage svg{display:block;width:100%;height:auto;max-height:600px;margin:0 auto;touch-action:none}
+.remote-side{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.remote-h{font-family:var(--f-titre);font-weight:800;font-size:clamp(38px,4.4vw,58px);line-height:1;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.remote-zone{color:var(--gris);font-size:16px;min-height:2.6em}
+.handset{width:118px;padding:16px 16px 20px;border-radius:40px;background:linear-gradient(180deg,#F1F4F4,#D6DEDF);box-shadow:inset 0 2px 0 #FFFFFF,0 14px 28px rgba(11,47,58,.2);display:flex;flex-direction:column;align-items:center;gap:14px;margin-block:4px}
+.hs-led{width:10px;height:10px;border-radius:50%;background:#9AA7AA;transition:background .2s,box-shadow .2s}
+.handset.moving .hs-led{background:#38C98A;box-shadow:0 0 12px #38C98A}
+.hs-btn{width:76px;height:76px;border-radius:50%;border:none;background:var(--marine);color:var(--blanc);box-shadow:0 5px 0 #041A22,0 8px 14px rgba(11,47,58,.25);display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;transition:transform .08s,box-shadow .08s,background .2s}
+.hs-btn:hover{background:#12414F}
+.hs-btn.on{transform:translateY(4px);box-shadow:0 1px 0 #041A22;background:var(--canard)}
+.hs-brand{font:800 12px var(--f-titre);letter-spacing:2px;color:#7D8C90;text-transform:uppercase}
+.remote-hint{font-size:15px;color:var(--gris)}
+.remote-foot{grid-area:foot;display:flex;gap:12px 16px;flex-wrap:wrap;align-items:center;border-top:2px solid var(--ligne);padding-top:16px}
+.remote-msg{font-size:16px;font-weight:700;color:var(--canard);flex:1;min-width:200px}
+.remote-msg.alerte{color:#B4441F}
+.remote-test{min-height:46px;font-size:16px}
+.remote-test.on{background:var(--sable);border-color:var(--sable);color:var(--marine)}
+@media (max-width:560px){.remote{padding:18px;gap:12px 14px;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'info info' 'stage hand' 'foot foot'}.remote-hand{align-self:center;align-items:center;text-align:center;max-width:120px}.remote-hint{font-size:13px}.remote-zone{min-height:0}.handset{width:96px;padding:12px 12px 16px}.hs-btn{width:64px;height:64px}}
+
+.hero-remote{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)!important;gap:40px!important}
+.hero-remote .display{font-size:clamp(38px,4.4vw,58px)}
+@media (max-width:800px){.hero-remote{grid-template-columns:1fr!important}}
+.bg-blanc .steps li{background:var(--fond)}
+/* Parcours établissements */
+.quiz{background:var(--blanc);color:var(--marine);border-radius:32px;padding:32px;display:flex;flex-direction:column;gap:22px;min-width:0;box-shadow:0 24px 60px rgba(0,0,0,.18)}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:700;font-size:15px;color:var(--gris)}
+.quiz-bar{flex:1;max-width:220px;height:8px;border-radius:99px;background:var(--menthe);overflow:hidden}
+.quiz-bar i{display:block;height:100%;width:33%;background:var(--canard);border-radius:99px;transition:width .4s ease}
+.quiz-q{font-family:var(--f-titre);font-weight:800;font-size:clamp(24px,2.4vw,30px);line-height:1.15}
+.quiz-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){.quiz-opts{grid-template-columns:1fr}.quiz{padding:22px}}
+.quiz-opt{display:flex;align-items:center;gap:12px;text-align:left;min-height:76px;padding:14px 16px;border-radius:20px;border:2px solid var(--ligne);background:var(--fond);color:var(--marine);font:700 17px/1.25 var(--f-texte);cursor:pointer;transition:border-color .2s,transform .15s,background .2s}
+.quiz-opt:hover{border-color:var(--canard);transform:translateY(-2px)}
+.quiz-opt .icon-box{width:44px;height:44px;background:var(--blanc)}
+.quiz-anim{animation:entre .35s ease}
+@keyframes entre{from{opacity:.2;transform:translateX(14px)}to{opacity:1;transform:none}}
+.quiz-back{background:none;border:none;color:var(--canard);font:700 16px var(--f-texte);cursor:pointer;padding:6px 0;align-self:flex-start}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--menthe);border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px}
+.pret{background:var(--sable);border-radius:22px;padding:20px 22px;display:flex;flex-direction:column;gap:8px}
+.pret strong{font-family:var(--f-titre);font-size:24px;line-height:1.15}
+.bg-marine .checks .icon-box{background:rgba(255,255,255,.1);color:var(--sable)}
+
+/* Équipe */
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:1000px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.team{grid-template-columns:1fr}}
+.member{background:var(--blanc);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.member-photo{aspect-ratio:4/3;background:var(--menthe);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--canard);font-weight:700;font-size:15px;border-bottom:2px dashed #B9CCC7}
+.member-photo svg{width:84px;height:auto;opacity:.5}
+.member .in{padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px}
+.member h3{font-size:24px;font-weight:800}
+.member .role{color:var(--canard);font-weight:700;font-size:16px}
+.a-remplir{background:#FFF4DC;border:2px dashed var(--sable);border-radius:12px;padding:10px 12px;font-size:15px;color:var(--gris)}
+
+/* Vidéos du test de sécurité */
+.vids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:760px){.vids{grid-template-columns:1fr}}
+.vid{background:var(--blanc);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.bg-blanc .vid{background:var(--fond)}
+.vid-frame{position:relative;aspect-ratio:1/1;background:#0B2F3A}
+.vid-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.vid-tag{position:absolute;left:14px;top:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 14px;font-weight:700;font-size:15px;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.vid-tag.non{background:#FBE3DA;color:#8A2E12}
+.vid-tag.oui{background:#DDF3EA;color:#0B5A50}
+.vid-num{font-family:var(--f-titre);font-weight:800}
+.vid .in{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px}
+.vid h3{font-size:22px;font-weight:800;line-height:1.2}
+.vid-link{font-size:15px;font-weight:700}
+
+.test-wrap{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.remote-test{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 20px;background:#FFF4DC;border:2px solid var(--sable);color:var(--marine);font-size:16px;font-weight:700;border-radius:999px;animation:appel 1.6s ease-out .8s 3}
+.remote-test svg{color:var(--canard);flex:none}
+.remote-test:hover{background:var(--sable)}
+.remote-test.on{background:var(--marine);border-color:var(--marine);color:var(--blanc);animation:none}
+.remote-test.on svg{color:var(--sable)}
+.test-sub{font-size:14px;color:var(--gris);padding-left:4px}
+@keyframes appel{0%{box-shadow:0 0 0 0 rgba(244,221,174,.9)}100%{box-shadow:0 0 0 14px rgba(244,221,174,0)}}
+@media (prefers-reduced-motion:reduce){.remote-test{animation:none}}
+
+/* Page Professionnels */
+.profils{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:1000px){.profils{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.profils{grid-template-columns:1fr}}
+.profil{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--marine);background:var(--fond);border:2px solid var(--ligne);border-radius:24px;padding:24px;transition:border-color .2s,transform .15s}
+.profil:hover{border-color:var(--canard);color:var(--marine);transform:translateY(-3px)}
+.profil .icon-box{background:var(--blanc)}
+.profil strong{font-family:var(--f-titre);font-size:22px;line-height:1.15}
+.profil span.muted{font-size:16px}
+.profil .go-txt{margin-top:auto;font-weight:700;color:var(--canard);font-size:16px}
+.pro-sec{scroll-margin-top:96px}
+.tag{display:inline-flex;align-self:flex-start;background:var(--menthe);color:var(--canard);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase}
+.bg-blanc .tag{background:var(--menthe)}
+.kit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:600px){.kit{grid-template-columns:1fr}}
+.kit li{display:flex;gap:12px;align-items:flex-start;background:var(--blanc);border-radius:18px;padding:16px 18px;font-size:17px}
+.kit li .icon-box{width:40px;height:40px;border-radius:12px}
+.pro-link{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--menthe);border-radius:22px;padding:18px 22px}
+.pro-link p{font-size:17px}
+
+.nav-links a,.nav-actions .btn{white-space:nowrap}
+@media (max-width:1120px) and (min-width:761px){.nav-actions{margin-left:auto}}
+
+.queue{transform-box:fill-box;transform-origin:0% 100%;animation:remue .5s ease-in-out infinite alternate}
+@keyframes remue{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+@media (prefers-reduced-motion:reduce){.queue{animation:none}}
+
+/* Télécommande réelle MANTA (photo du 31/10/2026) */
+.handset-wrap{display:flex;flex-direction:column;align-items:center;margin-block:4px}
+.handset{width:140px;height:396px;box-sizing:border-box;padding:20px 14px 0;gap:0;border-radius:30px;background:linear-gradient(180deg,#F2F3F2,#E4E7E6);border:3px solid #D3D8D7;box-shadow:inset 0 0 0 6px #ECEFEE,inset 0 2px 0 7px #FFFFFF,0 14px 28px rgba(11,47,58,.18);display:flex;flex-direction:column;align-items:center}
+.hs-dot{width:5px;height:5px;border-radius:50%;background:#4A5559;margin-bottom:14px}
+.hs-row{display:flex;align-items:center;justify-content:center;gap:14px}
+.hs-btn{width:38px;height:38px;border-radius:50%;border:2px solid #C9CFCE;background:radial-gradient(circle at 50% 35%,#FFFFFF 0%,#F4F5F5 70%,#E6E9E8 100%);color:#9AA2A4;box-shadow:0 3px 0 #C3C9C8,0 4px 8px rgba(11,47,58,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;transition:transform .08s,box-shadow .08s,color .15s}
+.hs-btn:hover{color:#7E888B;background:radial-gradient(circle at 50% 35%,#FFFFFF 0%,#F4F5F5 70%,#E6E9E8 100%)}
+.hs-btn.on{transform:translateY(3px);box-shadow:0 0 0 #C3C9C8,inset 0 2px 4px rgba(11,47,58,.18);color:#0F6E68;background:radial-gradient(circle at 50% 35%,#F4F5F5 0%,#E9ECEB 100%)}
+.hs-led{width:6px;height:6px;border-radius:50%;background:#5A6569;flex:none;transition:background .2s,box-shadow .2s}
+.handset.moving .hs-led{background:#38C98A;box-shadow:0 0 8px #38C98A}
+.hs-logo{display:flex;flex-direction:column;align-items:center;margin-top:92px;color:#1B2A3A}
+.hs-logo svg{width:44px;height:auto}
+.hs-logo span{font:400 19px/1 Georgia,'Times New Roman',serif;letter-spacing:.2px;margin-top:2px}
+.hs-logo sup{font:400 7px Arial,sans-serif;margin-left:2px;vertical-align:8px}
+.hs-batt{display:flex;gap:2px;margin-top:42px;padding:3px 4px 3px 3px;border:2px solid #8E989B;border-radius:3px;position:relative}
+.hs-batt::after{content:"";position:absolute;right:-5px;top:50%;width:3px;height:6px;margin-top:-3px;background:#8E989B;border-radius:0 1px 1px 0}
+.hs-batt i{display:block;width:5px;height:9px;background:#8E989B}
+.hs-cable{display:block;width:14px;height:26px;margin-top:-2px;background:repeating-linear-gradient(180deg,#DADFDE 0 4px,#C3C9C8 4px 6px);border-radius:0 0 5px 5px}
+@media (max-width:560px){.remote-hand{max-width:132px!important}.handset{width:118px;height:330px;padding:16px 10px 0}.hs-btn{width:36px;height:36px}.hs-row{gap:8px}.hs-logo{margin-top:64px}.hs-logo svg{width:36px}.hs-logo span{font-size:16px}.hs-batt{margin-top:30px}}
+.nav-links{gap:0}.nav-links a{padding:10px 12px}
+@media (max-width:1240px){.nav-links{display:none}.menu{display:block}}
+@media (max-width:1240px) and (min-width:761px){.nav-actions{margin-left:auto}}
+
+/* Visite commencée sur Grands comptes : bouton de retour */
+.gc-retour{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:70;display:inline-flex;align-items:center;gap:10px;background:#071F27;color:#F4DDAE;border:1px solid rgba(244,221,174,.35);border-radius:999px;padding:12px 20px 12px 14px;font:700 15px var(--f-texte);text-decoration:none;box-shadow:0 12px 30px rgba(7,31,39,.3)}
+.gc-retour:hover{background:#0B2F3A;color:#FFFFFF}
+.gc-retour svg{width:22px;height:auto;flex:none}
+
+[hidden]{display:none!important}
+
+a.lien-contact{color:inherit;text-decoration:none;white-space:nowrap}a.lien-contact:hover,a.lien-contact:focus-visible{text-decoration:underline}
+
+h1,h2,h3,.display,.h2,.h3{text-wrap:balance}p,li,dd,dt,td,th,figcaption,blockquote,label,summary{text-wrap:pretty}
+
+.nw{white-space:nowrap}
+
+
+li{overflow-wrap:anywhere}
+</style>
+<script>try{if(sessionStorage.getItem('manta-gc')==='1')document.documentElement.classList.add('via-gc');}catch(e){}</script>
+</head>
+<body>
+<div class="sim-bar"><div class="wrap"><span>Simulation du nouveau site <span class="nw">manta-health</span>.com · Version 3.4 du 05/11/2026 · non publiée, à valider par Pierre</span><a href="notes.html">Notes de la simulation →</a></div></div>
+<header class="site-head" id="tete"><div class="nav-bar">
+<a href="index.html" class="brand" aria-label="Manta, accueil"><svg viewBox="0 0 526 544" width="40" height="42" aria-hidden="true"><path fill="#0B2F3A" d="M0.0 543.7C-0.0 542.6 1.9 537.9 5.3 530.5C5.9 529.2 6.9 527.2 7.4 526.0C8.0 524.8 8.9 522.9 9.4 521.7C10.7 518.9 12.3 515.6 13.6 513.3C14.1 512.3 15.0 510.7 15.6 509.7C16.8 507.4 21.4 499.1 21.8 498.2C26.8 489.5 40.0 470.1 48.5 459.3C57.3 448.1 57.2 448.2 68.1 435.8C72.3 430.9 80.6 422.1 88.5 414.0C95.1 407.2 96.3 405.9 97.1 403.7C97.8 401.9 97.8 397.6 97.2 395.7C96.1 392.7 96.8 390.0 99.2 388.1C100.7 386.8 113.3 380.4 117.4 378.8C124.6 376.0 125.1 375.2 123.9 367.5C122.5 358.9 122.5 357.9 123.8 355.5C124.7 354.0 127.8 351.7 131.8 349.5C133.1 348.8 134.7 347.9 135.4 347.4C136.1 347.0 136.7 346.7 136.8 346.7C136.9 346.7 137.8 346.3 138.8 345.8C144.7 342.9 150.6 340.8 156.7 339.5C162.3 338.2 164.8 337.9 173.0 337.7C182.2 337.5 183.0 337.3 184.1 335.5C184.8 334.5 184.8 331.6 184.2 327.5C182.8 319.2 182.1 314.0 181.2 304.8C180.9 302.1 180.4 297.9 180.2 295.5C179.1 285.8 178.9 283.7 178.0 263.8C177.0 243.8 178.8 211.2 182.2 187.7C182.4 185.9 182.9 182.6 183.2 180.3C183.5 178.0 183.9 175.0 184.2 173.5C184.4 172.0 184.9 169.4 185.2 167.7C186.2 161.2 187.2 156.0 188.2 151.3C188.4 150.1 188.9 148.0 189.2 146.5C189.5 145.0 189.9 142.8 190.2 141.5C190.5 140.2 190.9 138.3 191.2 137.2C191.4 136.2 191.9 134.4 192.2 133.2C192.5 132.1 192.9 130.3 193.2 129.3C193.4 128.3 193.9 126.3 194.3 124.8C195.1 121.4 195.9 118.5 196.3 117.2C196.5 116.6 197.1 114.6 197.7 112.7C199.3 107.0 199.6 106.0 200.5 103.2C201.0 101.7 201.5 100.0 201.7 99.5C201.8 99.0 202.1 98.0 202.4 97.3C202.6 96.7 202.9 95.6 203.2 95.0C203.4 94.4 203.8 93.3 204.0 92.7C204.2 92.0 204.5 91.0 204.7 90.5C205.0 89.3 206.5 85.0 207.2 83.2C207.5 82.4 207.9 81.3 208.2 80.7C210.6 74.1 218.3 55.7 221.1 49.7C222.7 46.2 224.0 43.4 225.4 40.4C228.1 34.5 229.4 31.8 230.2 30.0C230.7 29.0 231.9 26.5 232.9 24.4C233.9 22.3 234.7 20.6 234.7 20.5C234.7 20.4 235.5 18.6 236.5 16.5C237.6 14.3 238.7 11.9 239.0 11.2C242.9 2.7 244.6 -0.1 245.6 0.1C245.8 0.1 247.1 2.4 248.4 5.2C250.3 9.5 259.7 28.2 261.8 32.2C263.5 35.4 265.2 38.3 265.9 39.4C266.3 40.1 266.7 40.7 266.7 40.8C266.7 40.9 267.0 41.6 267.4 42.3C267.9 42.9 268.7 44.3 269.2 45.3C271.5 49.5 275.2 55.7 277.7 59.7C279.1 62.0 281.1 65.1 282.0 66.7C284.2 70.1 288.8 77.1 290.7 79.8C291.5 80.9 294.0 84.5 296.2 87.7C300.4 93.8 301.2 94.8 310.0 106.2C318.1 116.7 327.6 127.7 337.9 138.7C355.7 157.6 373.4 173.6 396.5 191.5C400.5 194.6 417.3 206.5 422.3 209.7C425.2 211.6 428.7 213.9 430.1 214.7C432.7 216.4 446.3 224.7 446.5 224.7C446.5 224.7 448.8 226.0 451.6 227.6C454.3 229.2 458.1 231.3 460.0 232.3C461.9 233.3 464.0 234.4 464.7 234.8C466.9 236.0 482.5 243.9 485.5 245.2C487.2 246.0 489.8 247.2 491.3 247.9C492.9 248.7 495.2 249.7 496.5 250.3C497.8 250.9 499.9 251.9 501.3 252.5C502.6 253.2 503.8 253.7 504.0 253.7C504.1 253.7 504.7 253.9 505.2 254.1C505.7 254.4 507.4 255.1 508.8 255.7C511.5 256.9 512.2 257.6 511.4 258.4C511.1 258.7 506.2 258.8 495.1 258.9C478.8 258.9 468.3 259.3 458.8 260.2C455.9 260.4 450.9 260.9 447.7 261.2C444.5 261.5 440.5 261.9 438.8 262.2C437.2 262.4 434.0 262.9 431.7 263.2C422.9 264.3 420.6 264.7 412.7 266.2C411.3 266.5 409.0 266.9 407.6 267.2C406.2 267.4 403.8 267.9 402.2 268.2C398.8 268.8 396.3 269.4 390.8 270.7C378.8 273.5 374.0 274.7 372.3 275.2C371.5 275.4 369.9 275.8 368.7 276.2C367.5 276.5 365.9 276.9 365.2 277.2C364.4 277.4 362.9 277.8 361.7 278.2C357.4 279.3 353.1 280.5 351.2 281.2C350.4 281.4 346.9 282.5 343.3 283.7C332.5 287.2 325.0 289.7 319.5 291.7C318.8 292.0 316.9 292.7 315.3 293.3C313.7 293.8 311.0 294.8 309.3 295.5C305.2 297.1 299.6 299.3 295.7 300.9C293.9 301.5 288.2 303.9 283.0 306.2C274.1 310.0 272.3 310.8 266.7 313.4C265.5 314.0 263.7 314.8 262.7 315.2C259.4 316.7 238.9 326.9 235.3 328.8C233.4 329.9 230.4 331.5 228.8 332.4C216.0 339.2 196.2 350.8 183.8 358.8C179.6 361.6 172.1 366.5 168.7 368.9C166.6 370.3 162.7 373.0 160.0 374.8C157.3 376.6 150.5 381.6 144.8 385.8C135.5 392.7 132.3 395.2 120.9 404.5C119.0 406.0 116.6 407.9 115.5 408.8C106.0 416.5 78.7 442.0 70.9 450.5C69.2 452.4 65.0 456.9 61.6 460.6C45.7 477.7 27.4 501.3 16.7 518.4C15.7 520.1 13.9 522.8 12.8 524.5C11.7 526.2 10.1 528.9 9.2 530.3C8.2 531.8 6.9 534.0 6.2 535.1C5.4 536.2 4.1 538.3 3.2 539.7C1.3 542.8 0.0 544.3 0.0 543.7ZM516.8 244.3C516.5 244.2 514.7 243.5 513.0 242.8C511.3 242.2 508.3 241.0 506.3 240.2C504.4 239.4 501.0 237.9 498.7 237.0C496.5 236.1 493.7 234.9 492.6 234.4C491.4 233.8 489.2 232.8 487.6 232.0C485.9 231.3 484.5 230.7 484.4 230.7C483.3 230.7 455.0 215.7 447.1 211.0C445.1 209.7 442.5 208.2 441.4 207.6C440.4 207.0 438.5 205.9 437.3 205.2C436.1 204.4 433.7 202.8 431.8 201.7C421.7 195.3 404.5 183.5 403.9 182.5C403.8 182.3 403.9 181.9 404.1 181.7C405.0 181.0 411.7 177.0 414.8 175.3C416.7 174.3 419.3 172.9 420.6 172.1C422.0 171.3 423.1 170.7 423.2 170.7C423.4 170.7 427.2 168.3 429.5 166.8C430.4 166.3 432.3 165.0 433.7 164.2C446.6 155.8 461.2 143.3 472.0 131.4C477.3 125.4 482.3 119.4 484.3 116.4C485.0 115.3 486.6 112.9 487.9 111.0C489.2 109.1 490.8 106.5 491.5 105.2C492.2 103.9 493.2 102.1 493.7 101.2C495.4 98.1 496.0 96.9 498.2 91.7C499.4 88.8 500.9 84.9 501.6 82.8C502.8 79.0 503.1 78.1 504.4 74.8C505.8 71.5 506.1 71.9 508.5 79.3C509.7 82.9 511.1 87.6 511.7 89.7C512.3 91.8 513.2 95.0 513.7 96.8C515.6 103.4 515.6 103.3 517.2 110.7C517.8 113.4 518.5 116.8 519.2 119.8C520.1 123.8 520.6 126.9 521.2 130.7C521.5 132.8 521.9 135.8 522.2 137.5C525.2 156.9 526.0 184.5 524.3 204.2C523.5 213.9 523.3 215.3 523.0 217.5C521.0 232.4 520.8 233.5 519.3 241.3C518.7 244.7 518.4 245.0 516.8 244.3Z"></path></svg><b>Manta</b></a>
+<nav class="nav-links" aria-label="Menu principal"><a href="particuliers.html">Particuliers</a><a href="etablissements.html">Établissements</a><a href="professionnels.html">Professionnels</a><a href="grands-comptes.html">Grands comptes</a><a href="histoire.html">Qui <span class="nw">sommes-nous</span></a><a href="contact.html">Contact</a></nav>
+<div class="nav-actions"><a href="index.html#telecommande" class="btn btn-sable">Essayer la télécommande</a></div>
+<details class="menu"><summary aria-label="Ouvrir le menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>Menu</summary>
+<nav class="menu-panel" aria-label="Menu mobile"><a href="index.html">Accueil</a><a href="particuliers.html">Particuliers</a><a href="etablissements.html">Établissements</a><a href="professionnels.html">Professionnels</a><a href="grands-comptes.html">Grands comptes</a><a href="histoire.html">Qui <span class="nw">sommes-nous</span></a><a href="actualites.html">Actualités</a><a href="contact.html">Contact</a><a href="index.html#telecommande" class="btn btn-sable">Essayer la télécommande</a></nav></details>
+</div></header>
+<main id="contenu">
+
+<section class="bg-blanc"><div class="wrap" style="padding-block:72px 48px"><div class="stack measure" style="gap:20px">
+<p class="eyebrow">Pour Pierre et Élodie</p><h1 class="display">Notes de la simulation.</h1>
+<p class="lead">Version 3.4 du 05/11/2026&nbsp;: version 3.2 (onglet Grands comptes) corrigée après une relecture complète du site, point par point avec Olivier. Rien n'est en ligne sur <span class="nw">manta-health</span>.com&nbsp;: c'est toujours une simulation.</p>
+</div></div></section>
+<section><div class="wrap" style="padding-block:48px 96px"><div class="stack legal measure" style="gap:18px;max-width:860px">
+<h2>Version 3.4&nbsp;: audit complet avant la version finale (05/11, soir)</h2>
+<p class="muted">Audit en 20 points (ordinateur, tablette, téléphone&nbsp;; 4&nbsp;publics, accessibilité, Google, vitesse, droit, dispositif médical, mise en ligne), puis décisions prises une par une avec Olivier à l'oral. Détail&nbsp;: C:\Manta\07_Communication\2026-11-05_Audit_site_v3-3.md. <strong>Règle posée par Olivier&nbsp;: le site est sous sa responsabilité, la loi est respectée sans exception.</strong></p>
+<table class="tech">
+<tr><th scope="row">Dispositif médical (loi)</th><td><strong>«&nbsp;Certifié CE médical&nbsp;» remplacé partout</strong> par «&nbsp;dispositif médical de classe&nbsp;I, marquage CE&nbsp;» (5&nbsp;pages)&nbsp;: en classe&nbsp;I, c'est le fabricant qui déclare la conformité, aucun organisme ne certifie&nbsp;; et le Code de la santé publique (art. R.&nbsp;5213-1) interdit à une publicité grand public d'insister sur une certification. <strong>Bloc de mentions obligatoires</strong> ajouté en bas de chaque page (nom, destination, fabricant, phrase officielle sur le marquage CE, notice, conseil d'un professionnel, date). <strong>«&nbsp;Mutuelle&nbsp;» retiré</strong> (page Particuliers, simulateur, assistant)&nbsp;: la loi interdit de dire qu'un régime complémentaire prend en charge un dispositif médical&nbsp;; MaPrimeAdapt', PCH, caisses de retraite et collectivités restent.</td></tr>
+<tr><th scope="row">Phrases adoucies</th><td>Établissements&nbsp;: «&nbsp;Chaque patient à sa hauteur, sans que le soignant ait à se pencher.&nbsp;» (l'étude n'a pas mesuré la sécurité). Particuliers&nbsp;: «&nbsp;Moins de portage, moins d'inquiétude au quotidien.&nbsp;» (le mal de dos n'est pas encore mesuré). Actualités&nbsp;: «&nbsp;Patients et aidants nous le disent&nbsp;: un vrai gain de confort au quotidien&nbsp;» et «&nbsp;testées sur le terrain&nbsp;» (interdiction de citer une recommandation de professionnels de santé). Professionnels&nbsp;: «&nbsp;Conçu à Angers, monté en France&nbsp;» à la place de «&nbsp;Un produit français, certifié&nbsp;» (origine française à faire confirmer par les douanes&nbsp;: demande d'Information sur le Made in France préparée pour Pierre, C:\Manta\03_Reglementaire). Quiz Établissements&nbsp;: «&nbsp;Aider à s'asseoir et à se relever&nbsp;» et «&nbsp;Éviter aux soignants de se pencher&nbsp;» à la place de «&nbsp;Prévenir les chutes&nbsp;» et «&nbsp;Soulager le dos des soignants&nbsp;».</td></tr>
+<tr><th scope="row">Mentions légales, RGPD, CGV</th><td>Hébergeur OVH corrigé (capital 50&nbsp;000&nbsp;000&nbsp;€, RCS Lille Métropole 424&nbsp;761&nbsp;419 00045). Page «&nbsp;Données personnelles&nbsp;» réécrite (responsable, finalités, bases légales, sous-traitants, durées, droits, données de santé de l'assistant avec accord explicite). Section «&nbsp;Médiation de la consommation&nbsp;» ajoutée (médiateur à choisir avec Olivier, puis proposé à Pierre). <strong>Nouvelle page cgv.html</strong> (projet de conditions générales de vente, à faire relire par un juriste)&nbsp;; rétractation&nbsp;: «&nbsp;14&nbsp;jours à compter de la livraison&nbsp;». L'assistant annonce qu'il est une intelligence artificielle (règlement européen sur l'IA, art.&nbsp;50, applicable depuis le 02/08/2026).</td></tr>
+<tr><th scope="row">Formulaires branchés</th><td>Les 5&nbsp;formulaires envoient pour de vrai (envoi.js + envoi.php pour OVH, ou clé Web3Forms pour tester avant OVH, mails à Olivier pendant les tests puis contact@). Piège anti-robots, limite par adresse IP. Grands comptes&nbsp;: les 7&nbsp;dossiers partent <strong>par e-mail</strong> après le formulaire (plus d'accès direct)&nbsp;; étiquette «&nbsp;Par e-mail&nbsp;». Tant que rien n'est réglé, le formulaire affiche «&nbsp;pas encore branché&nbsp;».</td></tr>
+<tr><th scope="row">Technique</th><td>Vidéo du test de sécurité copiée dans le site (videos/test-securite.mp4, 0,75&nbsp;Mo, muette)&nbsp;; plus aucune dépendance à l'ancien WordPress. Polices hébergées sur le site (fonts/, licence OFL)&nbsp;: plus aucune requête vers Google. Image de partage LinkedIn (img/partage.jpg) et balises Open Graph sur toutes les pages&nbsp;; icône d'onglet avec le tracé officiel du logo (forme inchangée). Lien «&nbsp;Aller au contenu&nbsp;», liens de pied de page plus grands sur téléphone, titre sur l'assistant. Images avec dimensions déclarées et chargement différé. Simulateur&nbsp;: montant de départ 6&nbsp;008&nbsp;€. Page Particuliers&nbsp;: barre «&nbsp;Calculer mes aides / Appeler&nbsp;» fixe sur téléphone. Balise technique «&nbsp;claude:viewport-fit-sides&nbsp;» retirée partout.</td></tr>
+<tr><th scope="row">À faire</th><td>Choisir le médiateur (Olivier + Claude, puis Pierre). Compléter la demande IMF (Pierre). Photos et phrases de Pierre, Élodie, Nicolas Borie&nbsp;: sans réponse le 13/11, les cartes incomplètes sont retirées. Brancher l'assistant sur une vraie IA (prestataire hébergé en Europe, à choisir). Dossier _mise_en_ligne&nbsp;: .htaccess, robots.txt, sitemap.xml et liste de contrôle pour le jour J (point 20, pas avant la mise en ligne). Dépôt GitHub&nbsp;: anciennes versions supprimées (discrétion envers un partenaire).</td></tr>
+</table>
+<h2>Version 3.3&nbsp;: relecture complète du site (05/11)</h2>
+<table class="tech">
+<tr><th scope="row">Questions pour Pierre</th><td><ul class="stack-s">
+<li><em>(Question envoyée à Pierre par message vocal le 05/11.)</em> <strong>«&nbsp;S'adapte à tout type de WC suspendu&nbsp;»</strong> (accueil)&nbsp;: toutes les cuvettes suspendues se <span class="nw">montent-elles</span> sur MANTA, avec le strip <span class="nw">anti-collision</span>&nbsp;? Le dossier technique cite une cuvette précise.</li>
+<li><strong>Déclaration UE signée (17/06/2022)</strong>&nbsp;: elle porte le Basic <span class="nw">UDI-DI</span> 3770042117103008D, l'adresse de Nantes et l'ancien SIRET. Vous avez indiqué le 04/11 que les codes EUDAMED ont changé&nbsp;: <span class="nw">faut-il</span> une nouvelle déclaration avant la mise en ligne&nbsp;? Elle précise aussi que «&nbsp;la cuvette WC ne fait pas partie de la fourniture&nbsp;», ce qui rejoint la question sur «&nbsp;tout type de WC suspendu&nbsp;».</li>
+</ul></td></tr>
+<tr><th scope="row">Réglé</th><td><strong>Réponses de Pierre (mail du 05/11, 16&nbsp;h 12), intégrées&nbsp;:</strong> capacité 20&nbsp;appareils par mois puis 40 en national&nbsp;; livraison en 8&nbsp;semaines&nbsp;; pose par MANTA partout en France, 2&nbsp;semaines après le paiement&nbsp;; formation des installateurs gratuite, une journée en visio, ils deviennent partenaires&nbsp;; prise 10&nbsp;A avec phase, neutre et terre et différentiel 30&nbsp;mA au tableau (Particuliers, Professionnels, fiche prérequis)&nbsp;; fixation sol et mur porteur ou cloison renforcée (déjà en place)&nbsp;; pas de maintenance, garantie 10&nbsp;ans (déjà en place)&nbsp;; ancienne adresse sur le document APAVE&nbsp;: normal&nbsp;; déclaration UE de conformité signée reçue. Pierre revérifie la liste des 7&nbsp;dossiers. «&nbsp;Depuis 2023&nbsp;» gardé. Largeurs&nbsp;: 75,4&nbsp;cm pour le MANTA&nbsp;L, 77,5&nbsp;cm hors tout (place à prévoir). Photo de la coque «&nbsp;Petit Prince&nbsp;» retirée de la galerie Actualités. Un partenaire distributeur est retiré de tout le site, par discrétion (logos, bas de page, onglet Grands comptes ; décision d'Olivier, 05/11).</td></tr>
+<tr><th scope="row">Blocs qui suivent le défilement</th><td>Sur ordinateur et tablette, partout où deux blocs sont côte à côte, le plus court reste visible pendant que l'autre défile (demande d'Olivier, 05/11)&nbsp;: accueil (ouverture, «&nbsp;Le dispositif&nbsp;», «&nbsp;Testé sur le terrain&nbsp;»), Particuliers (ouverture, «&nbsp;Deux boutons&nbsp;», «&nbsp;Ils l'ont testé&nbsp;»), Établissements (ouverture, prêt gratuit), Professionnels (les 4 métiers et «&nbsp;Contact professionnel&nbsp;»), Grands comptes («&nbsp;Une rencontre, en personne&nbsp;»), Qui <span class="nw">sommes-nous</span> (histoire et grandes étapes). Déjà en place&nbsp;: fiche technique, coordonnées de la page Contact, titres de l'onglet Grands comptes. Sur téléphone, les blocs restent l'un sous l'autre.</td></tr>
+<tr><th scope="row">Équipe et documents (05/11, 17&nbsp;h 20)</th><td>Photos de Pierre et de Muriel ajoutées sur Qui <span class="nw">sommes-nous</span>. Pierre&nbsp;: «&nbsp;Président et fondateur&nbsp;», sa phrase est attendue. Muriel&nbsp;: «&nbsp;Associée, responsable chargée de clientèle&nbsp;» et «&nbsp;Je vous accompagne dans vos démarches, en prenant le temps nécessaire.&nbsp;» Mentions légales&nbsp;: la déclaration UE signée et le document de synthèse APAVE sont maintenant servis par le site <span class="nw">lui-même</span> (dossier docs), plus par l'ancien WordPress.</td></tr>
+<tr><th scope="row">Réponses du 05/11 (soir)</th><td>Intervention en cas de panne&nbsp;: <strong>diagnostic par MANTA, puis intervention de MANTA sous 48&nbsp;h</strong> (Pierre, 05/11), à la place des 24&nbsp;h, sur l'accueil, Particuliers, Établissements et Grands comptes. Phrase de Muriel validée avec elle&nbsp;: «&nbsp;Auxiliaire de vie diplômée d'État, j'ai été l'aidante de mes parents pendant de nombreuses années. Je sais ce que vous vivez, et c'est avec le cœur que je vous accompagne.&nbsp;» Fond de sa photo flouté (validé par Olivier).</td></tr>
+<tr><th scope="row">Question pour le comptable</th><td>Le prix TTC est calculé avec une TVA à 20&nbsp;%. Les travaux d'adaptation du logement d'une personne âgée ou handicapée <span class="nw">peuvent-ils</span> bénéficier d'un taux réduit&nbsp;?</td></tr>
+<tr><th scope="row">Corrigé</th><td>Bouton «&nbsp;Retour à votre espace Grands comptes&nbsp;» visible chez tous les visiteurs sur 5 pages (il cachait des boutons)&nbsp;: il n'apparaît plus que pour les visites venues du lien Grands comptes. Frise&nbsp;: «&nbsp;De l'idée aux essais en établissements&nbsp;» (l'étude clinique est à venir). Mentions légales&nbsp;: ancien Basic <span class="nw">UDI-DI</span> retiré (codes changés), SRN seul.</td></tr>
+<tr><th scope="row">Simulateur et assistant</th><td>Ligne «&nbsp;55&nbsp;€ par mois sur 10&nbsp;ans&nbsp;» retirée (MANTA ne propose pas de crédit). Accompagnateur MaPrimeAdapt&nbsp;: financé à part par l'Anah (forfait de 600&nbsp;à&nbsp;800&nbsp;€), donc plus ajouté au reste à charge&nbsp;: 6&nbsp;008&nbsp;€ à 70&nbsp;% (avant 6&nbsp;608&nbsp;€), 8&nbsp;411&nbsp;€ à 50&nbsp;% (avant 9&nbsp;011&nbsp;€). «&nbsp;Jusqu'à 70&nbsp;% du prix hors taxes&nbsp;» (c'est 58&nbsp;% du prix TTC).</td></tr>
+<tr><th scope="row">Textes</th><td>«&nbsp;Évalué dans 4&nbsp;établissements auprès de 222&nbsp;participants&nbsp;» (accueil, Professionnels)&nbsp;; Actualités&nbsp;: «&nbsp;Patients et soignants nous le disent&nbsp;: un vrai gain en confort, en autonomie et en ergonomie.&nbsp;»&nbsp;; Établissements&nbsp;: «&nbsp;77,5&nbsp;cm hors tout&nbsp;»&nbsp;; Particuliers&nbsp;: «&nbsp;environ 8&nbsp;semaines*&nbsp;» avec «&nbsp;* Hors délai d'accord de l'Anah si vous demandez MaPrimeAdapt'.&nbsp;»&nbsp;; «&nbsp;MANTA est certifié CE médical&nbsp;» (au lieu de «&nbsp;dispositif médical certifié CE médical&nbsp;»)&nbsp;; vidéo&nbsp;: «&nbsp;sans strip <span class="nw">anti-collision</span>&nbsp;» partout.</td></tr>
+<tr><th scope="row">Contacts et formulaires</th><td>Téléphone et <span class="nw">e-mail</span> cliquables partout (appel ou <span class="nw">e-mail</span> d'un toucher sur téléphone). Les boutons ouvrent le formulaire sur le bon profil (Établissements → Contact en «&nbsp;établissement&nbsp;», Professionnels → ergothérapeute, AMO, revendeur ou installateur). Ergothérapeutes&nbsp;: «&nbsp;SIRET ou numéro RPPS&nbsp;» (un ergothérapeute salarié n'a pas de SIRET). Mention sur les données personnelles du formulaire Professionnels rendue lisible.</td></tr>
+<tr><th scope="row">Mise en page</th><td>Plus aucun chiffre séparé de son unité, aucun mot composé coupé au trait d'union, aucune ponctuation seule en début de ligne&nbsp;: contrôlé automatiquement sur les 10 pages à 8 largeurs d'écran (320&nbsp;à&nbsp;1&nbsp;440&nbsp;px). Titres équilibrés sur plusieurs lignes. Grande raie des bandeaux de fin de page réduite sur téléphone (forme inchangée).</td></tr>
+<tr><th scope="row">À faire avant la mise en ligne</th><td>La vidéo du test de sécurité est encore lue depuis l'ancien WordPress&nbsp;: à télécharger depuis <span class="nw">manta-health</span>.com et à copier dans le nouveau site. Les 2 PDF des mentions légales sont réglés.</td></tr>
+</table>
+<h2>Version 3.2&nbsp;: l'onglet Grands comptes (appel de Pierre du 05/11)</h2>
+<table class="tech">
+<tr><th scope="row">Retouches du 05/11 (14&nbsp;h 15)</th><td>Raie de l'ouverture&nbsp;: le contour se dessine en 5&nbsp;s et le doré la remplit en 1&nbsp;s à partir de 2,5&nbsp;s (pleine à 3,5&nbsp;s, avant que le trait se referme)&nbsp;; section «&nbsp;Une rencontre, en personne&nbsp;» dans le bleu d'«&nbsp;Éprouvé&nbsp;», pour la distinguer du pied de page&nbsp;; petite ligne de l'ouverture sur une seule ligne. <strong>Visite commencée sur la page Grands comptes</strong> (lien envoyé par Pierre)&nbsp;: sur toutes les autres pages, un bouton «&nbsp;Retour à votre espace Grands comptes&nbsp;» apparaît en bas à gauche. Un visiteur arrivé par une autre page ne voit pas ce bouton.</td></tr>
+<tr><th scope="row">Retouches du 05/11 (14&nbsp;h)</th><td>Fonds dans l'ordre foncé, blanc, clair, foncé, blanc, clair, foncé («&nbsp;Conformité&nbsp;» passe en blanc, «&nbsp;Mesures&nbsp;» en clair&nbsp;; le formulaire des dossiers reste blanc sur fond clair)&nbsp;; lien «&nbsp;Télécharger les dossiers&nbsp;» sous «&nbsp;Conformité&nbsp;»&nbsp;; libellé «&nbsp;Accompagnement commercial&nbsp;» sur deux lignes, avec plus d'espace entre libellés et textes.</td></tr>
+<tr><th scope="row">Retouches du 05/11 (13&nbsp;h 50)</th><td>Section «&nbsp;Distribution&nbsp;» remise en forme comme «&nbsp;Conformité&nbsp;» (titre à gauche qui suit le défilement, liste à droite, questions pour Pierre en petit et discret)&nbsp;; «&nbsp;Accompagnement commercial&nbsp;» aligné sur le kit professionnel (fiche technique, vidéo du test de sécurité, prérequis d'installation, démonstration avec Pierre)&nbsp;; pose&nbsp;: «&nbsp;moins d'une journée&nbsp;» gardé seulement dans «&nbsp;Mesures&nbsp;»&nbsp;; 7e dossier «&nbsp;Prérequis d'installation et garanties&nbsp;» (projet de fiche MANTA dans 05_Commercial), avec la question sur la protection électrique.</td></tr>
+<tr><th scope="row">Garanties (tout le site)</th><td>Même formule partout, reprise de la fiche prérequis et garanties&nbsp;: structure, mécanisme et châssis 10&nbsp;ans&nbsp;; batterie, télécommande, boîtier, plaque de chasse, cuvette et abattant 2&nbsp;ans&nbsp;; mécanisme de chasse et consommables exclus. Pages Accueil, Particuliers, Établissements et Grands comptes.</td></tr>
+<tr><th scope="row">Retouches du 05/11 (13&nbsp;h 30)</th><td>La raie de l'ouverture (tracé officiel, taille inchangée) se dessine en contour en 5&nbsp;s et se remplit de doré en même temps (léger au début, puis de plus en plus dense), puis reste immobile&nbsp;; les titres «&nbsp;Conformité&nbsp;» et «&nbsp;Éprouvé&nbsp;» suivent le défilement sur ordinateur et tablette&nbsp;; section «&nbsp;Distribution&nbsp;» ajoutée entre l'étude et les dossiers (capacité, délai de livraison, pose, formation, SAV et garanties, accompagnement commercial), avec un encadré «&nbsp;À demander à Pierre&nbsp;» là où l'information manque ou date de 2023&nbsp;; le formulaire de <span class="nw">rendez-vous</span> se <span class="nw">pré-remplit</span> avec les coordonnées saisies pour les dossiers.</td></tr>
+<tr><th scope="row">Questions pour Pierre (section Distribution)</th><td>Toujours 20&nbsp;appareils par mois, puis 20&nbsp;à&nbsp;40, comme annoncé en 2023&nbsp;? Combien pour une première commande nationale&nbsp;? Toujours 5&nbsp;à&nbsp;7&nbsp;semaines de délai&nbsp;? Qui pose chez les clients d'un distributeur, sur quelle zone et sous quel délai&nbsp;? Formation des installateurs (durée, lieu, prix)&nbsp;? Intervention sous 24&nbsp;h partout en France, et par qui&nbsp;? Garanties toujours exactes (10&nbsp;ans structure, 2&nbsp;ans batterie, télécommande, cuvette)&nbsp;? Supports et appareil de démonstration pour les distributeurs&nbsp;?</td></tr>
+<tr><th scope="row">Pour qui</th><td>Les grands distributeurs nationaux qui ont leurs propres équipes (AMO, ergothérapeutes, montage des dossiers ANAH et MaPrimeAdapt'). Lien «&nbsp;Grands comptes&nbsp;» ajouté dans le menu et le bas de page de toutes les pages.</td></tr>
+<tr><th scope="row">Version retenue</th><td>La <a href="grands-comptes.html">version haut de gamme</a>, validée par Pierre le 05/11&nbsp;: mêmes couleurs MANTA, titres à empattements, beaucoup d'espace, raie du logo (tracé officiel) qui se dessine lentement en contour doré. La version classique est archivée (_abandonne\<span class="nw">grands-comptes-classique</span>.html)&nbsp;; l'ancienne adresse <span class="nw">grands-comptes-prestige</span>.html renvoie vers la page.</td></tr>
+<tr><th scope="row">Retouches du 05/11 (13&nbsp;h 20)</th><td>Barre de menu sombre sur cette page seulement (logo en sable, même tracé)&nbsp;; bloc «&nbsp;Les dossiers&nbsp;» en deux colonnes (documents à gauche, formulaire à droite)&nbsp;; les quatre établissements de l'étude nommés en clair&nbsp;; <span class="nw">rendez-vous</span> avec Pierre demandé par un formulaire sur la page même (société, nom et fonction, <span class="nw">e-mail</span> professionnel, téléphone, zone de distribution, disponibilités, accord), sans renvoi vers la page Contact.</td></tr>
+<tr><th scope="row">Ordre de la page</th><td>Conformité d'abord (marquage CE, EUDAMED, APAVE, ISO&nbsp;14971, essai de résistance), puis les mesures, l'étude du CHU d'Angers, les dossiers à télécharger et le <span class="nw">rendez-vous</span> avec Pierre. Pas de vidéo sur cet onglet.</td></tr>
+<tr><th scope="row">Prix</th><td>Aucun. Les conditions se négocient en <span class="nw">rendez-vous</span> avec Pierre.</td></tr>
+<tr><th scope="row">Dossiers</th><td>Accessibles après un formulaire (société, nom et fonction, <span class="nw">e-mail</span> professionnel, téléphone, accord RGPD), pour récupérer le contact. Simulation&nbsp;: rien n'est envoyé.</td></tr>
+<tr><th scope="row">Charge</th><td>248&nbsp;kg testés en laboratoire (Pierre, 05/11).</td></tr>
+<tr><th scope="row">Retiré</th><td>Aucune phrase du type «&nbsp;vous n'êtes pas seuls&nbsp;» (décision de Pierre et Olivier).</td></tr>
+<tr><th scope="row">À valider par Pierre</th><td>La liste des 6&nbsp;dossiers proposés. La déclaration UE de conformité signée a été reçue le 05/11. Avant de publier les documents&nbsp;: rapport APAVE de 2022 à l'ancienne adresse, déclaration UE datée de 2026, maintenance de 6&nbsp;mois encore écrite dans les dossiers.</td></tr>
+</table>
+<h2>Version 3.1&nbsp;: les réponses de Pierre (mail du 04/11)</h2>
+<table class="tech">
+<tr><th scope="row">CE</th><td>«&nbsp;Certifié CE médical&nbsp;» dans les bandeaux de l'accueil et de la page Particuliers, la question fréquente sur la sécurité, la page Établissements («&nbsp;Conformité vérifiée&nbsp;») et la page Professionnels. La ligne réglementaire du bas de page, les fiches techniques et les mentions légales gardent la formule officielle «&nbsp;marquage CE, règlement (UE)&nbsp;2017/745&nbsp;».</td></tr>
+<tr><th scope="row">Fixation</th><td>«&nbsp;Fixé au sol et au mur (mur porteur ou cloison renforcée)&nbsp;» partout&nbsp;: accueil, Particuliers, Établissements, Professionnels.</td></tr>
+<tr><th scope="row">Essai</th><td>«&nbsp;Testé 6&nbsp;mois au CHU d'Angers&nbsp;» et «&nbsp;6&nbsp;mois d'essai au CHU d'Angers et en EHPAD&nbsp;» (6&nbsp;mois par établissement).</td></tr>
+<tr><th scope="row">Un seul modèle</th><td>MANTA&nbsp;L (75,4&nbsp;cm) seulement&nbsp;: le petit format n'est pas encore validé par l'APAVE. Page Établissements («&nbsp;Le modèle&nbsp;») et fiche technique&nbsp;; page Actualités («&nbsp;Nos dernières photos de MANTA&nbsp;»).</td></tr>
+<tr><th scope="row">Entretien</th><td>Pas d'entretien périodique&nbsp;: «&nbsp;maintenance&nbsp;» retiré de la page Établissements.</td></tr>
+<tr><th scope="row">Pose</th><td>1&nbsp;608&nbsp;€ TTC partout (déjà le cas).</td></tr>
+<tr><th scope="row">Photo de la jeune femme</th><td>Retirée (pas d'accord écrit)&nbsp;: carte «&nbsp;handicap ou maladie&nbsp;» de la page Particuliers (remplacée par un MANTA installé dans une salle de bain) et galerie «&nbsp;Forum des seniors&nbsp;» de la page Actualités.</td></tr>
+<tr><th scope="row">SIRET</th><td>On garde l'actuel (891&nbsp;258&nbsp;717&nbsp;00034) en attendant le nouveau, à changer dès réception.</td></tr>
+<tr><th scope="row">Partenaires</th><td>Normbau et MedicApp Connect restent affichés.</td></tr>
+<tr><th scope="row">Nouvelles photos (envoyées par Pierre)</th><td>Établissements&nbsp;: 2ᵉ photo du MANTA&nbsp;L, vu de face (à confirmer&nbsp;: bien le modèle L). Actualités&nbsp;: MANTA exposé au Gérontopôle, à la place de la photo du petit modèle.</td></tr>
+</table>
+<p class="small muted">À confirmer par Pierre&nbsp;: les photos produit retouchées avec une IA (Gemini) <span class="nw">montrent-elles</span> fidèlement le vrai MANTA&nbsp;?</p>
+<h2>Retouches du 03/11 <span class="nw">après-midi</span> (validées par Olivier)</h2>
+<table class="tech">
+<tr><th scope="row">Télécommande</th><td><a href="index.html#telecommande">Accueil</a> et Particuliers&nbsp;: la cuvette démarre à 55&nbsp;cm (avant&nbsp;: 46&nbsp;cm). Le test de sécurité (à partir de 52&nbsp;cm) marche tout de suite, sans toucher à la télécommande.</td></tr>
+<tr><th scope="row">Photos Particuliers</th><td>Carte «&nbsp;Vous aidez un proche&nbsp;»&nbsp;: photo recadrée, on voit le visage. En bas («&nbsp;Ils l'ont testé&nbsp;»)&nbsp;: la photo de pose est remplacée par une photo prise à <span class="nw">Mazé-Milon</span>.</td></tr>
+<tr><th scope="row">Établissements, «&nbsp;Ils l'ont testé&nbsp;»</th><td><span class="nw">Mazé-Milon</span> recadrée (plus de plafond)&nbsp;; photo du CHU d'Angers éclaircie&nbsp;; Cholet&nbsp;: «&nbsp;Centre hospitalier&nbsp;», puis «&nbsp;Également testé à l'EHPAD Les Capucins, à Angers.&nbsp;»</td></tr>
+<tr><th scope="row">Formulaires</th><td><a href="contact.html">Contact</a>, <a href="professionnels.html#contact-pro">Professionnels</a> et «&nbsp;Être rappelé par Pierre&nbsp;» (Établissements). Professionnel&nbsp;: numéro SIRET (14&nbsp;chiffres, contrôlé) et téléphone portable (06&nbsp;ou&nbsp;07) obligatoires. Établissement&nbsp;: nom de l'établissement, service, fonction, <span class="nw">e-mail</span> professionnel (pas Gmail, Hotmail, Yahoo…) et téléphone obligatoires. Particulier et «&nbsp;Autre&nbsp;»&nbsp;: inchangé, téléphone facultatif. Partout&nbsp;: case «&nbsp;J'accepte que MANTA me recontacte&nbsp;» obligatoire. Le formulaire vérifie l'écriture du SIRET, pas son existence réelle (possible plus tard avec l'annuaire officiel des entreprises, sur le vrai site).</td></tr>
+<tr><th scope="row">Contact</th><td>Sur ordinateur, le bloc téléphone, <span class="nw">e-mail</span>, adresse suit quand on descend dans le formulaire. Correction&nbsp;: «&nbsp;Nom de l'établissement&nbsp;» ne s'affiche plus pour les particuliers.</td></tr>
+</table>
+<p class="small muted">À prévoir&nbsp;: une vraie photo d'aidant en tenue de tous les jours (la photo actuelle montre un soignant).</p>
+<h2>Ce qui change dans la version 3</h2>
+<table class="tech">
+<tr><th scope="row">Prix</th><td><a href="particuliers.html#prix">Particuliers</a>&nbsp;: prix public 12&nbsp;811,24&nbsp;€ TTC et pose 1&nbsp;608&nbsp;€ TTC (avant&nbsp;: 14&nbsp;239&nbsp;€ pose comprise). Le simulateur et l'assistant sont recalculés&nbsp;: 6&nbsp;608&nbsp;€ de reste à charge avec l'aide de 70&nbsp;%, 9&nbsp;011&nbsp;€ avec 50&nbsp;%.</td></tr>
+<tr><th scope="row">Siège à Angers</th><td>1 rue Alexandre Fleming, 49000 Angers&nbsp;: bas de toutes les pages, page Contact (et le plan), mentions légales (RCS d'Angers). «&nbsp;Basé à Angers&nbsp;», «&nbsp;écosystème angevin&nbsp;», «&nbsp;équipe angevine&nbsp;». L'histoire garde «&nbsp;2020, création à Nantes&nbsp;» et ajoute «&nbsp;2026, nouveau siège à Angers&nbsp;».</td></tr>
+<tr><th scope="row">Strip <span class="nw">anti-collision</span></th><td>Remplace «&nbsp;barre sensible&nbsp;» partout, avec une fois «&nbsp;(une bande sensible au toucher)&nbsp;» sur l'accueil et la page Particuliers&nbsp;: accueil, Particuliers, Établissements, Professionnels, Actualités, vidéos et test du chien.</td></tr>
+<tr><th scope="row">Fixation</th><td>«&nbsp;Sans mur porteur&nbsp;» devient «&nbsp;fixé au sol et au mur&nbsp;» partout. Le site ne parle plus du mur porteur (question posée à Élodie).</td></tr>
+<tr><th scope="row">Modèles M et L</th><td><a href="etablissements.html">Établissements</a>&nbsp;: MANTA&nbsp;M (55&nbsp;cm) et MANTA&nbsp;L (75,4&nbsp;cm), comme dans EUDAMED. Les anciennes références <span class="nw">MT-L-BL</span> et <span class="nw">MT-XL-BL</span> sont retirées en attendant les nouvelles.</td></tr>
+<tr><th scope="row">Certifié CE</th><td>«&nbsp;Dispositif médical certifié CE&nbsp;» dans le bandeau foncé de la page Particuliers, comme demandé. Les autres pages gardent «&nbsp;marquage CE&nbsp;» (question posée à Élodie).</td></tr>
+<tr><th scope="row">Étude</th><td>«&nbsp;Testé 1&nbsp;an&nbsp;» et «&nbsp;1&nbsp;an d'essai au CHU d'Angers et en EHPAD&nbsp;». Texte de l'étude avec le Gérontopôle, le Living Lab Allegro et le CHU d'Angers. «&nbsp;6,92/7&nbsp;» sur une ligne.</td></tr>
+<tr><th scope="row">Entretien</th><td>«&nbsp;Entretien tous les 6&nbsp;mois&nbsp;» retiré de la page Particuliers (étapes et bandeau).</td></tr>
+<tr><th scope="row">Location</th><td>Nouvelle information&nbsp;: <a href="particuliers.html#questions">page Particuliers</a> (bandeau «&nbsp;Location possible, avec ou sans option d'achat&nbsp;» et question fréquente) et <a href="etablissements.html">page Établissements</a> («&nbsp;achat ou location&nbsp;»). Aucun prix de location affiché (décidé avec Olivier le 03/11).</td></tr>
+<tr><th scope="row">Textes Particuliers</th><td>«&nbsp;Chacun son confort&nbsp;: avec MANTA, la hauteur de votre WC se règle d'une simple pression.&nbsp;» Carte «&nbsp;Une hauteur pour tous&nbsp;» sur l'accueil.</td></tr>
+<tr><th scope="row">Photo d'une personne jeune</th><td>Carte «&nbsp;Vous vivez avec un handicap ou une maladie&nbsp;» (page Particuliers)&nbsp;: la jeune femme de la démonstration au Forum des seniors, recadrée. Accord déjà donné pour le site selon Olivier.</td></tr>
+<tr><th scope="row">CH de Cholet</th><td><a href="index.html">Accueil</a>&nbsp;: légende sous la photo (Nicolas Borie, Pierre Sanchez, M. Liard). Prénom de Nicolas Borie ajouté dans l'équipe et les actualités.</td></tr>
+<tr><th scope="row">Équipe</th><td>Fiche d'Olivier complète&nbsp;: photo, «&nbsp;Associé, Product Builder &amp; IA&nbsp;», et sa phrase.</td></tr>
+<tr><th scope="row">Télécommande</th><td>Alignée sur la vraie (flèches blanches, boutons gris clair, batterie pleine). Voyants&nbsp;: éteints au repos, celui du haut passe au vert en montée, celui du milieu au vert en descente et à l'orange à l'arrêt de sécurité.</td></tr>
+<tr><th scope="row">Page Professionnels</th><td>Partie «&nbsp;Revendeurs&nbsp;»&nbsp;: photo produit de MANTA sur fond noir, à la place de la photo du socle d'exposition. Photos échangées entre «&nbsp;AMO&nbsp;» et «&nbsp;Plombiers et installateurs&nbsp;» (l'installateur au travail va avec les installateurs).</td></tr>
+<tr><th scope="row">Page Établissements</th><td>Photo du haut&nbsp;: MANTA installé au CHU d'Angers, plus nette. Fiche technique&nbsp;: le bloc de gauche et le bouton «&nbsp;Recevoir le dossier complet&nbsp;» suivent le défilement jusqu'à la fin du tableau (sur ordinateur).</td></tr>
+<tr><th scope="row">Partenaires</th><td>Logos du CHU d'Angers et de Silver Valley ajoutés au bandeau de l'accueil (03/11). Logos LUMINUM, AFU et Famatech retirés du bandeau de l'accueil et de la liste en bas de chaque page.</td></tr>
+</table>
+<h2>À nous envoyer</h2>
+<ul class="stack-s">
+<li><strong>Photos de l'équipe</strong> (une par personne, format portrait ou carré) et 2&nbsp;ou&nbsp;3 lignes de texte pour chacun.</li>
+<li><strong>Nicolas Borie&nbsp;:</strong> rôle exact.</li>
+<li><strong>Nouveau SIRET</strong> dès réception du Kbis d'Angers (à changer impérativement).</li>
+<li><strong>Élodie&nbsp;:</strong> titre à afficher.</li>
+<li><strong>Muriel Goncalves&nbsp;:</strong> rôle à afficher.</li>
+</ul>
+<h2>Toujours à valider (versions 1&nbsp;et&nbsp;2)</h2>
+<ul class="stack-s">
+<li><strong>Vitesse affichée&nbsp;:</strong> environ 30 secondes pour toute la course à vide, environ une minute avec une personne assise. Quelle formulation garder&nbsp;?</li>
+<li><strong>Vidéo «&nbsp;sans dispositif&nbsp;»&nbsp;:</strong> <span class="nw">est-ce</span> bien un MANTA sans son strip de sécurité (prototype)&nbsp;?</li>
+<li><strong>Page Professionnels&nbsp;:</strong> «&nbsp;artisans à former à la pose&nbsp;», «&nbsp;chantiers adressés par MANTA dans votre zone&nbsp;», «&nbsp;conditions professionnelles sur demande&nbsp;».</li>
+<li><strong>Prêt gratuit&nbsp;:</strong> conditions à préciser (durée, nombre d'appareils, zone).</li>
+<li>Le capital de 10&nbsp;000&nbsp;€ dans les mentions légales.</li>
+<li>«&nbsp;Basé à Angers&nbsp;»&nbsp;: <span class="nw">peut-on</span> écrire «&nbsp;fabriqué en France&nbsp;»&nbsp;?</li>
+<li>Les photos d'ambiance de la page Particuliers sont des illustrations, à remplacer par de vraies photos.</li>
+<li>L'accord écrit des personnes photographiées (résidente à <span class="nw">Mazé-Milon</span>, équipe de Cholet).</li>
+<li>L'assistant 24&nbsp;h/24&nbsp;: à brancher avant la mise en ligne, sinon on retire ces boutons.</li>
+</ul>
+<h2>Erreurs du site actuel (à corriger vite)</h2>
+<ul class="stack-s">
+<li>Mentions légales&nbsp;: siège au «&nbsp;1 rue Julien Videment&nbsp;» et <span class="nw">e-mail</span> contact@professionalbackstage.com. À remplacer par l'adresse d'Angers.</li>
+<li>Bandeau cookies non conforme aux règles de la CNIL.</li>
+<li>Icône de l'onglet «&nbsp;PROBACK&nbsp;» au lieu de la raie manta.</li>
+</ul>
+<h2>Prochaines étapes</h2>
+<ol class="stack-s">
+<li>Réponses d'Élodie aux questions, puis version 3.1 si besoin.</li>
+<li>Photos et textes de l'équipe.</li>
+<li>Sauvegarde complète du WordPress, puis intégration sur une copie de test.</li>
+<li>Mise en ligne avec l'accord de Pierre.</li>
+</ol>
+</div></div></section>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<div class="foot-grid">
+<div class="stack-s"><a href="index.html" class="brand" style="color:#FFFFFF" aria-label="Manta, accueil"><svg viewBox="0 0 526 544" width="36" height="38" aria-hidden="true"><path fill="#F4DDAE" d="M0.0 543.7C-0.0 542.6 1.9 537.9 5.3 530.5C5.9 529.2 6.9 527.2 7.4 526.0C8.0 524.8 8.9 522.9 9.4 521.7C10.7 518.9 12.3 515.6 13.6 513.3C14.1 512.3 15.0 510.7 15.6 509.7C16.8 507.4 21.4 499.1 21.8 498.2C26.8 489.5 40.0 470.1 48.5 459.3C57.3 448.1 57.2 448.2 68.1 435.8C72.3 430.9 80.6 422.1 88.5 414.0C95.1 407.2 96.3 405.9 97.1 403.7C97.8 401.9 97.8 397.6 97.2 395.7C96.1 392.7 96.8 390.0 99.2 388.1C100.7 386.8 113.3 380.4 117.4 378.8C124.6 376.0 125.1 375.2 123.9 367.5C122.5 358.9 122.5 357.9 123.8 355.5C124.7 354.0 127.8 351.7 131.8 349.5C133.1 348.8 134.7 347.9 135.4 347.4C136.1 347.0 136.7 346.7 136.8 346.7C136.9 346.7 137.8 346.3 138.8 345.8C144.7 342.9 150.6 340.8 156.7 339.5C162.3 338.2 164.8 337.9 173.0 337.7C182.2 337.5 183.0 337.3 184.1 335.5C184.8 334.5 184.8 331.6 184.2 327.5C182.8 319.2 182.1 314.0 181.2 304.8C180.9 302.1 180.4 297.9 180.2 295.5C179.1 285.8 178.9 283.7 178.0 263.8C177.0 243.8 178.8 211.2 182.2 187.7C182.4 185.9 182.9 182.6 183.2 180.3C183.5 178.0 183.9 175.0 184.2 173.5C184.4 172.0 184.9 169.4 185.2 167.7C186.2 161.2 187.2 156.0 188.2 151.3C188.4 150.1 188.9 148.0 189.2 146.5C189.5 145.0 189.9 142.8 190.2 141.5C190.5 140.2 190.9 138.3 191.2 137.2C191.4 136.2 191.9 134.4 192.2 133.2C192.5 132.1 192.9 130.3 193.2 129.3C193.4 128.3 193.9 126.3 194.3 124.8C195.1 121.4 195.9 118.5 196.3 117.2C196.5 116.6 197.1 114.6 197.7 112.7C199.3 107.0 199.6 106.0 200.5 103.2C201.0 101.7 201.5 100.0 201.7 99.5C201.8 99.0 202.1 98.0 202.4 97.3C202.6 96.7 202.9 95.6 203.2 95.0C203.4 94.4 203.8 93.3 204.0 92.7C204.2 92.0 204.5 91.0 204.7 90.5C205.0 89.3 206.5 85.0 207.2 83.2C207.5 82.4 207.9 81.3 208.2 80.7C210.6 74.1 218.3 55.7 221.1 49.7C222.7 46.2 224.0 43.4 225.4 40.4C228.1 34.5 229.4 31.8 230.2 30.0C230.7 29.0 231.9 26.5 232.9 24.4C233.9 22.3 234.7 20.6 234.7 20.5C234.7 20.4 235.5 18.6 236.5 16.5C237.6 14.3 238.7 11.9 239.0 11.2C242.9 2.7 244.6 -0.1 245.6 0.1C245.8 0.1 247.1 2.4 248.4 5.2C250.3 9.5 259.7 28.2 261.8 32.2C263.5 35.4 265.2 38.3 265.9 39.4C266.3 40.1 266.7 40.7 266.7 40.8C266.7 40.9 267.0 41.6 267.4 42.3C267.9 42.9 268.7 44.3 269.2 45.3C271.5 49.5 275.2 55.7 277.7 59.7C279.1 62.0 281.1 65.1 282.0 66.7C284.2 70.1 288.8 77.1 290.7 79.8C291.5 80.9 294.0 84.5 296.2 87.7C300.4 93.8 301.2 94.8 310.0 106.2C318.1 116.7 327.6 127.7 337.9 138.7C355.7 157.6 373.4 173.6 396.5 191.5C400.5 194.6 417.3 206.5 422.3 209.7C425.2 211.6 428.7 213.9 430.1 214.7C432.7 216.4 446.3 224.7 446.5 224.7C446.5 224.7 448.8 226.0 451.6 227.6C454.3 229.2 458.1 231.3 460.0 232.3C461.9 233.3 464.0 234.4 464.7 234.8C466.9 236.0 482.5 243.9 485.5 245.2C487.2 246.0 489.8 247.2 491.3 247.9C492.9 248.7 495.2 249.7 496.5 250.3C497.8 250.9 499.9 251.9 501.3 252.5C502.6 253.2 503.8 253.7 504.0 253.7C504.1 253.7 504.7 253.9 505.2 254.1C505.7 254.4 507.4 255.1 508.8 255.7C511.5 256.9 512.2 257.6 511.4 258.4C511.1 258.7 506.2 258.8 495.1 258.9C478.8 258.9 468.3 259.3 458.8 260.2C455.9 260.4 450.9 260.9 447.7 261.2C444.5 261.5 440.5 261.9 438.8 262.2C437.2 262.4 434.0 262.9 431.7 263.2C422.9 264.3 420.6 264.7 412.7 266.2C411.3 266.5 409.0 266.9 407.6 267.2C406.2 267.4 403.8 267.9 402.2 268.2C398.8 268.8 396.3 269.4 390.8 270.7C378.8 273.5 374.0 274.7 372.3 275.2C371.5 275.4 369.9 275.8 368.7 276.2C367.5 276.5 365.9 276.9 365.2 277.2C364.4 277.4 362.9 277.8 361.7 278.2C357.4 279.3 353.1 280.5 351.2 281.2C350.4 281.4 346.9 282.5 343.3 283.7C332.5 287.2 325.0 289.7 319.5 291.7C318.8 292.0 316.9 292.7 315.3 293.3C313.7 293.8 311.0 294.8 309.3 295.5C305.2 297.1 299.6 299.3 295.7 300.9C293.9 301.5 288.2 303.9 283.0 306.2C274.1 310.0 272.3 310.8 266.7 313.4C265.5 314.0 263.7 314.8 262.7 315.2C259.4 316.7 238.9 326.9 235.3 328.8C233.4 329.9 230.4 331.5 228.8 332.4C216.0 339.2 196.2 350.8 183.8 358.8C179.6 361.6 172.1 366.5 168.7 368.9C166.6 370.3 162.7 373.0 160.0 374.8C157.3 376.6 150.5 381.6 144.8 385.8C135.5 392.7 132.3 395.2 120.9 404.5C119.0 406.0 116.6 407.9 115.5 408.8C106.0 416.5 78.7 442.0 70.9 450.5C69.2 452.4 65.0 456.9 61.6 460.6C45.7 477.7 27.4 501.3 16.7 518.4C15.7 520.1 13.9 522.8 12.8 524.5C11.7 526.2 10.1 528.9 9.2 530.3C8.2 531.8 6.9 534.0 6.2 535.1C5.4 536.2 4.1 538.3 3.2 539.7C1.3 542.8 0.0 544.3 0.0 543.7ZM516.8 244.3C516.5 244.2 514.7 243.5 513.0 242.8C511.3 242.2 508.3 241.0 506.3 240.2C504.4 239.4 501.0 237.9 498.7 237.0C496.5 236.1 493.7 234.9 492.6 234.4C491.4 233.8 489.2 232.8 487.6 232.0C485.9 231.3 484.5 230.7 484.4 230.7C483.3 230.7 455.0 215.7 447.1 211.0C445.1 209.7 442.5 208.2 441.4 207.6C440.4 207.0 438.5 205.9 437.3 205.2C436.1 204.4 433.7 202.8 431.8 201.7C421.7 195.3 404.5 183.5 403.9 182.5C403.8 182.3 403.9 181.9 404.1 181.7C405.0 181.0 411.7 177.0 414.8 175.3C416.7 174.3 419.3 172.9 420.6 172.1C422.0 171.3 423.1 170.7 423.2 170.7C423.4 170.7 427.2 168.3 429.5 166.8C430.4 166.3 432.3 165.0 433.7 164.2C446.6 155.8 461.2 143.3 472.0 131.4C477.3 125.4 482.3 119.4 484.3 116.4C485.0 115.3 486.6 112.9 487.9 111.0C489.2 109.1 490.8 106.5 491.5 105.2C492.2 103.9 493.2 102.1 493.7 101.2C495.4 98.1 496.0 96.9 498.2 91.7C499.4 88.8 500.9 84.9 501.6 82.8C502.8 79.0 503.1 78.1 504.4 74.8C505.8 71.5 506.1 71.9 508.5 79.3C509.7 82.9 511.1 87.6 511.7 89.7C512.3 91.8 513.2 95.0 513.7 96.8C515.6 103.4 515.6 103.3 517.2 110.7C517.8 113.4 518.5 116.8 519.2 119.8C520.1 123.8 520.6 126.9 521.2 130.7C521.5 132.8 521.9 135.8 522.2 137.5C525.2 156.9 526.0 184.5 524.3 204.2C523.5 213.9 523.3 215.3 523.0 217.5C521.0 232.4 520.8 233.5 519.3 241.3C518.7 244.7 518.4 245.0 516.8 244.3Z"></path></svg><b>Manta</b></a>
+<span>Améliorer la qualité de vie des personnes en perte d'autonomie et de leurs aidants.</span>
+<span>MANTA SAS · 1 rue Alexandre Fleming, 49000 Angers</span>
+<span><a class="lien-contact" href="tel:+33145341471">01&nbsp;45&nbsp;34&nbsp;14&nbsp;71</a> · <a class="lien-contact" href="mailto:contact@manta-health.com">contact@manta-health.com</a></span></div>
+<div class="foot-links"><strong>Le site</strong><a href="index.html">Accueil</a><a href="particuliers.html">Particuliers</a><a href="etablissements.html">Établissements</a><a href="professionnels.html">Professionnels</a><a href="grands-comptes.html">Grands comptes</a><a href="histoire.html">Qui <span class="nw">sommes-nous</span></a><a href="actualites.html">Actualités</a><a href="contact.html">Contact</a></div>
+<div class="stack-s"><strong>Ils nous accompagnent</strong><span>Gérontopôle des Pays de la Loire · CHU d'Angers · Silver Valley · Club Business Silver Eco de la CCI · TiMOTION · Normbau · MedicApp Connect</span></div>
+</div>
+<div class="foot-bottom"><span>Dispositif médical de classe&nbsp;I, marquage CE, règlement (UE)&nbsp;2017/745 · EUDAMED SRN&nbsp;<span class="nw">FR-MF-000052993</span></span>
+<span><a href="mentions-legales.html">Mentions légales</a> · <a href="mentions-legales.html#donnees">Données personnelles</a> · © 2026 MANTA SAS</span></div>
+</div></footer>
+<script>
+(function(){var h=document.getElementById('tete');if(!h)return;function f(){h.classList.toggle('scrolled',window.scrollY>8);}window.addEventListener('scroll',f,{passive:true});f();
+var m=h.querySelector('details.menu');if(m){m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.open=false;});});document.addEventListener('click',function(e){if(m.open&&!m.contains(e.target))m.open=false;});}})();
+</script>
+
+<a href="grands-comptes.html" class="gc-retour" id="gcRetour" hidden><svg viewBox="0 0 526 544" aria-hidden="true"><path fill="#F4DDAE" d="M0.0 543.7C-0.0 542.6 1.9 537.9 5.3 530.5C5.9 529.2 6.9 527.2 7.4 526.0C8.0 524.8 8.9 522.9 9.4 521.7C10.7 518.9 12.3 515.6 13.6 513.3C14.1 512.3 15.0 510.7 15.6 509.7C16.8 507.4 21.4 499.1 21.8 498.2C26.8 489.5 40.0 470.1 48.5 459.3C57.3 448.1 57.2 448.2 68.1 435.8C72.3 430.9 80.6 422.1 88.5 414.0C95.1 407.2 96.3 405.9 97.1 403.7C97.8 401.9 97.8 397.6 97.2 395.7C96.1 392.7 96.8 390.0 99.2 388.1C100.7 386.8 113.3 380.4 117.4 378.8C124.6 376.0 125.1 375.2 123.9 367.5C122.5 358.9 122.5 357.9 123.8 355.5C124.7 354.0 127.8 351.7 131.8 349.5C133.1 348.8 134.7 347.9 135.4 347.4C136.1 347.0 136.7 346.7 136.8 346.7C136.9 346.7 137.8 346.3 138.8 345.8C144.7 342.9 150.6 340.8 156.7 339.5C162.3 338.2 164.8 337.9 173.0 337.7C182.2 337.5 183.0 337.3 184.1 335.5C184.8 334.5 184.8 331.6 184.2 327.5C182.8 319.2 182.1 314.0 181.2 304.8C180.9 302.1 180.4 297.9 180.2 295.5C179.1 285.8 178.9 283.7 178.0 263.8C177.0 243.8 178.8 211.2 182.2 187.7C182.4 185.9 182.9 182.6 183.2 180.3C183.5 178.0 183.9 175.0 184.2 173.5C184.4 172.0 184.9 169.4 185.2 167.7C186.2 161.2 187.2 156.0 188.2 151.3C188.4 150.1 188.9 148.0 189.2 146.5C189.5 145.0 189.9 142.8 190.2 141.5C190.5 140.2 190.9 138.3 191.2 137.2C191.4 136.2 191.9 134.4 192.2 133.2C192.5 132.1 192.9 130.3 193.2 129.3C193.4 128.3 193.9 126.3 194.3 124.8C195.1 121.4 195.9 118.5 196.3 117.2C196.5 116.6 197.1 114.6 197.7 112.7C199.3 107.0 199.6 106.0 200.5 103.2C201.0 101.7 201.5 100.0 201.7 99.5C201.8 99.0 202.1 98.0 202.4 97.3C202.6 96.7 202.9 95.6 203.2 95.0C203.4 94.4 203.8 93.3 204.0 92.7C204.2 92.0 204.5 91.0 204.7 90.5C205.0 89.3 206.5 85.0 207.2 83.2C207.5 82.4 207.9 81.3 208.2 80.7C210.6 74.1 218.3 55.7 221.1 49.7C222.7 46.2 224.0 43.4 225.4 40.4C228.1 34.5 229.4 31.8 230.2 30.0C230.7 29.0 231.9 26.5 232.9 24.4C233.9 22.3 234.7 20.6 234.7 20.5C234.7 20.4 235.5 18.6 236.5 16.5C237.6 14.3 238.7 11.9 239.0 11.2C242.9 2.7 244.6 -0.1 245.6 0.1C245.8 0.1 247.1 2.4 248.4 5.2C250.3 9.5 259.7 28.2 261.8 32.2C263.5 35.4 265.2 38.3 265.9 39.4C266.3 40.1 266.7 40.7 266.7 40.8C266.7 40.9 267.0 41.6 267.4 42.3C267.9 42.9 268.7 44.3 269.2 45.3C271.5 49.5 275.2 55.7 277.7 59.7C279.1 62.0 281.1 65.1 282.0 66.7C284.2 70.1 288.8 77.1 290.7 79.8C291.5 80.9 294.0 84.5 296.2 87.7C300.4 93.8 301.2 94.8 310.0 106.2C318.1 116.7 327.6 127.7 337.9 138.7C355.7 157.6 373.4 173.6 396.5 191.5C400.5 194.6 417.3 206.5 422.3 209.7C425.2 211.6 428.7 213.9 430.1 214.7C432.7 216.4 446.3 224.7 446.5 224.7C446.5 224.7 448.8 226.0 451.6 227.6C454.3 229.2 458.1 231.3 460.0 232.3C461.9 233.3 464.0 234.4 464.7 234.8C466.9 236.0 482.5 243.9 485.5 245.2C487.2 246.0 489.8 247.2 491.3 247.9C492.9 248.7 495.2 249.7 496.5 250.3C497.8 250.9 499.9 251.9 501.3 252.5C502.6 253.2 503.8 253.7 504.0 253.7C504.1 253.7 504.7 253.9 505.2 254.1C505.7 254.4 507.4 255.1 508.8 255.7C511.5 256.9 512.2 257.6 511.4 258.4C511.1 258.7 506.2 258.8 495.1 258.9C478.8 258.9 468.3 259.3 458.8 260.2C455.9 260.4 450.9 260.9 447.7 261.2C444.5 261.5 440.5 261.9 438.8 262.2C437.2 262.4 434.0 262.9 431.7 263.2C422.9 264.3 420.6 264.7 412.7 266.2C411.3 266.5 409.0 266.9 407.6 267.2C406.2 267.4 403.8 267.9 402.2 268.2C398.8 268.8 396.3 269.4 390.8 270.7C378.8 273.5 374.0 274.7 372.3 275.2C371.5 275.4 369.9 275.8 368.7 276.2C367.5 276.5 365.9 276.9 365.2 277.2C364.4 277.4 362.9 277.8 361.7 278.2C357.4 279.3 353.1 280.5 351.2 281.2C350.4 281.4 346.9 282.5 343.3 283.7C332.5 287.2 325.0 289.7 319.5 291.7C318.8 292.0 316.9 292.7 315.3 293.3C313.7 293.8 311.0 294.8 309.3 295.5C305.2 297.1 299.6 299.3 295.7 300.9C293.9 301.5 288.2 303.9 283.0 306.2C274.1 310.0 272.3 310.8 266.7 313.4C265.5 314.0 263.7 314.8 262.7 315.2C259.4 316.7 238.9 326.9 235.3 328.8C233.4 329.9 230.4 331.5 228.8 332.4C216.0 339.2 196.2 350.8 183.8 358.8C179.6 361.6 172.1 366.5 168.7 368.9C166.6 370.3 162.7 373.0 160.0 374.8C157.3 376.6 150.5 381.6 144.8 385.8C135.5 392.7 132.3 395.2 120.9 404.5C119.0 406.0 116.6 407.9 115.5 408.8C106.0 416.5 78.7 442.0 70.9 450.5C69.2 452.4 65.0 456.9 61.6 460.6C45.7 477.7 27.4 501.3 16.7 518.4C15.7 520.1 13.9 522.8 12.8 524.5C11.7 526.2 10.1 528.9 9.2 530.3C8.2 531.8 6.9 534.0 6.2 535.1C5.4 536.2 4.1 538.3 3.2 539.7C1.3 542.8 0.0 544.3 0.0 543.7ZM516.8 244.3C516.5 244.2 514.7 243.5 513.0 242.8C511.3 242.2 508.3 241.0 506.3 240.2C504.4 239.4 501.0 237.9 498.7 237.0C496.5 236.1 493.7 234.9 492.6 234.4C491.4 233.8 489.2 232.8 487.6 232.0C485.9 231.3 484.5 230.7 484.4 230.7C483.3 230.7 455.0 215.7 447.1 211.0C445.1 209.7 442.5 208.2 441.4 207.6C440.4 207.0 438.5 205.9 437.3 205.2C436.1 204.4 433.7 202.8 431.8 201.7C421.7 195.3 404.5 183.5 403.9 182.5C403.8 182.3 403.9 181.9 404.1 181.7C405.0 181.0 411.7 177.0 414.8 175.3C416.7 174.3 419.3 172.9 420.6 172.1C422.0 171.3 423.1 170.7 423.2 170.7C423.4 170.7 427.2 168.3 429.5 166.8C430.4 166.3 432.3 165.0 433.7 164.2C446.6 155.8 461.2 143.3 472.0 131.4C477.3 125.4 482.3 119.4 484.3 116.4C485.0 115.3 486.6 112.9 487.9 111.0C489.2 109.1 490.8 106.5 491.5 105.2C492.2 103.9 493.2 102.1 493.7 101.2C495.4 98.1 496.0 96.9 498.2 91.7C499.4 88.8 500.9 84.9 501.6 82.8C502.8 79.0 503.1 78.1 504.4 74.8C505.8 71.5 506.1 71.9 508.5 79.3C509.7 82.9 511.1 87.6 511.7 89.7C512.3 91.8 513.2 95.0 513.7 96.8C515.6 103.4 515.6 103.3 517.2 110.7C517.8 113.4 518.5 116.8 519.2 119.8C520.1 123.8 520.6 126.9 521.2 130.7C521.5 132.8 521.9 135.8 522.2 137.5C525.2 156.9 526.0 184.5 524.3 204.2C523.5 213.9 523.3 215.3 523.0 217.5C521.0 232.4 520.8 233.5 519.3 241.3C518.7 244.7 518.4 245.0 516.8 244.3Z"></path></svg>Retour à votre espace Grands comptes</a>
+<script>try{if(sessionStorage.getItem('manta-gc')==='1')document.getElementById('gcRetour').hidden=false;sessionStorage.setItem('manta-visite','1');}catch(e){}</script>
+</body>
+</html>
