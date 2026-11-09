@@ -464,6 +464,15 @@ h1,h2,h3,.display,.h2,.h3{text-wrap:balance}p,li,dd,dt,td,th,figcaption,blockquo
 .foot-bottom a,.site-foot .lien-contact{display:inline-block;padding:6px 0;min-height:24px}
 @media (max-width:700px){.foot-bottom{font-size:16px}.foot-bottom a{padding:8px 0}}
 p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card-line span{text-wrap:pretty}
+/* Mention de confidentialité des formulaires (décision de Pierre du 09/11/2026) */
+.confid{display:flex;gap:12px;align-items:flex-start;margin:0;padding:14px 18px;border-radius:16px;background:var(--menthe);color:var(--marine);font-size:16px;line-height:1.5}
+.confid svg{flex:none;margin-top:1px;color:var(--canard)}
+.confid a{color:var(--canard)}
+/* Grands comptes : mention de confidentialité au style de la page, ligne « Toujours en service » (09/11/2026) */
+.gc-form .confid,.pr-rdv .confid{border-radius:0;background:transparent;padding:6px 0 6px 16px;border-left:3px solid var(--canard)}
+.pr-rdv .confid{color:var(--blanc);border-left-color:var(--sable)}
+.pr-rdv .confid svg,.pr-rdv .confid a{color:var(--sable)}
+.pr-encore{margin:28px 0 0;padding:6px 0 6px 16px;border-left:3px solid var(--sable);color:var(--sable);font-size:19px;letter-spacing:.02em}
 </style>
 </head>
 <body>
@@ -511,7 +520,7 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 <div class="chiffre"><b>248&nbsp;kg</b><span>testés en laboratoire</span></div>
 <div class="chiffre"><b>355–740</b><span>millimètres, hauteur de la cuvette</span></div>
 <div class="chiffre"><b>24&nbsp;V</b><span>moteur autobloquant, batterie de secours</span></div>
-<div class="chiffre"><b>10&nbsp;ans</b><span>de durée de vie</span></div>
+<div class="chiffre"><b>10&nbsp;ans</b><span>de garantie (structure, mécanisme, châssis)</span></div>
 <div class="chiffre"><b>Niveau 3</b><span><span class="nw">bio-nettoyage</span> hospitalier</span></div>
 <div class="chiffre"><b>&lt;&nbsp;1&nbsp;jour</b><span>de pose</span></div>
 </div>
@@ -522,6 +531,7 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 <h2>Éprouvé</h2>
 <div>
 <blockquote>Six mois dans quatre établissements de santé. 222&nbsp;patients, aidants et soignants interrogés.</blockquote>
+<p class="pr-encore">Toujours en service au CHU d’Angers.</p>
 <ul class="pr-sites">
 <li><strong>CHU d’Angers</strong><span>Service de gériatrie</span></li>
 <li><strong>Centre hospitalier de Cholet</strong><span><span class="nw">Maine-et-Loire</span></span></li>
@@ -537,7 +547,7 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 <div>
 <p class="pr-intro">Volumes, délais, pose et service&nbsp;: ce qu’un distributeur doit savoir avant de s’engager.</p>
 <!-- Mentions « À demander à Pierre » : questions de la simulation, à retirer avant la mise en ligne une fois les réponses intégrées -->
-<dl class="pr-registre pr-dist"><dt>Capacité</dt><dd>20&nbsp;appareils par mois, puis 40 par mois pour une distribution nationale.</dd><dt>Délai de livraison</dt><dd>8&nbsp;semaines après la commande.</dd><dt>Pose</dt><dd>Assurée par MANTA chez vos clients, partout en France, dans les 2&nbsp;semaines qui suivent le paiement.</dd><dt>Formation</dt><dd>Formation des installateurs à la pose et à la mise en service&nbsp;: une journée en visio, gratuite. Les installateurs formés deviennent partenaires MANTA.</dd><dt>Service <span class="nw">après-vente</span></dt><dd>SAV assuré par MANTA&nbsp;: diagnostic puis intervention sous 48&nbsp;h, partout en France.<br>Garantie 10&nbsp;ans&nbsp;: structure, mécanisme et châssis.<br>Garantie 2&nbsp;ans&nbsp;: batterie, télécommande, boîtier, plaque de chasse, cuvette et abattant.<br>Exclus&nbsp;: mécanisme de chasse et consommables.</dd><dt>Accompagnement<br>commercial</dt><dd>Fiche technique, vidéo du test de sécurité, prérequis d’installation et démonstration avec Pierre.</dd></dl>
+<dl class="pr-registre pr-dist"><dt>Capacité</dt><dd>Production adaptée à vos volumes, avec une montée en cadence prévue pour une distribution nationale. Pierre en parle directement avec vous.</dd><dt>Délai de livraison</dt><dd>8&nbsp;semaines après la commande.</dd><dt>Pose</dt><dd>Livré et posé par MANTA partout en France, paiement à la réception.</dd><dt>Formation</dt><dd>Formation des installateurs à la pose et à la mise en service&nbsp;: une journée en visio, gratuite. Les installateurs formés deviennent partenaires MANTA.</dd><dt>Service <span class="nw">après-vente</span></dt><dd>SAV assuré par MANTA&nbsp;: diagnostic puis intervention sous 48&nbsp;h, partout en France.<br>Garantie 10&nbsp;ans&nbsp;: structure, mécanisme et châssis.<br>Garantie 2&nbsp;ans&nbsp;: batterie, télécommande, boîtier, plaque de chasse, cuvette et abattant.<br>Exclus&nbsp;: mécanisme de chasse et consommables.</dd><dt>Accompagnement<br>commercial</dt><dd>Fiche technique, vidéo du test de sécurité, prérequis d’installation et démonstration avec Pierre.</dd></dl>
 </div>
 </div></section>
 
@@ -562,7 +572,7 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 <div class="field"><label for="gTel">Téléphone *</label><input id="gTel" type="tel" autocomplete="tel"></div>
 </div>
 <label class="consent"><input type="checkbox" id="gRgpd"><span>J'accepte que MANTA utilise ces informations pour me transmettre les dossiers et me recontacter. *</span></label>
-<p class="xs muted">Vos informations servent uniquement à cette demande. <a href="mentions-legales.html#donnees">En savoir plus sur vos données</a>.</p>
+<p class="confid"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg><span><strong>Vos données restent strictement confidentielles</strong>&nbsp;: elles ne sont jamais revendues ni utilisées pour du démarchage. <a href="mentions-legales.html#donnees">En savoir plus sur vos données</a>.</span></p>
 <button type="submit" class="btn btn-fin" style="align-self:flex-start">Recevoir les dossiers par e-mail</button>
 <p class="ok" id="gOk" role="status" hidden></p>
 </form>
@@ -591,6 +601,7 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 </fieldset></div>
 <div class="field"><label for="rDispo">Vos disponibilités</label><input id="rDispo" placeholder="Ex. : mardi ou jeudi matin"></div>
 <label class="consent"><input type="checkbox" id="rRgpd"><span>J'accepte que MANTA utilise ces informations pour me recontacter au sujet de ce <span class="nw">rendez-vous</span>. *</span></label>
+<p class="confid"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg><span><strong>Vos données restent strictement confidentielles</strong>&nbsp;: elles ne sont jamais revendues ni utilisées pour du démarchage. <a href="mentions-legales.html#donnees">En savoir plus sur vos données</a>.</span></p>
 <button type="submit" class="btn btn-fin btn-fin-clair" style="align-self:flex-start"><span>Demander un <span class="nw">rendez-vous</span></span></button>
 <p class="ok" id="rOk" role="status" hidden></p>
 </form>

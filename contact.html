@@ -362,6 +362,10 @@ h1,h2,h3,.display,.h2,.h3{text-wrap:balance}p,li,dd,dt,td,th,figcaption,blockquo
 .foot-bottom a,.site-foot .lien-contact{display:inline-block;padding:6px 0;min-height:24px}
 @media (max-width:700px){.foot-bottom{font-size:16px}.foot-bottom a{padding:8px 0}}
 p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card-line span{text-wrap:pretty}
+/* Mention de confidentialité des formulaires (décision de Pierre du 09/11/2026) */
+.confid{display:flex;gap:12px;align-items:flex-start;margin:0;padding:14px 18px;border-radius:16px;background:var(--menthe);color:var(--marine);font-size:16px;line-height:1.5}
+.confid svg{flex:none;margin-top:1px;color:var(--canard)}
+.confid a{color:var(--canard)}
 </style>
 <script>try{if(sessionStorage.getItem('manta-gc')==='1')document.documentElement.classList.add('via-gc');}catch(e){}</script>
 </head>
@@ -414,7 +418,7 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 <div class="field"><label for="cp">Code postal</label><input id="cp" name="cp" type="text" inputmode="numeric" autocomplete="postal-code" style="max-width:220px"></div>
 <div class="field"><label for="msg">Votre message</label><textarea id="msg" name="msg" placeholder="Votre situation, votre question, le nombre d'appareils…"></textarea></div>
 <label class="consent"><input type="checkbox" id="rgpd" name="rgpd"><span>J'accepte que MANTA utilise ces informations pour me recontacter au sujet de ma demande. *</span></label>
-<p class="xs muted">Vos informations servent uniquement à répondre à votre demande. <a href="mentions-legales.html#donnees">En savoir plus sur vos données</a>.</p>
+<p class="confid"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg><span><strong>Vos données restent strictement confidentielles</strong>&nbsp;: elles ne sont jamais revendues ni utilisées pour du démarchage. <a href="mentions-legales.html#donnees">En savoir plus sur vos données</a>.</span></p>
 <button type="submit" class="btn btn-main" style="align-self:flex-start">Envoyer ma demande</button>
 <p class="ok" id="okMsg" hidden></p>
 </form>

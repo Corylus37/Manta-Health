@@ -367,6 +367,13 @@ h1,h2,h3,.display,.h2,.h3{text-wrap:balance}p,li,dd,dt,td,th,figcaption,blockquo
 .foot-bottom a,.site-foot .lien-contact{display:inline-block;padding:6px 0;min-height:24px}
 @media (max-width:700px){.foot-bottom{font-size:16px}.foot-bottom a{padding:8px 0}}
 p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card-line span{text-wrap:pretty}
+/* Mention de confidentialité des formulaires (décision de Pierre du 09/11/2026) */
+.confid{display:flex;gap:12px;align-items:flex-start;margin:0;padding:14px 18px;border-radius:16px;background:var(--menthe);color:var(--marine);font-size:16px;line-height:1.5}
+.confid svg{flex:none;margin-top:1px;color:var(--canard)}
+.confid a{color:var(--canard)}
+/* « Toujours en service au CHU d'Angers » (décision du 09/11/2026) */
+.en-service{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;margin:0;padding:8px 16px;border-radius:999px;background:var(--menthe);color:var(--marine);font-weight:700;font-size:16px;line-height:1.3}
+.en-service .pastille{flex:none;width:10px;height:10px;border-radius:50%;background:var(--canard);box-shadow:0 0 0 4px rgba(15,110,104,.18)}
 </style>
 <script>try{if(sessionStorage.getItem('manta-gc')==='1')document.documentElement.classList.add('via-gc');}catch(e){}</script>
 </head>
@@ -425,7 +432,7 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 <div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7l5.7 5.6a8 8 0 1 1-11.4 0z"></path></svg></span><h3 class="h3" style="font-size:22px">Hygiène hospitalière</h3><p class="muted small">Compatible avec un <span class="nw">bio-nettoyage</span> hospitalier de niveau 3.</p></div>
 <div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 1.3-1.3a4 4 0 0 0-5-5L3 10l8-8 3 3z"></path></svg></span><h3 class="h3" style="font-size:22px">Pose rapide</h3><p class="muted small">Moins d'une journée, fixé au sol et au mur (mur porteur ou cloison renforcée). 77,5&nbsp;cm hors tout et 23,5&nbsp;cm d'épaisseur.</p></div>
 <div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path><path d="M9 14l2 2 4-4"></path></svg></span><h3 class="h3" style="font-size:22px">Conformité vérifiée</h3><p class="muted small">Dispositif médical de classe&nbsp;I, marquage CE (règlement (UE)&nbsp;2017/745). Conformité EN&nbsp;<span class="nw">60601-1</span> évaluée par l'APAVE, risques gérés selon l'ISO&nbsp;14971.</p></div>
-<div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><h3 class="h3" style="font-size:22px">Durable et suivi</h3><p class="muted small">Durée de vie de 10&nbsp;ans.<br>Garantie 10&nbsp;ans&nbsp;: structure, mécanisme et châssis.<br>Garantie 2&nbsp;ans&nbsp;: batterie, télécommande, boîtier, plaque de chasse, cuvette et abattant.<br>Exclus&nbsp;: mécanisme de chasse et consommables.<br>En cas de panne&nbsp;: diagnostic puis intervention de MANTA sous 48&nbsp;h.</p></div>
+<div class="card-line"><span class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><h3 class="h3" style="font-size:22px">Durable et suivi</h3><p class="muted small">Garantie 10&nbsp;ans&nbsp;: structure, mécanisme et châssis.<br>Garantie 2&nbsp;ans&nbsp;: batterie, télécommande, boîtier, plaque de chasse, cuvette et abattant.<br>Exclus&nbsp;: mécanisme de chasse et consommables.<br>En cas de panne&nbsp;: diagnostic puis intervention de MANTA sous 48&nbsp;h.</p></div>
 </div></div></section>
 
 <section class="bg-blanc" id="securite" style="scroll-margin-top:90px"><div class="wrap sec stack" style="gap:36px"><div class="stack-s measure"><p class="eyebrow">Le test de sécurité en vidéo</p>
@@ -463,7 +470,7 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 <tr><th scope="row">Sécurité</th><td>Strip <span class="nw">anti-collision</span> qui stoppe la descente</td></tr>
 <tr><th scope="row">Hygiène</th><td><span class="nw">Bio-nettoyage</span> hospitalier niveau 3</td></tr>
 <tr><th scope="row">Pose</th><td>Moins d'une journée, fixé au sol et au mur (mur porteur ou cloison renforcée)</td></tr>
-<tr><th scope="row">Durée de vie</th><td>10&nbsp;ans</td></tr>
+<tr><th scope="row">Garantie</th><td>10&nbsp;ans (structure, mécanisme, châssis)</td></tr>
 <tr><th scope="row">Réglementation</th><td>Dispositif médical classe&nbsp;I, marquage CE, règlement (UE)&nbsp;2017/745</td></tr>
 <tr><th scope="row">EUDAMED</th><td>SRN&nbsp;<span class="nw">FR-MF-000052993</span></td></tr>
 <tr><th scope="row">Sécurité électrique</th><td>EN&nbsp;<span class="nw">60601-1</span>, évaluée par l'APAVE (2022)</td></tr>
@@ -474,7 +481,8 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 
 <section><div class="wrap sec stack" style="gap:40px">
 <div class="stack-s measure"><p class="eyebrow">Ils l'ont testé</p><h2 class="h2">Quatre établissements, une étude de 222&nbsp;participants.</h2>
-<p class="muted">Depuis 2023, MANTA est utilisé en conditions réelles. L'étude d'expérience utilisateur menée avec le Gérontopôle des Pays de la Loire et le CHU d'Angers s'est terminée en 2026.</p></div>
+<p class="muted">Depuis 2023, MANTA est utilisé en conditions réelles. L'étude d'expérience utilisateur menée avec le Gérontopôle des Pays de la Loire et le CHU d'Angers s'est terminée en 2026.</p>
+<p class="en-service"><span class="pastille" aria-hidden="true"></span>Toujours en service au CHU d'Angers.</p></div>
 <div class="grid3">
 <article class="card-img"><img src="img/maze-milon-1.jpg" alt="Une femme à côté d'un MANTA installé à l'Établissement de santé Baugeois Vallée, à Mazé-Milon" style="object-position:center 34%" width="495" height="1100" loading="lazy" decoding="async"><div class="in"><h3 class="h3" style="font-size:21px">Établissement de santé Baugeois Vallée</h3><p class="muted small"><span class="nw">Mazé-Milon</span> (<span class="nw">Maine-et-Loire</span>)</p></div></article>
 <article class="card-img"><img src="img/chu-angers-1-net.jpg" alt="MANTA installé au CHU d'Angers" width="495" height="1100" loading="lazy" decoding="async"><div class="in"><h3 class="h3" style="font-size:21px">CHU d'Angers</h3><p class="muted small">Service de gériatrie</p></div></article>
@@ -571,6 +579,7 @@ function mantaSiret(v){var d=v.replace(/\s/g,'');if(!/^\d{14}$/.test(d))return f
       '<div class="two"><div class="field"><label for="qSrv">Service *</label><input id="qSrv" placeholder="Gériatrie, rééducation…"></div><div class="field"><label for="qFct">Fonction *</label><input id="qFct" placeholder="Cadre de santé, directeur…" autocomplete="organization-title"></div></div>'+
       '<div class="two"><div class="field"><label for="qMail">E-mail professionnel *</label><input id="qMail" type="email" autocomplete="email"></div><div class="field"><label for="qTel">Téléphone *</label><input id="qTel" type="tel" autocomplete="tel"></div></div>'+
       '<label class="consent"><input type="checkbox" id="qRgpd"><span>J\'accepte que MANTA utilise ces informations pour me recontacter au sujet de ma demande. *</span></label>'+
+      '<p class="confid"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg><span><strong>Vos données restent strictement confidentielles</strong>&nbsp;: elles ne sont jamais revendues ni utilisées pour du démarchage. <a href="mentions-legales.html#donnees">En savoir plus sur vos données</a>.</span></p>'+
       '<button type="submit" class="btn btn-main" style="align-self:flex-start">Être rappelé par Pierre</button><p class="ok" hidden></p></form>'+
       '<button type="button" class="quiz-back">↺ Recommencer</button></div>';
     var f=body.querySelector('form'),ok=f.querySelector('.ok');
