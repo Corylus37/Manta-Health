@@ -1,7 +1,7 @@
 (function () {
   var photo = {
-    bot: ['Voulez-vous vérifier que les toilettes sont compatibles\u00a0? Envoyez-moi une photo\u00a0: je vous dis tout de suite ce qu’il faut prévoir.'],
-    choices: [{ label: 'Envoyer une photo', next: 'photoSent', img: true }, { label: 'Plus tard', next: 'slots' }]
+    bot: ['Voulez-vous en parler avec Pierre, le fondateur de MANTA\u00a0? Il vous rappelle pour vérifier avec vous que vos toilettes conviennent et répondre à vos questions.'],
+    choices: [{ label: 'Être rappelé par Pierre', next: 'rappel' }, { label: 'Plus tard', next: 'later' }]
   };
   var revenus = [
     { label: 'Il vit seul, revenu fiscal sous 17\u00a0400\u00a0€', next: 'tm' },
@@ -19,7 +19,7 @@
     { label: 'Recommencer la démonstration', next: 'restart' }
   ];
   var N = {
-    start: { bot: ['Bonjour, je suis l’assistant MANTA. Je réponds à vos questions jour et nuit, j’estime vos aides et j’organise un appel avec Pierre, le fondateur.', 'Pour qui cherchez-vous une solution\u00a0?'],
+    start: { bot: ['Bonjour, je suis l’assistant MANTA. Je réponds à vos questions jour et nuit, j’estime vos aides et je vous explique comment être rappelé par Pierre, le fondateur.', 'Pour qui cherchez-vous une solution\u00a0?'],
       choices: [{ label: 'Pour mon père ou ma mère', next: 'a1' }, { label: 'Pour moi-même', next: 'b1' }, { label: 'Pour un patient, je suis soignant', next: 'c1' }] },
     a1: { bot: ['Merci. Quel âge a votre parent, et qu’est-ce qui est devenu difficile\u00a0?'],
       choices: [{ label: 'Mon père a 84\u00a0ans, il a du mal à se relever', next: 'a2' }, { label: 'Ma mère a 78\u00a0ans, elle est tombée le mois dernier', next: 'a2b' }] },
@@ -42,17 +42,13 @@
     b3n: { bot: ['Je vous conseille de la demander à la MDPH\u00a0: elle peut financer une grande partie de MANTA, et nous vous aidons à préparer le dossier.', 'MaPrimeAdapt’ reste possible à tout âge avec un taux d’incapacité d’au moins 50\u00a0%.'].concat(photo.bot), choices: photo.choices },
     c1: { bot: ['Merci\u00a0! Vous êtes plutôt\u00a0:'],
       choices: [{ label: 'Ergothérapeute', next: 'c2' }, { label: 'Infirmier ou aide à domicile', next: 'c2' }, { label: 'Accompagnateur MaPrimeAdapt’', next: 'c2' }] },
-    c2: { bot: ['Je vous envoie la fiche technique, les prérequis d’installation et la synthèse de l’étude du CHU d’Angers.', 'Pierre propose aussi une démonstration de 20\u00a0minutes, à votre cabinet ou en visio. Cela vous intéresse\u00a0?'],
-      choices: [{ label: 'Oui, une visio', next: 'slots' }, { label: 'Envoyez-moi la documentation', next: 'c3' }] },
-    c3: { bot: ['C’est envoyé. Vous pouvez aussi transmettre notre simulateur à vos patients\u00a0: ils estiment leur reste à charge en une minute.'],
-      choices: [{ label: 'Recommencer la démonstration', next: 'restart' }] },
-    photoSent: { bot: ['Merci\u00a0! Je vois des toilettes suspendues, une arrivée d’eau et une prise électrique à proximité. L’installation semble compatible.', 'Pierre vérifiera avec vous la largeur disponible\u00a0: 85\u00a0cm minimum.'], then: 'slots' },
-    slots: { bot: ['Je vous propose un appel de 20\u00a0minutes avec Pierre, le fondateur de MANTA. Quel créneau vous arrange\u00a0?'],
-      choices: [{ label: 'Jeudi 29 octobre, 10\u00a0h', next: 'phone' }, { label: 'Jeudi 29 octobre, 14\u00a0h 30', next: 'phone' }, { label: 'Vendredi 30 octobre, 9\u00a0h 30', next: 'phone' }] },
-    phone: { bot: ['Parfait. À quel numéro Pierre peut-il vous joindre\u00a0?'], choices: [{ label: '06 12 34 56 78', next: 'done' }] },
-    done: { bot: ['C’est noté. Pierre vous appellera au 06 12 34 56 78 au créneau choisi.', 'Je vous envoie par e-mail votre estimation, la liste des papiers pour les aides et un rappel la veille. Une autre question en attendant\u00a0?'], choices: faq },
+    c2: { bot: ['La fiche technique, les prérequis d’installation et la synthèse de l’étude du CHU d’Angers vous sont envoyés sur demande, depuis le formulaire professionnel.', 'Pierre propose aussi une démonstration de 20\u00a0minutes, à votre cabinet ou en visio. Cela vous intéresse\u00a0?'],
+      choices: [{ label: 'Oui, être rappelé par Pierre', next: 'rappel' }, { label: 'Demander la documentation', href: 'professionnels.html#contact-pro' }] },
+    rappel: { bot: ['Pour être rappelé, laissez votre numéro dans le formulaire de contact, ou appelez-nous au 01\u00a045\u00a034\u00a014\u00a071. Pierre vous rappelle.', 'Il vérifiera avec vous la largeur disponible\u00a0: 85\u00a0cm minimum.'],
+      choices: [{ label: 'Ouvrir le formulaire de contact', href: 'contact.html#formulaire' }].concat(faq) },
+    later: { bot: ['Très bien. Voici les questions les plus fréquentes\u00a0:'], choices: faq },
     q1: { bot: ['Une batterie de secours prend le relais\u00a0: les toilettes restent utilisables pendant la coupure.'], choices: faq },
-    q2: { bot: ['Moins d’une journée. Il faut seulement que la prise électrique soit en place avant notre passage. Je vous le rappellerai par e-mail.'], choices: faq },
+    q2: { bot: ['Moins d’une journée. Il faut seulement que la prise électrique soit en place avant notre passage\u00a0: Pierre le vérifie avec vous en fixant la date.'], choices: faq },
     free: { bot: ['Merci pour votre question. Je la note pour Pierre, qui vous répondra de vive voix. En attendant, voici les questions les plus fréquentes\u00a0:'], choices: faq }
   };
 
@@ -91,7 +87,7 @@
     box.innerHTML = '';
     (N[id].choices || []).forEach(function (c) {
       var b = el('button', 'choice', c.label); b.type = 'button';
-      b.addEventListener('click', function () { go(c.img ? { img: true } : { me: c.label }, c.next); });
+      b.addEventListener('click', function () { if (c.href) { window.location.href = c.href; return; } go(c.img ? { img: true } : { me: c.label }, c.next); });
       box.appendChild(b);
     });
   }
