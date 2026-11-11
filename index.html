@@ -414,6 +414,15 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 /* « Toujours en service au CHU d'Angers » (décision du 09/11/2026) */
 .en-service{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;margin:0;padding:8px 16px;border-radius:999px;background:var(--menthe);color:var(--marine);font-weight:700;font-size:16px;line-height:1.3}
 .en-service .pastille{flex:none;width:10px;height:10px;border-radius:50%;background:var(--canard);box-shadow:0 0 0 4px rgba(15,110,104,.18)}
+/* 11/11 : photo du Forum des seniors dans le premier écran de l'accueil (décision de Pierre) ; la télécommande suit */
+.hero-photo{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);grid-template-areas:'titre photo' 'texte photo';gap:28px 48px;align-items:start}
+.hero-titre{grid-area:titre}.hero-texte{grid-area:texte}
+.hero-fig{grid-area:photo;margin:0;min-width:0;display:flex;flex-direction:column;gap:12px}
+.hero-fig .photo{aspect-ratio:715/618;border-radius:28px;box-shadow:0 18px 40px rgba(11,47,58,.14)}
+.hero-fig figcaption{font-size:15px;color:var(--gris);padding-left:4px}
+.hero-photo .display{font-size:clamp(38px,4.4vw,58px)}
+.hero-remote-seul{max-width:760px;margin:0 auto}
+@media (max-width:800px){.hero-photo{grid-template-columns:1fr;grid-template-areas:'titre' 'photo' 'texte';gap:24px}}
 </style>
 <script>try{if(sessionStorage.getItem('manta-gc')==='1')document.documentElement.classList.add('via-gc');}catch(e){}</script>
 </head>
@@ -430,17 +439,21 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 </div></header>
 <main id="contenu">
 
-<section class="bg-blanc"><div class="colle2 wrap grid2 hero-remote" style="padding-block:56px 80px">
-<div class="stack" style="gap:28px">
+<section class="bg-blanc"><div class="wrap hero-photo" style="padding-block:56px 48px">
+<div class="hero-titre stack" style="gap:28px">
 <p class="eyebrow"><span class="nw">Bâti-support</span> électrique pour WC suspendu</p>
 <h1 class="display">Des toilettes qui s'adaptent à chaque personne.</h1>
+</div>
+<figure class="hero-fig"><img class="photo" src="img/accueil-salon.jpg" alt="Sur le stand MANTA du Forum des seniors, une jeune femme rit, bras levé, assise sur la cuvette qui monte&nbsp;; Pierre Sanchez, fondateur de MANTA, est à côté d'elle." width="715" height="618" fetchpriority="high" decoding="async"><figcaption>Forum des seniors&nbsp;: la cuvette monte, le sourire aussi.</figcaption></figure>
+<div class="hero-texte stack" style="gap:28px">
 <p class="lead">MANTA monte et descend un WC suspendu d'une simple pression, de 35,5&nbsp;à&nbsp;74&nbsp;cm. Notre mission&nbsp;: améliorer la qualité de vie des personnes en perte d'autonomie et de leurs aidants.</p>
 <div class="stack-s">
 <a class="choice" href="particuliers.html"><div><strong>Pour moi ou un proche</strong><span>À la maison&nbsp;: prix, aides jusqu'à 70&nbsp;%, pose en moins d'une journée.</span></div><span class="go"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span></a>
 <a class="choice" href="etablissements.html"><div><strong>Pour un établissement de santé</strong><span>Hôpital, EHPAD, centre de rééducation&nbsp;: prêt gratuit selon votre profil.</span></div><span class="go"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span></a>
 <a href="professionnels.html" style="font-weight:700;font-size:17px;padding-left:4px">Vous êtes ergothérapeute, AMO, revendeur ou installateur&nbsp;? →</a>
-</div></div>
-<div style="min-width:0"><div class="remote " data-remote id="telecommande" style="scroll-margin-top:100px">
+</div></div></div></section>
+
+<section class="bg-blanc" aria-label="Essayez la télécommande"><div class="wrap" style="padding-block:0 80px"><div class="remote hero-remote-seul" data-remote id="telecommande" style="scroll-margin-top:100px">
 <div class="remote-stage"><svg viewBox="-20 0 840 1500" role="img" aria-label="Dessin à l'échelle du MANTA : la cuvette est à 55 centimètres du sol"></svg></div>
 <div class="remote-info">
 <p class="eyebrow">Essayez la télécommande</p>
@@ -464,7 +477,7 @@ p,li,dd,dt,td,th,figcaption,blockquote,label,summary,span.muted,span.small,.card
 <div class="test-wrap"><button type="button" class="pill remote-test" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><span class="rt-label">Tester l'arrêt de sécurité</span></button><span class="test-sub">Un animal ou un objet en dessous ? MANTA s'arrête aussitôt.</span></div>
 <span class="remote-msg" role="status">Dessin à l'échelle&nbsp;: de 35,5&nbsp;à&nbsp;74&nbsp;cm de hauteur.</span>
 </div>
-</div></div></div></section>
+</div></div></section>
 
 <section aria-label="Nos garanties" class="bg-marine"><div class="wrap grid4" style="padding-block:32px">
 <div class="band"><svg style="flex-shrink:0" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4DDAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><span><strong>Dispositif médical</strong><br>de classe&nbsp;I, marquage CE, <span class="nw">règlement (UE)&nbsp;2017/745</span></span></div>
